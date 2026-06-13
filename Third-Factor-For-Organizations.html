@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Organizations · Third Factor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#F0F4F3; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Hanken Grotesk',sans-serif; color:#121F1E; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  ::selection{ background:#0E7C75; color:#fff; }
+  a{ text-decoration:none; color:inherit; }
+  .serif{ font-family:'Newsreader',serif; }
+  .kick{ font-weight:600; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#0E7C75; }
+  @keyframes tf-rise{ from{ opacity:0; transform:translateY(30px); } to{ opacity:1; transform:none; } }
+  .reveal{ animation:tf-rise both; animation-timeline:view(); animation-range:entry 6% entry 50%; }
+  @supports not (animation-timeline: view()){ .reveal{ animation:none; opacity:1; transform:none; } }
+  .tf-link-u{ position:relative; }
+  .tf-link-u::after{ content:""; position:absolute; left:0; bottom:-3px; width:100%; height:1px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .4s cubic-bezier(.2,.7,.2,1); }
+  .tf-link-u:hover::after{ transform:scaleX(1); }
+  .tf-progress{ position:fixed; top:0; left:0; height:3px; width:0; background:#0E7C75; z-index:100; }
+  .tf-row{ transition:background .3s ease; }
+  .tf-row:hover{ background:rgba(14,124,117,.08); }
+  .btn-dark{ font-size:15px; font-weight:600; color:#F0F4F3; background:#121F1E; padding:14px 26px; border-radius:10px; cursor:pointer; white-space:nowrap; display:inline-block; transition:transform .25s ease, background .25s ease; }
+  .btn-dark:hover{ background:#121F1E; transform:translateY(-1px); }
+  .btn-light{ font-size:15px; font-weight:600; color:#0A1111; background:#F0F4F3; padding:14px 28px; border-radius:10px; cursor:pointer; white-space:nowrap; display:inline-block; transition:transform .25s ease; }
+  .btn-light:hover{ transform:translateY(-1px); }
+  /* audience switcher */
+  .aud{ display:inline-flex; align-items:center; gap:4px; background:#E3EAE8; border:1px solid #C7D6DD; border-radius:10px; padding:4px; flex-wrap:wrap; }
+  .aud a{ font-size:13px; font-weight:600; color:#646F6D; padding:8px 16px; border-radius:10px; cursor:pointer; white-space:nowrap; transition:color .2s ease; }
+  .aud a:hover{ color:#121F1E; }
+  .aud a.on{ background:#121F1E; color:#F0F4F3; }
+  /* image placeholders */
+  .imgph{ position:relative; background:#D1E0E7; border:1px dashed #ADC0C8; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; color:#84939A; text-align:center; padding:24px; }
+  .imgph svg{ opacity:.5; }
+  .imgph .lab{ font-size:12px; font-weight:600; letter-spacing:.04em; max-width:30ch; line-height:1.6; }
+  .imgph-d{ background:#121E1D; border-color:#284441; color:#646A6C; }
+  .cap-mark{ width:11px; height:11px; border-radius:50%; flex-shrink:0; }
+  .logo-ph{ height:62px; border:1px solid #C7D6DD; border-radius:12px; background:#F0F4F3; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:14px; letter-spacing:.02em; color:#909FA5; }
+  .avatar{ width:46px; height:46px; border-radius:50%; background:#121F1E; color:#3FBFAE; display:flex; align-items:center; justify-content:center; font-family:'Newsreader',serif; font-size:17px; flex-shrink:0; box-shadow:inset 0 0 0 1.5px #3FBFAE; }
+  /* pressure equation */
+  .peq{ background:#0A1111; color:#F0F4F3; border-radius:16px; padding:32px 32px 30px; position:relative; overflow:hidden; }
+  .peq::before{ content:""; position:absolute; inset:0; background:radial-gradient(70% 100% at 88% -10%, rgba(232,178,58,.16), transparent 60%); pointer-events:none; }
+  .peq > *{ position:relative; z-index:1; }
+  .peq-word{ font-family:'Newsreader',serif; font-weight:300; font-size:clamp(40px,5vw,58px); line-height:1; color:#3FBFAE; letter-spacing:.10em; }
+  .peq-bar{ height:10px; border-radius:10px; background:rgba(240,244,243,.13); margin:22px 0 14px; overflow:hidden; }
+  .peq-fill{ height:100%; width:100%; border-radius:10px; transform-origin:left center; transform:scaleX(.34); background:#3FBFAE; transition:transform .35s cubic-bezier(.2,.7,.2,1), background .35s ease; }
+  .peq-readout{ display:flex; align-items:baseline; gap:12px; margin-bottom:26px; }
+  .peq-num{ font-family:'Newsreader',serif; font-size:38px; font-weight:500; color:#F0F4F3; }
+  .peq-tag{ font-weight:700; font-size:12px; letter-spacing:.22em; color:#3FBFAE; }
+  .peq-row{ margin-bottom:15px; }
+  .peq-rowhead{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+  .peq-rowhead .lbl{ font-size:13.5px; font-weight:600; color:#F0F4F3; }
+  .peq-rowhead .val{ font-weight:600; font-size:13px; color:#3FBFAE; }
+  input.peq-slider{ -webkit-appearance:none; appearance:none; width:100%; height:5px; border-radius:10px; background:rgba(240,244,243,.16); outline:none; cursor:pointer; margin:0; }
+  input.peq-slider::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:20px; height:20px; border-radius:50%; background:#3FBFAE; border:3px solid #0A1111; box-shadow:0 0 0 1.5px #3FBFAE; cursor:grab; }
+  input.peq-slider:active::-webkit-slider-thumb{ cursor:grabbing; }
+  input.peq-slider::-moz-range-thumb{ width:18px; height:18px; border-radius:50%; background:#3FBFAE; border:3px solid #0A1111; cursor:grab; }
+  .peq-note{ font-size:12px; color:#7E8987; margin-top:14px; line-height:1.55; }
+  /* step rail */
+  .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+  .step{ position:relative; padding:0 26px; }
+  .step:first-child{ padding-left:0; }
+  .step:last-child{ padding-right:0; }
+  .step .num{ width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; color:#F0F4F3; background:#121F1E; margin-bottom:20px; position:relative; z-index:2; }
+  .steprail{ position:absolute; top:23px; left:0; width:100%; height:2px; z-index:0; background:linear-gradient(90deg,#0E7C75,#3FBFAE 50%,#0E7C75); opacity:.85; }
+  @media (max-width:920px){ .steps{ grid-template-columns:1fr 1fr; gap:34px 24px; } .step{ padding:0 !important; } .steprail{ display:none; } }
+  @media (max-width:920px){
+    .tf-hero-grid{ grid-template-columns:1fr !important; }
+    .tf-3{ grid-template-columns:1fr !important; }
+    .tf-4{ grid-template-columns:1fr 1fr !important; }
+    .tf-2{ grid-template-columns:1fr !important; }
+    .tf-nav-links{ display:none !important; }
+    .tf-foot{ grid-template-columns:1fr 1fr !important; }
+    .logo-grid{ grid-template-columns:repeat(3,1fr) !important; }
+    .hero-img{ min-height:300px !important; order:-1; }
+    .cap-meta{ display:none; }
+  }
+  @media (prefers-reduced-motion: reduce){ .reveal{ animation:none!important; opacity:1!important; transform:none!important; } }
+</style>
+
+<!--tf-meta-->
+<meta name="description" content="Build an organization that performs under pressure. Resilience, coaching and collaboration installed as trainable skills, and measured for impact.">
+<meta name="theme-color" content="#0E7C75">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Third Factor">
+<meta property="og:title" content="For Organizations · Third Factor">
+<meta property="og:description" content="Build an organization that performs under pressure. Resilience, coaching and collaboration installed as trainable skills, and measured for impact.">
+<meta property="og:image" content="https://thirdfactor.com/third-factor-share-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="For Organizations · Third Factor">
+<meta name="twitter:description" content="Build an organization that performs under pressure. Resilience, coaching and collaboration installed as trainable skills, and measured for impact.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23121F1E'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23F0F4F3'/%3E%3C/svg%3E">
+<style id="tf-enhance">
+.mono{font-family:'Hanken Grotesk',sans-serif !important;}
+/* --- accessibility --- */
+:focus-visible{outline:2px solid #0E7C75 !important; outline-offset:2px; border-radius:2px;}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}}
+/* --- nav dropdowns (desktop) --- */
+.tf-nav-item{position:relative; display:inline-flex; align-items:center;}
+.tf-nav-item::after{content:""; position:absolute; left:-8px; right:-20px; top:100%; height:18px; display:none;}
+.tf-nav-item:hover::after{display:block;}
+.tf-dd{position:absolute; top:calc(100% + 12px); left:-14px; min-width:226px; background:#F0F4F3; border:1px solid #D3DDDB; border-radius:13px; padding:8px; box-shadow:0 20px 48px rgba(14,15,18,.16); opacity:0; visibility:hidden; transform:translateY(7px); transition:opacity .18s ease, transform .18s ease, visibility .18s; z-index:60;}
+.tf-nav-item:hover .tf-dd, .tf-nav-item:focus-within .tf-dd{opacity:1; visibility:visible; transform:translateY(0);}
+.tf-dd a{display:block; padding:9px 12px; border-radius:8px; font-family:'Hanken Grotesk',sans-serif; font-size:13px; font-weight:500; color:#414B49 !important; text-decoration:none; white-space:nowrap; transition:background .15s ease, color .15s ease;}
+.tf-dd a:hover{background:#E3EAE8; color:#0E7C75 !important;}
+.tf-dd a.dd-all{color:#0E7C75 !important; font-weight:600; border-top:1px solid #D3DDDB; margin-top:5px; padding-top:11px; border-radius:0 0 8px 8px;}
+/* --- hamburger --- */
+.tf-burger{display:none; width:42px; height:42px; border:1px solid #C7D2CF; border-radius:10px; background:rgba(240,244,243,.7); cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:4px; padding:0;}
+.tf-burger span{display:block; width:18px; height:1.7px; background:#121F1E; transition:transform .22s ease, opacity .22s ease;}
+body.tf-nav-open .tf-burger span:nth-child(1){transform:translateY(5.7px) rotate(45deg);}
+body.tf-nav-open .tf-burger span:nth-child(2){opacity:0;}
+body.tf-nav-open .tf-burger span:nth-child(3){transform:translateY(-5.7px) rotate(-45deg);}
+/* --- nav: tablet + mobile (matches legacy 920px hide, no dead zone) --- */
+@media (max-width:920px){
+  .tf-burger{display:inline-flex !important;}
+  .nav-links{position:fixed !important; top:63px; left:0; right:0; flex-direction:column !important; align-items:stretch !important; gap:0 !important; background:#F0F4F3; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB; padding:8px 22px 20px !important; display:none !important; box-shadow:0 22px 52px rgba(14,15,18,.18); max-height:calc(100vh - 63px); overflow:auto; z-index:55;}
+  body.tf-nav-open .nav-links{display:flex !important;}
+  .nav-links > *{padding:13px 2px !important; width:100%; font-size:16px !important; border-bottom:1px solid #E3EAE8;}
+  .tf-nav-item{display:block !important;}
+  .tf-dd{display:none !important;}
+  .nav-links .btn-dark{margin-top:14px; text-align:center; border-bottom:none !important;}
+}
+/* --- layout: phones --- */
+@media (max-width:760px){
+  [style*="grid-template-columns"]{grid-template-columns:1fr !important;}
+}
+/* --- tf-refine: premium micro-interactions + texture --- */
+.tf-photo{filter:grayscale(1) contrast(1.04) brightness(1.01);}
+.btn-dark,.btn-light{transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease, background .22s ease !important;}
+.btn-dark:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -12px rgba(14,124,117,.5) !important;}
+.btn-light:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -14px rgba(14,15,18,.30) !important;}
+.tf-dd a,.peq-chip,.hp-chip,.aud a,.pill,.tf-link-u{transition:all .2s ease;}
+a:focus-visible,button:focus-visible{outline-offset:3px;}
+html::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.42;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;}
+@media (prefers-reduced-motion: reduce){html::after{display:none;}.btn-dark:hover,.btn-light:hover{transform:none !important;}}
+</style>
+
+<style id="tf-mobile">
+/* tf-mobile : mobile refinement pass (desktop untouched; all rules inside media queries) */
+@media (max-width:760px){
+  html{overflow-x:clip;}
+  img,video,iframe{max-width:100%;}
+  /* scale heavy desktop vertical rhythm */
+  [style*="padding:64px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:70px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:74px clamp(22px,5vw,56px)"]{padding-top:41px!important;padding-bottom:41px!important;}
+  [style*="padding:78px clamp(22px,5vw,56px)"]{padding-top:43px!important;padding-bottom:43px!important;}
+  [style*="padding:80px clamp(22px,5vw,56px)"]{padding-top:44px!important;padding-bottom:44px!important;}
+  [style*="padding:84px clamp(22px,5vw,56px)"]{padding-top:46px!important;padding-bottom:46px!important;}
+  [style*="padding:88px clamp(22px,5vw,56px)"]{padding-top:48px!important;padding-bottom:48px!important;}
+  [style*="padding:90px clamp(22px,5vw,56px)"]{padding-top:50px!important;padding-bottom:50px!important;}
+  [style*="padding:92px clamp(22px,5vw,56px)"]{padding-top:51px!important;padding-bottom:51px!important;}
+  [style*="padding:96px clamp(22px,5vw,56px)"]{padding-top:53px!important;padding-bottom:53px!important;}
+  [style*="padding:100px clamp(22px,5vw,56px)"]{padding-top:55px!important;padding-bottom:55px!important;}
+  [style*="padding:104px clamp(22px,5vw,56px)"]{padding-top:57px!important;padding-bottom:57px!important;}
+  [style*="padding:110px clamp(22px,5vw,56px)"]{padding-top:61px!important;padding-bottom:61px!important;}
+  [style*="padding:120px clamp(22px,5vw,56px)"]{padding-top:66px!important;padding-bottom:66px!important;}
+  [style*="padding:130px clamp(22px,5vw,56px)"]{padding-top:72px!important;padding-bottom:72px!important;}
+  /* keep stat rows as tidy 2-ups instead of a single tall column */
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+  [style*="grid-template-columns:1fr 1fr"][style*="gap:1px"]{grid-template-columns:1fr 1fr!important;}
+}
+@media (max-width:600px){
+  /* tame oversized fixed display type */
+  [style*="font-size:120px"]{font-size:58px!important;}
+  [style*="font-size:66px"]{font-size:40px!important;}
+  [style*="font-size:64px"]{font-size:40px!important;}
+  [style*="font-size:62px"]{font-size:38px!important;}
+  [style*="font-size:58px"]{font-size:36px!important;}
+  [style*="font-size:52px"]{font-size:34px!important;}
+  [style*="font-size:49px"]{font-size:32px!important;}
+  [style*="font-size:48px"]{font-size:32px!important;}
+  [style*="font-size:46px"]{font-size:30px!important;}
+  [style*="font-size:44px"]{font-size:30px!important;}
+  /* component padding: feature cards, quote blocks, tiles */
+  [style*="padding:56px 60px"]{padding:30px 24px!important;}
+  [style*="padding:44px 48px"]{padding:28px 22px!important;}
+  [style*="padding:36px 32px"]{padding:26px 22px!important;}
+  [style*="padding:32px 30px"]{padding:24px 20px!important;}
+  [style*="padding:30px 28px"]{padding:22px 18px!important;}
+  [style*="padding:28px 26px"]{padding:20px 18px!important;}
+  /* pressure gauge: roomier touch targets, calmer chips */
+  input[type=range].tf-slider{height:6px;}
+  .peq-chip,.hp-chip{font-size:12px; padding:8px 12px;}
+  /* logo marquee: a touch tighter */
+  .tf-marquee-track span{padding:0 20px;}
+}
+/* tables: horizontal scroll rather than overflow the page */
+@media (max-width:640px){
+  table{display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap;}
+  table td, table th{font-size:12.5px!important; padding:9px 11px!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="tf-progress" id="tf-progress"></div>
+
+<!-- NAV -->
+<div style="position:sticky; top:0; z-index:50; background:rgba(240,244,243,.86); backdrop-filter:blur(10px); border-bottom:1px solid #D3DDDB;">
+  <div style="max-width:1240px; margin:0 auto; padding:17px clamp(22px,5vw,56px); display:flex; align-items:center; justify-content:space-between;">
+    <a href="./" style="display:flex; align-items:center; gap:11px;">
+      <img src="third-factor-logo.png" alt="Third Factor" style="height:37px; width:auto; display:block;">
+    </a>
+    <div class="nav-links tf-nav-links" role="navigation" aria-label="Primary" style="display:flex; align-items:center; gap:28px; white-space:nowrap;"><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-What-We-Do.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">What we do</a><div class="tf-dd"><a href="Third-Factor-Power-of-Pressure.html">The Power of Pressure</a><a href="Third-Factor-Building-Resilience.html">Building Resilience</a><a href="Third-Factor-3x4-Coaching.html">3&times;4 Coaching</a><a href="Third-Factor-Self-Aware-Team.html">The Self-Aware Team</a><a class="dd-all" href="Third-Factor-What-We-Do.html">All programs &rarr;</a></div></span><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-For-Organizations.html" style="font-size:13.5px; color:#121F1E; font-weight:600; cursor:pointer;">Who we help</a><div class="tf-dd"><a href="Third-Factor-For-Organizations.html">Organizations</a><a href="Third-Factor-For-Leaders.html">Leaders</a><a href="Third-Factor-For-Practitioners.html">Practitioners</a><a href="Third-Factor-For-Sport.html">Sport</a></div></span><a class="tf-link-u" href="Third-Factor-Proof.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Proof</a><a class="tf-link-u" href="Third-Factor-Insights.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Insights</a><a class="tf-link-u" href="Third-Factor-About.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">About</a><a href="Third-Factor-Contact.html" class="btn-dark" style="padding:9px 17px; font-size:13.5px;">Start a conversation</a></div><button class="tf-burger" aria-label="Open menu" aria-expanded="false" aria-controls="tf-primary-nav"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<a id="top"></a>
+<!-- HERO -->
+<section style="max-width:1240px; margin:0 auto; padding:56px clamp(22px,5vw,56px) 52px;">
+  <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:30px;">
+    <div class="kick">Who we help</div>
+    <div class="aud">
+      <a href="Third-Factor-For-Leaders.html">For Leaders</a>
+      <a class="on">For Organizations</a>
+      <a href="Third-Factor-For-Practitioners.html">For Practitioners</a>
+      <a href="Third-Factor-For-Sport.html">For Sport</a>
+    </div>
+  </div>
+  <div class="tf-hero-grid" style="display:grid; grid-template-columns:1.32fr 1fr; gap:54px; align-items:stretch;">
+    <div style="display:flex; flex-direction:column; justify-content:center;">
+      <h1 class="serif" style="font-weight:400; font-size:clamp(42px,6vw,68px); line-height:1.04; letter-spacing:-.018em; margin:0; color:#121F1E;">Build an organization that performs under pressure.</h1>
+      <div style="width:84px; height:3px; background:#0E7C75; margin:30px 0 28px;"></div>
+      <p class="serif" style="font-weight:300; font-size:21px; line-height:1.55; color:#414B49; max-width:50ch; margin:0 0 34px;">We partner with people and L&amp;D teams to install resilience, coaching and collaboration as trainable skills. The methods are proven on Olympic podiums. They are built to stick under pressure, and we measure whether they do.</p>
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <a href="#cta" class="btn-dark">Start a conversation</a>
+        <a href="Third-Factor-Catalog.pdf" download class="tf-link-u" style="font-size:15px; font-weight:500; color:#121F1E; cursor:pointer;">Download the catalog (PDF)&nbsp;&rarr;</a>
+      </div>
+    </div>
+    <div class="hero-img" style="border-radius:16px; overflow:hidden; background:#0A1111;">
+      <img class="tf-photo" src="1763160909394.jpeg" alt="Dane Jensen on stage" loading="lazy" style="width:100%; height:100%; min-height:460px; object-fit:cover; display:block;">
+    </div>
+  </div>
+  <div class="tf-4" style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; border-top:1px solid #D3DDDB; margin-top:54px; padding-top:28px;">
+    <div><div class="serif" style="font-size:30px; line-height:1;">30,000<span style="color:#0E7C75;">+</span></div><div style="font-size:12.5px; color:#6E7A78; margin-top:6px;">leaders trained</div></div>
+    <div><div class="serif" style="font-size:30px; line-height:1;">100<span style="color:#0E7C75;">+</span></div><div style="font-size:12.5px; color:#6E7A78; margin-top:6px;">Olympic &amp; Paralympic medals</div></div>
+    <div><div class="serif" style="font-size:30px; line-height:1;">35<span style="color:#0E7C75;"> yrs</span></div><div style="font-size:12.5px; color:#6E7A78; margin-top:6px;">decoding pressure in elite sport</div></div>
+    <div><div class="serif" style="font-size:30px; line-height:1;">ICF</div><div style="font-size:12.5px; color:#6E7A78; margin-top:6px;">accredited coaching</div></div>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB;">
+  <div style="max-width:1240px; margin:0 auto; padding:96px clamp(22px,5vw,56px);">
+    <div style="max-width:760px; margin-bottom:56px;">
+      <div class="kick" style="margin-bottom:22px;">Why now</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(30px,4.2vw,46px); line-height:1.12; letter-spacing:-.015em; margin:0 0 22px;">The skills that used to be nice to have just became the whole job.</h2>
+      <p style="font-size:17px; line-height:1.7; color:#414B49; margin:0;">AI is absorbing the predictable work. What is left for your people is the hard part: judgment under ambiguity, composure when the volume spikes, and the work of bringing others with them. That is performance under pressure, and most organizations have never trained it on purpose.</p>
+    </div>
+    <div class="tf-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+      <div style="background:#F0F4F3; border:1px solid #D3DDDB; border-radius:16px; padding:30px 28px; border-top:3px solid #0E7C75;">
+        <div class="serif" style="font-size:23px; margin-bottom:10px;">Change never stops.</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#4F5A58; margin:0;">Your leaders are managing constant disruption. Resilience keeps them performing through it instead of burning out under it.</p>
+      </div>
+      <div style="background:#F0F4F3; border:1px solid #D3DDDB; border-radius:16px; padding:30px 28px; border-top:3px solid #0E7C75;">
+        <div class="serif" style="font-size:23px; margin-bottom:10px;">Your best people are stretched thin.</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#4F5A58; margin:0;">Losing them is the most expensive thing that can happen quietly. Coaching and real growth are what keep them.</p>
+      </div>
+      <div style="background:#F0F4F3; border:1px solid #D3DDDB; border-radius:16px; padding:30px 28px; border-top:3px solid #0E7C75;">
+        <div class="serif" style="font-size:23px; margin-bottom:10px;">Silos slow everything down.</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#4F5A58; margin:0;">Collaboration across difference is the gap between an organization that moves and one that grinds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESSURE PROFILE (interactive) -->
+<section style="max-width:1240px; margin:0 auto; padding:96px clamp(22px,5vw,56px);">
+  <div class="tf-2" style="display:grid; grid-template-columns:1fr 1.05fr; gap:60px; align-items:center;">
+    <div>
+      <div class="kick" style="margin-bottom:22px;">The model, in your hands</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(30px,4vw,44px); line-height:1.1; letter-spacing:-.015em; margin:0 0 22px;">What is your pressure profile?</h2>
+      <p style="font-size:16.5px; line-height:1.7; color:#414B49; margin:0 0 22px;">Pressure is not a mood. It is a force you can read and dial: <strong>Importance, Uncertainty and Volume</strong>. Because it multiplies, dropping any one near zero drains the whole thing, and that is the lever we teach your people to pull.</p>
+      <p style="font-size:16.5px; line-height:1.7; color:#414B49; margin:0 0 28px;">Move the sliders to feel it. Then imagine your team naming and managing this in real time.</p>
+      <a href="Third-Factor-Power-of-Pressure.html" class="tf-link-u" style="font-size:15px; font-weight:600; color:#121F1E; cursor:pointer;">Get your team's pressure profile&nbsp;&rarr;</a>
+    </div>
+    <div class="peq">
+      <div class="kick" style="color:#3FBFAE; margin-bottom:20px;">The pressure equation · try it</div>
+      <div class="peq-word" id="peqWord">PRESSURE</div>
+      <div class="peq-bar"><div class="peq-fill" id="peqFill"></div></div>
+      <div class="peq-readout"><span class="peq-num" id="peqVal">34</span><span class="peq-tag" id="peqLabel">HIGH</span></div>
+      <div class="peq-row">
+        <div class="peq-rowhead"><span class="lbl">Importance</span><span class="val" id="peqIv">7</span></div>
+        <input class="peq-slider" type="range" min="1" max="10" value="7" id="peqI" aria-label="Importance">
+      </div>
+      <div class="peq-row">
+        <div class="peq-rowhead"><span class="lbl">Uncertainty</span><span class="val" id="peqUv">6</span></div>
+        <input class="peq-slider" type="range" min="1" max="10" value="6" id="peqU" aria-label="Uncertainty">
+      </div>
+      <div class="peq-row">
+        <div class="peq-rowhead"><span class="lbl">Volume</span><span class="val" id="peqVv">8</span></div>
+        <input class="peq-slider" type="range" min="1" max="10" value="8" id="peqV" aria-label="Volume">
+      </div>
+      <div class="peq-note">Pressure multiplies, it does not add. Drop one force near zero and it drains. That is the lever we teach.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB;">
+  <div style="max-width:1240px; margin:0 auto; padding:96px clamp(22px,5vw,56px);">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; margin-bottom:56px;">
+      <div style="max-width:56ch;">
+        <div class="kick" style="margin-bottom:22px;">How it works</div>
+        <h2 class="serif" style="font-weight:400; font-size:clamp(32px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0;">A partnership, not a one-off workshop.</h2>
+      </div>
+      <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:34ch; margin:0;">Four steps that turn a good day of training into lasting behavior change you can measure.</p>
+    </div>
+    <div class="steps">
+      <div class="steprail"></div>
+      <div class="step">
+        <div class="num">01</div>
+        <div class="serif" style="font-size:23px; margin-bottom:10px;">Assess</div>
+        <p style="font-size:14px; line-height:1.6; color:#4F5A58; margin:0 0 14px;">We start with a clear read of where your people are and what will move the needle.</p>
+        <div style="font-size:12.5px; font-weight:600; letter-spacing:.04em; color:#0E7C75;">Resiliency Map · TAIS · Pressure Profile</div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div class="serif" style="font-size:23px; margin-bottom:10px;">Learn</div>
+        <p style="font-size:14px; line-height:1.6; color:#4F5A58; margin:0 0 14px;">We design for your reality: keynote, workshop, multi-week journey, or self-paced video. Tools they can use the next morning.</p>
+        <div style="font-size:12.5px; font-weight:600; letter-spacing:.04em; color:#0E7C75;">In person · Virtual · Blended</div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div class="serif" style="font-size:23px; margin-bottom:10px;">Sustain</div>
+        <p style="font-size:14px; line-height:1.6; color:#4F5A58; margin:0 0 14px;">Learning becomes doing. We keep the skills alive long after the room empties.</p>
+        <div style="font-size:12.5px; font-weight:600; letter-spacing:.04em; color:#0E7C75;">Sustainment Gyms · 1:1 calls · PJ the AI coach</div>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <div class="serif" style="font-size:23px; margin-bottom:10px;">Measure</div>
+        <p style="font-size:14px; line-height:1.6; color:#4F5A58; margin:0 0 14px;">We prove it. You get the data on participation, behavior change and outcomes to take upstairs.</p>
+        <div style="font-size:12.5px; font-weight:600; letter-spacing:.04em; color:#0E7C75;">The Impact Report</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK TOGETHER (at a glance) -->
+<section class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; margin-bottom:50px;">
+    <div style="max-width:56ch;">
+      <div class="kick" style="margin-bottom:22px;">How we work together</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(32px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0;">The shape of an engagement, in plain terms.</h2>
+    </div>
+    <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:34ch; margin:0;">No two engagements look the same. All of them are built to land in your world and stick after we leave.</p>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:0 44px;">
+    <div style="border-top:1px solid #D3DDDB; padding:24px 0;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0E7C75; margin-bottom:12px;">Formats</div><div style="font-size:15.5px; line-height:1.55; color:#121F1E;">Keynote, workshop, multi-week journey, or self-paced video.</div></div>
+    <div style="border-top:1px solid #D3DDDB; padding:24px 0;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0E7C75; margin-bottom:12px;">Delivery</div><div style="font-size:15.5px; line-height:1.55; color:#121F1E;">In person, virtual, or a blend of the two.</div></div>
+    <div style="border-top:1px solid #D3DDDB; padding:24px 0;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0E7C75; margin-bottom:12px;">Group size</div><div style="font-size:15.5px; line-height:1.55; color:#121F1E;">One leader to a full division. Hundreds at once when needed.</div></div>
+    <div style="border-top:1px solid #D3DDDB; padding:24px 0;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0E7C75; margin-bottom:12px;">Timeline</div><div style="font-size:15.5px; line-height:1.55; color:#121F1E;">A single keynote, or a journey that runs for months.</div></div>
+    <div style="border-top:1px solid #D3DDDB; padding:24px 0;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0E7C75; margin-bottom:12px;">Tailoring</div><div style="font-size:15.5px; line-height:1.55; color:#121F1E;">Configured to your goals and grounded in what the assessment finds.</div></div>
+    <div style="border-top:1px solid #D3DDDB; padding:24px 0;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0E7C75; margin-bottom:12px;">Reach</div><div style="font-size:15.5px; line-height:1.55; color:#121F1E;">Delivered around the world by a fully remote faculty.</div></div>
+    <div style="border-top:1px solid #D3DDDB; padding:24px 0;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0E7C75; margin-bottom:12px;">Measurement</div><div style="font-size:15.5px; line-height:1.55; color:#121F1E;">Assessment before and after, plus the Impact Report for your exec team.</div></div>
+    <div style="border-top:1px solid #D3DDDB; padding:24px 0;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0E7C75; margin-bottom:12px;">Sustainment</div><div style="font-size:15.5px; line-height:1.55; color:#121F1E;">Sustainment Gyms, one-to-one calls, and PJ, the AI coach.</div></div>
+  </div>
+</section>
+
+<!-- WHAT WE INSTALL -->
+<section style="background:#0A1111; color:#F0F4F3;">
+  <div style="max-width:1240px; margin:0 auto; padding:100px clamp(22px,5vw,56px);">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; margin-bottom:50px;">
+      <div style="max-width:60ch;">
+        <div class="kick" style="color:#3FBFAE; margin-bottom:22px;">What we install</div>
+        <h2 class="serif" style="font-weight:300; font-size:clamp(34px,5vw,56px); line-height:1.05; letter-spacing:-.018em; margin:0; color:#F0F4F3;">Three capabilities.<br>One continuous system.</h2>
+      </div>
+      <p style="font-size:15.5px; line-height:1.65; color:#A8B3B1; max-width:34ch; margin:0;">From reading the force, to performing under it, to drawing it out of a whole team.</p>
+    </div>
+    <div style="border-top:1px solid rgba(240,244,243,.18);">
+      <div class="tf-row" style="display:grid; grid-template-columns:14px 56px 1.2fr 1fr 22px; gap:24px; align-items:center; padding:30px 14px; border-bottom:1px solid rgba(240,244,243,.12); cursor:pointer;">
+        <span class="cap-mark" style="background:#3FBFAE; box-shadow:0 0 14px rgba(63,191,174,.6);"></span>
+        <span style="font-weight:700; font-size:13px; color:#3FBFAE;">01</span>
+        <div><div class="serif" style="font-size:27px; line-height:1;">Resilience</div><div style="font-size:14px; color:#A8B3B1; margin-top:6px;">Perform under load. Recover fast.</div></div>
+        <div class="cap-meta" style="font-size:12.5px; letter-spacing:.04em; color:#7E8987; line-height:1.7;">Building Resilience · Maintaining Team Motivation · Thriving in a 24/7 World</div>
+        <span class="serif" style="font-size:20px; color:#F0F4F3;">&rarr;</span>
+      </div>
+      <a href="Third-Factor-3x4-Coaching.html" class="tf-row" style="display:grid; grid-template-columns:14px 56px 1.2fr 1fr 22px; gap:24px; align-items:center; padding:30px 14px; border-bottom:1px solid rgba(240,244,243,.12); cursor:pointer; color:#F0F4F3;">
+        <span class="cap-mark" style="background:#3FBFAE; box-shadow:0 0 14px rgba(63,191,174,.6);"></span>
+        <span style="font-weight:700; font-size:13px; color:#3FBFAE;">02</span>
+        <div><div class="serif" style="font-size:27px; line-height:1;">Coaching</div><div style="font-size:14px; color:#A8B3B1; margin-top:6px;">Build people who build people. Three plays, four skills.</div></div>
+        <div class="cap-meta" style="font-size:12.5px; letter-spacing:.04em; color:#7E8987; line-height:1.7;">3×4 Coaching (ICF) · Challenging Conversations · Career Conversations · PJ</div>
+        <span class="serif" style="font-size:20px; color:#3FBFAE;">&rarr;</span>
+      </a>
+      <div class="tf-row" style="display:grid; grid-template-columns:14px 56px 1.2fr 1fr 22px; gap:24px; align-items:center; padding:30px 14px; border-bottom:1px solid rgba(240,244,243,.12); cursor:pointer;">
+        <span class="cap-mark" style="background:#3FBFAE; box-shadow:0 0 14px rgba(63,191,174,.6);"></span>
+        <span style="font-weight:700; font-size:13px; color:#3FBFAE;">03</span>
+        <div><div class="serif" style="font-size:27px; line-height:1;">Collaboration</div><div style="font-size:14px; color:#A8B3B1; margin-top:6px;">Sync across difference.</div></div>
+        <div class="cap-meta" style="font-size:12.5px; letter-spacing:.04em; color:#7E8987; line-height:1.7;">The Self-Aware Leader · The Self-Aware Team · TAIS</div>
+        <span class="serif" style="font-size:20px; color:#F0F4F3;">&rarr;</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL-BLEED PROOF BAND -->
+<section style="position:relative; background:#080E0D;">
+  <div style="position:absolute; inset:0; overflow:hidden; border-bottom:1px solid #1A2C2B;">
+    <img class="tf-photo" src="https://www.thirdfactor.com/wp-content/uploads/2019/08/partner-cpc-1024x965.jpg" alt="Canadian Paralympic team" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+    <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(11,12,14,.93), rgba(11,12,14,.58) 60%, rgba(11,12,14,.4));"></div>
+  </div>
+  <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(11,12,14,.92) 0%, rgba(11,12,14,.65) 45%, rgba(11,12,14,.2) 100%); pointer-events:none;"></div>
+  <div style="position:relative; max-width:1240px; margin:0 auto; padding:130px clamp(22px,5vw,56px);">
+    <div style="max-width:46ch;">
+      <div class="kick" style="color:#3FBFAE; margin-bottom:24px;">Proof you cannot fake</div>
+      <div class="serif" style="font-weight:300; font-size:clamp(56px,9vw,110px); line-height:.92; color:#F0F4F3;">100<span style="color:#3FBFAE;">+</span></div>
+      <div class="serif" style="font-weight:300; font-size:clamp(26px,3.4vw,38px); line-height:1.2; color:#F0F4F3; margin-top:14px;">Olympic and Paralympic medals coached by the methods now in your boardroom.</div>
+      <p style="font-size:15.5px; line-height:1.7; color:#A8B3B1; max-width:46ch; margin:22px 0 0;">For 35 years we have refined pressure performance where it is most visible: the start line, the final, the podium. Then we translated it for the rooms your people actually work in.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUSTAINMENT / ROI -->
+<section style="max-width:1240px; margin:0 auto; padding:96px clamp(22px,5vw,56px);">
+  <div class="tf-2" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+    <div>
+      <div class="kick" style="margin-bottom:22px;">The part most training skips</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(30px,4vw,44px); line-height:1.1; letter-spacing:-.015em; margin:0 0 22px;">We do not just train. We measure whether it stuck.</h2>
+      <p style="font-size:16.5px; line-height:1.7; color:#414B49; margin:0 0 22px;">Most leadership development ends when the workshop does. Ours does not. Every engagement can include the Impact Report: quantitative data on participation and action planning, plus qualitative case studies of real behavior change. It is the return-on-investment story you can take to your executive team.</p>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:15px; color:#121F1E;"><strong>Trainer-as-Partner calls</strong> reconnect each participant with their coach weeks later.</span></div>
+        <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:15px; color:#121F1E;"><strong>Sustainment Gyms</strong> keep tools, drills and refreshers a click away.</span></div>
+        <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:15px; color:#121F1E;"><strong>PJ, our AI coach,</strong> is always on, built to augment your coaches, never to replace them.</span></div>
+      </div>
+    </div>
+    <div style="background:#0A1111; border:1px solid rgba(240,244,243,.12); border-radius:16px; padding:40px 38px;">
+      <div class="kick" style="color:#3FBFAE; margin-bottom:24px;">Impact report · sample read</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:26px;">
+        <div><div class="serif" style="font-size:42px; line-height:1; color:#F0F4F3;">96.6%</div><div style="font-size:12.5px; color:#7E8987; margin-top:7px;">confident they can apply what they learned (of 12,654)</div></div>
+        <div><div class="serif" style="font-size:42px; line-height:1; color:#3FBFAE;">97.7%</div><div style="font-size:12.5px; color:#7E8987; margin-top:7px;">would recommend Third Factor (of 12,566)</div></div>
+        <div><div class="serif" style="font-size:42px; line-height:1; color:#3FBFAE;">300<span style="color:#3FBFAE;">+</span></div><div style="font-size:12.5px; color:#7E8987; margin-top:7px;">organizations partnered with to date</div></div>
+        <div><div class="serif" style="font-size:42px; line-height:1; color:#F0F4F3;">25<span style="color:#3FBFAE;"> yrs</span></div><div style="font-size:12.5px; color:#7E8987; margin-top:7px;">Queen's Smith School partnership</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PJ -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB;">
+  <div style="max-width:1240px; margin:0 auto; padding:90px clamp(22px,5vw,56px);">
+    <div class="tf-2" style="display:grid; grid-template-columns:.85fr 1.15fr; gap:56px; align-items:center;">
+      <div style="min-height:360px;; border-radius:16px; overflow:hidden; background:#0A1111;"><img class="tf-photo" src="team-peter@3x.jpg" alt="Dr. Peter Jensen" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:8px; background:#121F1E; color:#3FBFAE; border-radius:10px; padding:6px 14px; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; margin-bottom:22px;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#3FBFAE; box-shadow:0 0 10px #3FBFAE;"></span> Always on
+        </div>
+        <h2 class="serif" style="font-weight:400; font-size:clamp(30px,4.2vw,46px); line-height:1.08; letter-spacing:-.015em; margin:0 0 20px;">Meet PJ, the coach's coach.</h2>
+        <p style="font-size:16.5px; line-height:1.7; color:#414B49; margin:0 0 20px;">An AI coach named after our founder, Dr. Peter Jensen, and trained on 35 years of his method. PJ keeps the work alive between sessions. A leader can pressure-test a hard conversation at 11pm and walk in ready the next morning.</p>
+        <p style="font-size:16.5px; line-height:1.7; color:#414B49; margin:0 0 26px;">In the age of AI, this is our position made tangible: technology that <strong>augments your coaches, never replaces them</strong>. The human advantage, scaled.</p>
+        <div style="display:flex; gap:24px; flex-wrap:wrap; border-top:1px solid #C7D6DD; padding-top:24px;">
+          <div style="max-width:21ch;"><div class="serif" style="font-size:19px; margin-bottom:4px;">Between sessions</div><div style="font-size:13.5px; color:#646F6D; line-height:1.55;">On call when the pressure is real, not just in the room.</div></div>
+          <div style="max-width:21ch;"><div class="serif" style="font-size:19px; margin-bottom:4px;">In your method</div><div style="font-size:13.5px; color:#646F6D; line-height:1.55;">Speaks the same toolkit your people just learned.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF / CASE STUDIES -->
+<section style="max-width:1240px; margin:0 auto; padding:96px clamp(22px,5vw,56px);">
+  <div class="reveal" style="display:flex; align-items:flex-end; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:50px;">
+    <div style="max-width:56ch;">
+      <div class="kick" style="margin-bottom:22px;">Proof</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(32px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0;">The people who stake their teams on us.</h2>
+    </div>
+    <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:30ch; margin:0;">Banks, consultancies, tech and Fortune 500 operators, in the rooms where pressure is highest.</p>
+  </div>
+  <div class="tf-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;">
+    <div style="background:#E3EAE8; border:1px solid #D3DDDB; border-radius:16px; padding:32px 30px; display:flex; flex-direction:column; justify-content:space-between; min-height:300px;">
+      <p class="serif" style="font-weight:400; font-size:21px; line-height:1.4; margin:0; color:#121F1E;">Third Factor has consistently exceeded our high expectations, delivering significant value.</p>
+      <div style="margin-top:26px; border-top:1px solid #C7D6DD; padding-top:18px; display:flex; align-items:center; gap:13px;">
+        <div class="avatar">LM</div>
+        <div><div style="font-weight:600; font-size:14px;">Lesley Marks</div><div style="font-size:12px; color:#7E8987; margin-top:3px;">Chief Investment Officer, Equities · Mackenzie Investments</div></div>
+      </div>
+    </div>
+    <div style="background:#E3EAE8; border:1px solid #D3DDDB; border-radius:16px; padding:32px 30px; display:flex; flex-direction:column; justify-content:space-between; min-height:300px;">
+      <p class="serif" style="font-weight:400; font-size:21px; line-height:1.4; margin:0; color:#121F1E;">We have had exceptional feedback, both internally and from clients, about the practical, research-based toolkit at the heart of the program.</p>
+      <div style="margin-top:26px; border-top:1px solid #C7D6DD; padding-top:18px; display:flex; align-items:center; gap:13px;">
+        <div class="avatar">JC</div>
+        <div><div style="font-weight:600; font-size:14px;">Jodi Baker Calamai</div><div style="font-size:12px; color:#7E8987; margin-top:3px;">National Managing Partner · Deloitte</div></div>
+      </div>
+    </div>
+    <div style="background:#E3EAE8; border:1px solid #D3DDDB; border-radius:16px; padding:32px 30px; display:flex; flex-direction:column; justify-content:space-between; min-height:300px;">
+      <p class="serif" style="font-weight:400; font-size:21px; line-height:1.4; margin:0; color:#121F1E;">Third Factor is the best at what they do. We wouldn't have the strength of leadership we do without Dane, Peggy and the entire team.</p>
+      <div style="margin-top:26px; border-top:1px solid #C7D6DD; padding-top:18px; display:flex; align-items:center; gap:13px;">
+        <div class="avatar">BC</div>
+        <div><div style="font-weight:600; font-size:14px;">Ben Cowan-Dewar</div><div style="font-size:12px; color:#7E8987; margin-top:3px;">CEO · Cabot</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:50px; border-top:1px solid #D3DDDB; padding-top:34px;">
+    <div class="kick" style="margin-bottom:24px;">Trusted in the highest-stakes rooms</div>
+    <div class="logo-grid" style="display:grid; grid-template-columns:repeat(6,1fr); gap:14px;">
+      <div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2019/08/client-usga2@3x-300x291.png" alt="USGA" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2019/08/client-td@3x-300x291.png" alt="TD" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2022/04/Third-Factor-Client-Logo-Microsoft-Grayscale.png" alt="Microsoft" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2019/08/client-sap@3x-1-300x291.png" alt="SAP" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2019/08/client-deloitte@3x-300x291.png" alt="Deloitte" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2022/02/third-factor-client-pfizer-grayscale.png" alt="Pfizer" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div>
+      <div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2019/08/client-bayer@3x-300x291.png" alt="Bayer" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2022/04/Third-Factor-Client-Logo-Starbucks-Grayscale.png" alt="Starbucks" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2021/04/home-depot-logo-gs.png" alt="Home Depot" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2025/01/Third-Factor-Client-Mackenzie-Investments-Grayscale.png" alt="Mackenzie" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2022/04/Third-Factor-Client-Logo-Asana-Grayscale.png" alt="Asana" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2021/01/client-cabot-grayscale.jpg" alt="Cabot" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain;"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2019/08/client-cibc@3x-300x291.png" alt="CIBC" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain; filter:grayscale(1);"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2019/08/client-scotiabank@3x-300x291.png" alt="Scotiabank" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain; filter:grayscale(1);"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2019/08/client-bmo@3x-300x291.png" alt="BMO" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain; filter:grayscale(1);"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2024/11/Third-Factor-Client-Constellation-Brands-Grayscale.png" alt="Constellation Brands" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain; filter:grayscale(1);"></div><div class="logo-ph"><img src="https://www.thirdfactor.com/wp-content/uploads/2024/11/Third-Factor-Client-CSX-Grayscale.png" alt="CSX" loading="lazy" style="max-height:48px; max-width:84%; object-fit:contain; filter:grayscale(1);"></div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB;">
+  <div style="max-width:1000px; margin:0 auto; padding:96px clamp(22px,5vw,56px);">
+    <div class="kick" style="margin-bottom:22px;">Questions buyers ask</div>
+    <h2 class="serif" style="font-weight:400; font-size:clamp(30px,4vw,44px); line-height:1.1; letter-spacing:-.015em; margin:0 0 44px;">The practical stuff.</h2>
+    <div>
+      <div style="border-top:1px solid #C7D6DD; padding:26px 0;">
+        <div class="serif" style="font-size:22px; margin-bottom:10px;">Can you deliver virtually and at scale?</div>
+        <p style="font-size:15.5px; line-height:1.7; color:#4F5A58; margin:0; max-width:72ch;">Yes. We run multi-week virtual journeys and webinars for hundreds at once, in-person workshops for intact teams, and blended programs that mix the two. We have trained tens of thousands of leaders this way.</p>
+      </div>
+      <div style="border-top:1px solid #C7D6DD; padding:26px 0;">
+        <div class="serif" style="font-size:22px; margin-bottom:10px;">How do you measure impact?</div>
+        <p style="font-size:15.5px; line-height:1.7; color:#4F5A58; margin:0; max-width:72ch;">Through assessment before and after, behavior-change case studies, and the Impact Report, which gives you participation, action-planning and outcome data you can show your executive team.</p>
+      </div>
+      <div style="border-top:1px solid #C7D6DD; padding:26px 0;">
+        <div class="serif" style="font-size:22px; margin-bottom:10px;">Do you tailor to our context?</div>
+        <p style="font-size:15.5px; line-height:1.7; color:#4F5A58; margin:0; max-width:72ch;">Always. Every engagement is configured to your goals and grounded in what the assessment tells us, so the tools land in the language of your organization, not a generic curriculum.</p>
+      </div>
+      <div style="border-top:1px solid #C7D6DD; border-bottom:1px solid #C7D6DD; padding:26px 0;">
+        <div class="serif" style="font-size:22px; margin-bottom:10px;">What makes you different?</div>
+        <p style="font-size:15.5px; line-height:1.7; color:#4F5A58; margin:0; max-width:72ch;">Olympic proof you cannot fake, a clear operating system for pressure, and sustainment that makes the learning stick. We bring receipts, and we measure the return.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" style="background:#0A1111; color:#F0F4F3; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:radial-gradient(60% 100% at 50% 120%, rgba(63,191,174,.13), transparent 60%); pointer-events:none;"></div>
+  <div style="position:relative; max-width:1240px; margin:0 auto; padding:100px clamp(22px,5vw,56px);">
+    <div class="tf-2" style="display:grid; grid-template-columns:1.2fr .9fr; gap:60px; align-items:center;">
+      <div>
+        <div class="kick" style="color:#3FBFAE; margin-bottom:26px;">Let's build it</div>
+        <h2 class="serif" style="font-weight:300; font-size:clamp(32px,5vw,56px); line-height:1.08; letter-spacing:-.02em; margin:0 0 24px;">Build the leaders your hardest quarters will need.</h2>
+        <p style="font-size:16.5px; line-height:1.7; color:#A8B3B1; max-width:48ch; margin:0 0 36px;">Tell us what your people are facing. We will show you exactly how we would help, and what the return looks like, with no pitch theater.</p>
+        <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+          <a href="Third-Factor-Contact.html" class="btn-light">Start a conversation</a>
+          <a href="Third-Factor-Catalog.pdf" download class="tf-link-u" style="font-size:15px; font-weight:500; color:#F0F4F3; cursor:pointer;">Download the catalog (PDF)&nbsp;&rarr;</a>
+        </div>
+      </div>
+      <div style="background:#0F1919; border:1px solid #1D3230; border-radius:16px; padding:30px;">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:74px; height:74px; border-radius:50%; overflow:hidden; flex-shrink:0; background:#0A1111;">
+            <img class="tf-photo" src="https://www.thirdfactor.com/wp-content/uploads/2019/08/team-quinn@3x.jpg" alt="Lori Quinn" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div>
+            <div class="serif" style="font-size:21px; color:#F0F4F3;">Talk to a real person.</div>
+            <div style="font-size:13px; color:#7E8987; margin-top:4px;">Lori Quinn · Account Executive</div>
+          </div>
+        </div>
+        <div style="height:1px; background:#1D3230; margin:24px 0;"></div>
+        <p style="font-size:14.5px; line-height:1.65; color:#A8B3B1; margin:0 0 20px;">A 30-minute call. We listen first, then map what a partnership could look like for your team.</p>
+        <a href="Third-Factor-Contact.html" class="btn-light" style="display:block; text-align:center;">Book a 30-minute call</a>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; color:#646F6D; margin-top:18px; text-align:center;">Typically replies within one business day</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0F1919; color:#C2CCCA;">
+  <div style="max-width:1240px; margin:0 auto; padding:64px clamp(22px,5vw,56px) 40px;">
+    <div class="tf-foot" style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:46px; border-bottom:1px solid rgba(240,244,243,.1);">
+      <div>
+        <a href="./" style="display:flex; align-items:center; gap:11px; margin-bottom:18px;">
+          <img src="third-factor-logo.png" alt="Third Factor" style="height:25px; width:auto; display:block; filter:invert(1);">
+        </a>
+        <div class="serif" style="font-weight:300; font-size:22px; line-height:1.35; color:#F0F4F3; max-width:26ch;">Convert pressure into excellence.</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; color:#6E7A78; margin-top:20px;">TORONTO · FULLY REMOTE · EST. 1991</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;"><div style="font-size:11px; font-weight:600; letter-spacing:.14em; color:#6E7A78; margin-bottom:4px;">WHO WE HELP</div><a href="Third-Factor-For-Organizations.html" style="cursor:pointer;">Organizations</a><a href="Third-Factor-For-Leaders.html" style="cursor:pointer;">Leaders</a><a href="Third-Factor-For-Practitioners.html" style="cursor:pointer;">Practitioners</a><a href="Third-Factor-For-Sport.html" style="cursor:pointer;">Sport</a></div>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;"><div style="font-size:11px; font-weight:600; letter-spacing:.14em; color:#6E7A78; margin-bottom:4px;">PROGRAMS</div><a href="Third-Factor-Power-of-Pressure.html" style="cursor:pointer;">Pressure</a><a href="Third-Factor-Building-Resilience.html" style="cursor:pointer;">Resilience</a><a href="Third-Factor-3x4-Coaching.html" style="cursor:pointer;">Coaching</a><a href="Third-Factor-Self-Aware-Team.html" style="cursor:pointer;">Collaboration</a></div>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;"><div style="font-size:11px; font-weight:600; letter-spacing:.14em; color:#6E7A78; margin-bottom:4px;">MORE</div><a href="Third-Factor-Proof.html" style="cursor:pointer;">Proof</a><a href="Third-Factor-Insights.html" style="cursor:pointer;">Insights</a><a href="Third-Factor-About.html" style="cursor:pointer;">About</a><a href="Third-Factor-Contact.html" style="cursor:pointer;">Contact</a></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-top:26px; font-size:11px; font-weight:600; letter-spacing:.04em; color:#646F6D;">
+      <span>© 2026 Third Factor. The proof is on the podium.</span>
+      <span>For Organizations · type stand-ins: Newsreader · Hanken Grotesk</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var prog = document.getElementById('tf-progress');
+  function onScroll(){
+    var el = document.scrollingElement || document.documentElement;
+    var max = (el.scrollHeight - el.clientHeight) || 1;
+    prog.style.width = Math.max(0, Math.min(100, (el.scrollTop / max) * 100)) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+})();
+(function(){
+  var I=document.getElementById('peqI'), U=document.getElementById('peqU'), V=document.getElementById('peqV');
+  if(!I) return;
+  var word=document.getElementById('peqWord'), fill=document.getElementById('peqFill'),
+      val=document.getElementById('peqVal'), label=document.getElementById('peqLabel'),
+      iv=document.getElementById('peqIv'), uv=document.getElementById('peqUv'), vv=document.getElementById('peqVv');
+  function upd(){
+    var i=+I.value, u=+U.value, v=+V.value;
+    iv.textContent=i; uv.textContent=u; vv.textContent=v;
+    var pct=(i*u*v)/1000, n=Math.round(pct*100), color, lab;
+    if(n<12){ color='#0FB99A'; lab='LATENT'; }
+    else if(n<34){ color='#86B25A'; lab='BUILDING'; }
+    else if(n<62){ color='#E8B23A'; lab='HIGH'; }
+    else { color='#FF5A1F'; lab='EXTREME'; }
+    val.textContent=n; label.textContent=lab; label.style.color=color;
+    fill.style.transform='scaleX('+(pct||0.001).toFixed(3)+')';
+    fill.style.background=color;
+    word.style.color=color;
+    word.style.letterSpacing=(0.16 - pct*0.20).toFixed(3)+'em';
+  }
+  [I,U,V].forEach(function(s){ s.addEventListener('input', upd); });
+  upd();
+})();
+</script>
+<!--tf-navjs--><script>(function(){var b=document.querySelector('.tf-burger');if(!b)return;b.addEventListener('click',function(){var open=document.body.classList.toggle('tf-nav-open');b.setAttribute('aria-expanded',open?'true':'false');});document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');});});document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');}});})();</script>
+</body>
+</html>

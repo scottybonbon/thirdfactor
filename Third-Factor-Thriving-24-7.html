@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thriving in a 24/7 World · Third Factor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}html,body{margin:0;padding:0;background:#F0F4F3;}html{scroll-behavior:smooth;}
+  body{font-family:'Hanken Grotesk',sans-serif;color:#121F1E;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  ::selection{background:#0E7C75;color:#fff;}a{text-decoration:none;color:inherit;}
+  .serif{font-family:'Newsreader',serif;}.kick{font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0E7C75;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,56px);}
+  .btn-dark{font-size:15px;font-weight:600;color:#F0F4F3;background:#121F1E;padding:14px 26px;border-radius:10px;display:inline-block;cursor:pointer;white-space:nowrap;}
+  .btn-light{font-size:15px;font-weight:600;color:#0A1111;background:#F0F4F3;padding:14px 28px;border-radius:10px;display:inline-block;cursor:pointer;white-space:nowrap;}
+  .tf-link-u{position:relative;}.tf-link-u::after{content:"";position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);}.tf-link-u:hover::after{transform:scaleX(1);}
+  .tf-progress{position:fixed;top:0;left:0;height:3px;width:0;background:#0E7C75;z-index:100;}
+  .tf-row{transition:background .3s ease;}.tf-row:hover{background:rgba(14,124,117,.06);}
+  .imgph{position:relative;background:#D1E0E7;border:1px dashed #ADC0C8;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#84939A;text-align:center;padding:22px;}
+  .imgph .lab{font-size:12px;font-weight:600;letter-spacing:.04em;max-width:26ch;line-height:1.55;}
+  .formats td,.formats th{padding:16px 10px;text-align:left;}.formats th{font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6E7A78;}
+  @media (max-width:920px){.hero-g,.two{grid-template-columns:1fr !important;}.nav-links{display:none !important;}.out-g{grid-template-columns:1fr !important;}.formats .hideS{display:none;}}
+</style>
+
+<!--tf-meta-->
+<meta name="description" content="Thriving in a 24/7 World: energy management, not time management. Perform through sustained pressure without burning out.">
+<meta name="theme-color" content="#0E7C75">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Third Factor">
+<meta property="og:title" content="Thriving in a 24/7 World · Third Factor">
+<meta property="og:description" content="Thriving in a 24/7 World: energy management, not time management. Perform through sustained pressure without burning out.">
+<meta property="og:image" content="https://thirdfactor.com/third-factor-share-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thriving in a 24/7 World · Third Factor">
+<meta name="twitter:description" content="Thriving in a 24/7 World: energy management, not time management. Perform through sustained pressure without burning out.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23121F1E'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23F0F4F3'/%3E%3C/svg%3E">
+<style id="tf-enhance">
+.mono{font-family:'Hanken Grotesk',sans-serif !important;}
+/* --- accessibility --- */
+:focus-visible{outline:2px solid #0E7C75 !important; outline-offset:2px; border-radius:2px;}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}}
+/* --- nav dropdowns (desktop) --- */
+.tf-nav-item{position:relative; display:inline-flex; align-items:center;}
+.tf-nav-item::after{content:""; position:absolute; left:-8px; right:-20px; top:100%; height:18px; display:none;}
+.tf-nav-item:hover::after{display:block;}
+.tf-dd{position:absolute; top:calc(100% + 12px); left:-14px; min-width:226px; background:#F0F4F3; border:1px solid #D3DDDB; border-radius:13px; padding:8px; box-shadow:0 20px 48px rgba(14,15,18,.16); opacity:0; visibility:hidden; transform:translateY(7px); transition:opacity .18s ease, transform .18s ease, visibility .18s; z-index:60;}
+.tf-nav-item:hover .tf-dd, .tf-nav-item:focus-within .tf-dd{opacity:1; visibility:visible; transform:translateY(0);}
+.tf-dd a{display:block; padding:9px 12px; border-radius:8px; font-family:'Hanken Grotesk',sans-serif; font-size:13px; font-weight:500; color:#414B49 !important; text-decoration:none; white-space:nowrap; transition:background .15s ease, color .15s ease;}
+.tf-dd a:hover{background:#E3EAE8; color:#0E7C75 !important;}
+.tf-dd a.dd-all{color:#0E7C75 !important; font-weight:600; border-top:1px solid #D3DDDB; margin-top:5px; padding-top:11px; border-radius:0 0 8px 8px;}
+/* --- hamburger --- */
+.tf-burger{display:none; width:42px; height:42px; border:1px solid #C7D2CF; border-radius:10px; background:rgba(240,244,243,.7); cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:4px; padding:0;}
+.tf-burger span{display:block; width:18px; height:1.7px; background:#121F1E; transition:transform .22s ease, opacity .22s ease;}
+body.tf-nav-open .tf-burger span:nth-child(1){transform:translateY(5.7px) rotate(45deg);}
+body.tf-nav-open .tf-burger span:nth-child(2){opacity:0;}
+body.tf-nav-open .tf-burger span:nth-child(3){transform:translateY(-5.7px) rotate(-45deg);}
+/* --- nav: tablet + mobile (matches legacy 920px hide, no dead zone) --- */
+@media (max-width:920px){
+  .tf-burger{display:inline-flex !important;}
+  .nav-links{position:fixed !important; top:63px; left:0; right:0; flex-direction:column !important; align-items:stretch !important; gap:0 !important; background:#F0F4F3; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB; padding:8px 22px 20px !important; display:none !important; box-shadow:0 22px 52px rgba(14,15,18,.18); max-height:calc(100vh - 63px); overflow:auto; z-index:55;}
+  body.tf-nav-open .nav-links{display:flex !important;}
+  .nav-links > *{padding:13px 2px !important; width:100%; font-size:16px !important; border-bottom:1px solid #E3EAE8;}
+  .tf-nav-item{display:block !important;}
+  .tf-dd{display:none !important;}
+  .nav-links .btn-dark{margin-top:14px; text-align:center; border-bottom:none !important;}
+}
+/* --- layout: phones --- */
+@media (max-width:760px){
+  [style*="grid-template-columns"]{grid-template-columns:1fr !important;}
+}
+/* --- tf-refine: premium micro-interactions + texture --- */
+.tf-photo{filter:grayscale(1) contrast(1.04) brightness(1.01);}
+.btn-dark,.btn-light{transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease, background .22s ease !important;}
+.btn-dark:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -12px rgba(14,124,117,.5) !important;}
+.btn-light:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -14px rgba(14,15,18,.30) !important;}
+.tf-dd a,.peq-chip,.hp-chip,.aud a,.pill,.tf-link-u{transition:all .2s ease;}
+a:focus-visible,button:focus-visible{outline-offset:3px;}
+html::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.42;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;}
+@media (prefers-reduced-motion: reduce){html::after{display:none;}.btn-dark:hover,.btn-light:hover{transform:none !important;}}
+</style>
+
+<style id="tf-mobile">
+/* tf-mobile : mobile refinement pass (desktop untouched; all rules inside media queries) */
+@media (max-width:760px){
+  html{overflow-x:clip;}
+  img,video,iframe{max-width:100%;}
+  /* scale heavy desktop vertical rhythm */
+  [style*="padding:64px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:70px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:74px clamp(22px,5vw,56px)"]{padding-top:41px!important;padding-bottom:41px!important;}
+  [style*="padding:78px clamp(22px,5vw,56px)"]{padding-top:43px!important;padding-bottom:43px!important;}
+  [style*="padding:80px clamp(22px,5vw,56px)"]{padding-top:44px!important;padding-bottom:44px!important;}
+  [style*="padding:84px clamp(22px,5vw,56px)"]{padding-top:46px!important;padding-bottom:46px!important;}
+  [style*="padding:88px clamp(22px,5vw,56px)"]{padding-top:48px!important;padding-bottom:48px!important;}
+  [style*="padding:90px clamp(22px,5vw,56px)"]{padding-top:50px!important;padding-bottom:50px!important;}
+  [style*="padding:92px clamp(22px,5vw,56px)"]{padding-top:51px!important;padding-bottom:51px!important;}
+  [style*="padding:96px clamp(22px,5vw,56px)"]{padding-top:53px!important;padding-bottom:53px!important;}
+  [style*="padding:100px clamp(22px,5vw,56px)"]{padding-top:55px!important;padding-bottom:55px!important;}
+  [style*="padding:104px clamp(22px,5vw,56px)"]{padding-top:57px!important;padding-bottom:57px!important;}
+  [style*="padding:110px clamp(22px,5vw,56px)"]{padding-top:61px!important;padding-bottom:61px!important;}
+  [style*="padding:120px clamp(22px,5vw,56px)"]{padding-top:66px!important;padding-bottom:66px!important;}
+  [style*="padding:130px clamp(22px,5vw,56px)"]{padding-top:72px!important;padding-bottom:72px!important;}
+  /* keep stat rows as tidy 2-ups instead of a single tall column */
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+  [style*="grid-template-columns:1fr 1fr"][style*="gap:1px"]{grid-template-columns:1fr 1fr!important;}
+}
+@media (max-width:600px){
+  /* tame oversized fixed display type */
+  [style*="font-size:120px"]{font-size:58px!important;}
+  [style*="font-size:66px"]{font-size:40px!important;}
+  [style*="font-size:64px"]{font-size:40px!important;}
+  [style*="font-size:62px"]{font-size:38px!important;}
+  [style*="font-size:58px"]{font-size:36px!important;}
+  [style*="font-size:52px"]{font-size:34px!important;}
+  [style*="font-size:49px"]{font-size:32px!important;}
+  [style*="font-size:48px"]{font-size:32px!important;}
+  [style*="font-size:46px"]{font-size:30px!important;}
+  [style*="font-size:44px"]{font-size:30px!important;}
+  /* component padding: feature cards, quote blocks, tiles */
+  [style*="padding:56px 60px"]{padding:30px 24px!important;}
+  [style*="padding:44px 48px"]{padding:28px 22px!important;}
+  [style*="padding:36px 32px"]{padding:26px 22px!important;}
+  [style*="padding:32px 30px"]{padding:24px 20px!important;}
+  [style*="padding:30px 28px"]{padding:22px 18px!important;}
+  [style*="padding:28px 26px"]{padding:20px 18px!important;}
+  /* pressure gauge: roomier touch targets, calmer chips */
+  input[type=range].tf-slider{height:6px;}
+  .peq-chip,.hp-chip{font-size:12px; padding:8px 12px;}
+  /* logo marquee: a touch tighter */
+  .tf-marquee-track span{padding:0 20px;}
+}
+/* tables: horizontal scroll rather than overflow the page */
+@media (max-width:640px){
+  table{display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap;}
+  table td, table th{font-size:12.5px!important; padding:9px 11px!important;}
+}
+</style>
+</head>
+<body>
+<div class="tf-progress" id="tf-progress"></div>
+<div style="position:sticky; top:0; z-index:50; background:rgba(240,244,243,.86); backdrop-filter:blur(10px); border-bottom:1px solid #D3DDDB;">
+  <div class="wrap" style="padding:17px clamp(22px,5vw,56px); display:flex; align-items:center; justify-content:space-between;">
+    <a href="./" style="display:flex; align-items:center; gap:11px;"><img src="third-factor-logo.png" alt="Third Factor" style="height:37px; width:auto; display:block;"></a>
+    <div class="nav-links tf-nav-links" role="navigation" aria-label="Primary" style="display:flex; align-items:center; gap:28px; white-space:nowrap;"><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-What-We-Do.html" style="font-size:13.5px; color:#121F1E; font-weight:600; cursor:pointer;">What we do</a><div class="tf-dd"><a href="Third-Factor-Power-of-Pressure.html">The Power of Pressure</a><a href="Third-Factor-Building-Resilience.html">Building Resilience</a><a href="Third-Factor-3x4-Coaching.html">3&times;4 Coaching</a><a href="Third-Factor-Self-Aware-Team.html">The Self-Aware Team</a><a class="dd-all" href="Third-Factor-What-We-Do.html">All programs &rarr;</a></div></span><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-For-Organizations.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Who we help</a><div class="tf-dd"><a href="Third-Factor-For-Organizations.html">Organizations</a><a href="Third-Factor-For-Leaders.html">Leaders</a><a href="Third-Factor-For-Practitioners.html">Practitioners</a><a href="Third-Factor-For-Sport.html">Sport</a></div></span><a class="tf-link-u" href="Third-Factor-Proof.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Proof</a><a class="tf-link-u" href="Third-Factor-Insights.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Insights</a><a class="tf-link-u" href="Third-Factor-About.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">About</a><a href="Third-Factor-Contact.html" class="btn-dark" style="padding:9px 17px; font-size:13.5px;">Start a conversation</a></div><button class="tf-burger" aria-label="Open menu" aria-expanded="false" aria-controls="tf-primary-nav"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<section class="wrap" style="padding:40px clamp(22px,5vw,56px) 64px;">
+  <div style="font-size:12.5px; color:#7E8987; margin-bottom:30px;"><a href="Third-Factor-What-We-Do.html" style="color:#7E8987;">What we do</a> &nbsp;/&nbsp; <span style="color:#0E7C75;">Resilience</span> &nbsp;/&nbsp; <span style="color:#121F1E;">Thriving in a 24/7 World</span></div>
+  <div class="hero-g" style="display:grid; grid-template-columns:1.2fr .8fr; gap:54px; align-items:center;">
+    <div>
+      <div class="kick" style="margin-bottom:22px;">Resilience · Peter Jensen</div>
+      <h1 class="serif" style="font-weight:400; font-size:clamp(40px,5.6vw,68px); line-height:1.0; letter-spacing:-.02em; margin:0;">Thriving in a 24/7 World</h1>
+      <p class="serif" style="font-weight:300; font-size:clamp(20px,2vw,24px); line-height:1.4; color:#414B49; margin:18px 0 24px; max-width:34ch;">Energy management, not time management.</p>
+      <p style="font-size:16.5px; line-height:1.7; color:#414B49; max-width:50ch; margin:0 0 30px;">The number of hours in a day has not changed, yet the volume of demands has grown exponentially. Drawing on his work with more than a hundred Olympic medal winners and thousands of executives, Peter Jensen gives an entertaining tour of the energy-management skills that elite performers use to turn pressure into growth.</p>
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;"><a href="#cta" class="btn-dark">Book this keynote</a><a href="Third-Factor-Catalog.pdf" download class="tf-link-u" style="font-size:15px; font-weight:500; color:#121F1E;">Download the catalog (PDF)&nbsp;&rarr;</a></div>
+    </div>
+    <div style="aspect-ratio:4/4.4;; border-radius:16px; overflow:hidden; background:#0A1111;"><img class="tf-photo" src="https://www.thirdfactor.com/wp-content/uploads/2019/08/peter-jensen-thriving-1024x861.jpg" alt="Peter Jensen, Thriving in a 24/7 World" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+  </div>
+</section>
+
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB;">
+  <div class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+    <div style="max-width:62ch; margin:0 auto 46px; text-align:center;"><div class="kick" style="margin-bottom:22px;">The model</div><h2 class="serif" style="font-weight:400; font-size:clamp(32px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0 0 16px;">Manage your arousal level, the way elite performers do.</h2><p style="font-size:16.5px; line-height:1.7; color:#414B49; margin:0;">The crucial diagnostic is arousal level: whether your energy is too high or too low to thrive. Learn to read it, and to turn it up when you are flat and down when it gets too high.</p></div>
+    <div style="max-width:760px; margin:0 auto;">
+      <div style="position:relative; height:16px; border-radius:10px; background:linear-gradient(90deg,#9ccfca,#0E7C75 50%,#FF8a5a); overflow:hidden;"></div>
+      <div style="display:flex; justify-content:space-between; margin-top:14px; font-family:'Newsreader',serif; font-size:clamp(15px,1.7vw,19px); color:#414B49;">
+        <span>Too low<br><span style="font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:#646F6D;">flat, disengaged</span></span>
+        <span style="text-align:center; color:#0E7C75;">Optimal<br><span style="font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:#646F6D;">energized, focused</span></span>
+        <span style="text-align:right;">Too high<br><span style="font-family:'Hanken Grotesk',sans-serif; font-size:13px; color:#646F6D;">frantic, drained</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; margin-bottom:44px;"><div style="max-width:48ch;"><div class="kick" style="margin-bottom:22px;">Outcomes</div><h2 class="serif" style="font-weight:400; font-size:clamp(32px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0;">What your audience walks out with.</h2></div><p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:32ch; margin:0;">More done, with more energy left at the end of the day.</p></div>
+  <div class="out-g" style="display:grid; grid-template-columns:1fr 1fr; gap:14px 44px;">
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Monitor their arousal level to gauge whether energy is too high or too low.</span></div>
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Maintain consistent energy through the day while getting more done.</span></div>
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Renew and re-energize across the day, not just at the end of it.</span></div>
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Balance high performance with the rest and recovery that sustains it.</span></div>
+  </div>
+</section>
+
+<section style="background:#0A1111; color:#F0F4F3;">
+  <div class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+    <div class="two" style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;">
+      <div><div class="kick" style="color:#3FBFAE; margin-bottom:22px;">Formats</div><h2 class="serif" style="font-weight:300; font-size:clamp(30px,4vw,44px); line-height:1.1; letter-spacing:-.015em; margin:0 0 26px; color:#F0F4F3;">An entertaining, practical keynote.</h2>
+        <table class="formats" style="width:100%; border-collapse:collapse; color:#F0F4F3;"><thead><tr style="border-bottom:1px solid rgba(240,244,243,.22);"><th>Format</th><th>Length</th><th class="hideS">Audience</th><th style="text-align:right;">Hours</th></tr></thead><tbody class="serif">
+          <tr style="border-bottom:1px solid rgba(240,244,243,.12);"><td style="font-size:21px;">Keynote</td><td>1 hour</td><td class="hideS">100+</td><td style="text-align:right; color:#3FBFAE; font-size:21px;">1</td></tr>
+          <tr><td style="font-size:21px;">Webinar</td><td>1 hour</td><td class="hideS">100+</td><td style="text-align:right; color:#3FBFAE; font-size:21px;">1</td></tr>
+        </tbody></table><div style="margin-top:22px; font-size:13.5px; color:#7E8987;">Based on Peter Jensen's book, Thriving in a 24/7 World.</div></div>
+      <div style="background:#101A1A; border:1px solid rgba(240,244,243,.12); border-radius:16px; padding:40px 38px;"><div class="serif" style="font-weight:300; font-style:italic; font-size:clamp(20px,2.4vw,28px); line-height:1.4; color:#F0F4F3;">"Time-management techniques add to the volume. The lever you can actually pull is energy."</div><div style="font-size:13px; color:#7E8987; margin-top:20px;">From the program</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+  <div class="kick" style="margin-bottom:22px;">More in Resilience</div><h2 class="serif" style="font-weight:400; font-size:clamp(28px,3.6vw,40px); line-height:1.1; margin:0 0 36px;">Turn the talk into a toolkit.</h2>
+  <div style="border-top:1px solid #121F1E;">
+    <a href="Third-Factor-Building-Resilience.html" class="tf-row" style="display:grid; grid-template-columns:1.3fr 1fr 22px; gap:26px; align-items:center; padding:26px 8px; border-bottom:1px solid #D3DDDB; color:#121F1E;"><div class="serif" style="font-size:24px;">Building Resilience</div><div style="font-size:14px; color:#646F6D;">The full toolkit for performing and recovering under load.</div><span class="serif" style="font-size:20px; color:#0E7C75;">&rarr;</span></a>
+    <a href="Third-Factor-Power-of-Pressure.html" class="tf-row" style="display:grid; grid-template-columns:1.3fr 1fr 22px; gap:26px; align-items:center; padding:26px 8px; border-bottom:1px solid #D3DDDB; color:#121F1E;"><div class="serif" style="font-size:24px;">The Power of Pressure</div><div style="font-size:14px; color:#646F6D;">Nail the moments that matter.</div><span class="serif" style="font-size:20px; color:#0E7C75;">&rarr;</span></a>
+    <a href="Third-Factor-Team-Motivation.html" class="tf-row" style="display:grid; grid-template-columns:1.3fr 1fr 22px; gap:26px; align-items:center; padding:26px 8px; border-bottom:1px solid #D3DDDB; color:#121F1E;"><div class="serif" style="font-size:24px;">Maintaining Team Motivation</div><div style="font-size:14px; color:#646F6D;">Four allies to fight disillusionment.</div><span class="serif" style="font-size:20px; color:#0E7C75;">&rarr;</span></a>
+  </div>
+</section>
+
+<section id="cta" style="background:#0A1111; color:#F0F4F3; position:relative; overflow:hidden;"><div style="position:absolute; inset:0; background:radial-gradient(60% 100% at 50% 120%, rgba(63,191,174,.14), transparent 60%); pointer-events:none;"></div>
+  <div class="wrap" style="padding:110px clamp(22px,5vw,56px); text-align:center; position:relative; max-width:900px;"><div class="kick" style="color:#3FBFAE; margin-bottom:30px;">Manage the energy</div><h2 class="serif" style="font-weight:300; font-size:clamp(32px,5vw,58px); line-height:1.1; letter-spacing:-.02em; margin:0 0 26px;">Help your people thrive, not just survive, the pace.</h2><p style="font-size:16.5px; line-height:1.7; color:#A8B3B1; max-width:50ch; margin:0 auto 40px;">Bring Peter Jensen's keynote to your next leadership event.</p><div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;"><a href="Third-Factor-Contact.html" class="btn-light">Book this keynote</a><a href="Third-Factor-What-We-Do.html" class="tf-link-u" style="font-size:15px; font-weight:500; color:#F0F4F3;">Browse the programs&nbsp;&rarr;</a></div></div>
+</section>
+
+<footer style="background:#0F1919; color:#C2CCCA;"><div class="wrap" style="padding:60px clamp(22px,5vw,56px) 38px;"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:36px; border-bottom:1px solid rgba(240,244,243,.1);"><a href="./" style="display:flex; align-items:center; gap:11px;"><img src="third-factor-logo.png" alt="Third Factor" style="height:25px; width:auto; display:block; filter:invert(1);"></a><div class="serif" style="font-weight:300; font-size:20px; color:#F0F4F3;">Convert pressure into excellence.</div></div><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; margin-top:24px; font-size:11px; font-weight:600; letter-spacing:.04em; color:#646F6D;"><span>© 2026 Third Factor. The proof is on the podium.</span><span></span></div></div></footer>
+<script>(function(){var prog=document.getElementById('tf-progress');function onScroll(){var el=document.scrollingElement||document.documentElement;var max=(el.scrollHeight-el.clientHeight)||1;prog.style.width=Math.max(0,Math.min(100,(el.scrollTop/max)*100))+'%';}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();</script>
+<!--tf-navjs--><script>(function(){var b=document.querySelector('.tf-burger');if(!b)return;b.addEventListener('click',function(){var open=document.body.classList.toggle('tf-nav-open');b.setAttribute('aria-expanded',open?'true':'false');});document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');});});document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');}});})();</script>
+</body>
+</html>

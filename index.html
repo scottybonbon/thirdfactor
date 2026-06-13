@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Third Factor · Convert pressure into excellence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#F0F4F3; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Hanken Grotesk',sans-serif; color:#121F1E; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  ::selection{ background:#0E7C75; color:#121F1E; }
+  @keyframes tf-pulse{ 0%,100%{ opacity:.5; transform:scale(.85); } 50%{ opacity:1; transform:scale(1.1); } }
+  .tf-link-u{ position:relative; }
+  .tf-link-u::after{ content:""; position:absolute; left:0; bottom:-3px; width:100%; height:1px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .4s cubic-bezier(.2,.7,.2,1); }
+  .tf-link-u:hover::after{ transform:scaleX(1); }
+  .tf-row{ transition:background .3s ease; }
+  .tf-row:hover{ background:rgba(176,131,40,.06); }
+  @keyframes tf-rise{ from{ opacity:0; transform:translateY(30px); } to{ opacity:1; transform:none; } }
+  @keyframes tf-grow{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+  .reveal{ animation:tf-rise both; animation-timeline:view(); animation-range:entry 8% entry 54%; }
+  .tf-line{ transform-origin:center; animation:tf-grow both; animation-timeline:view(); animation-range:entry 16% entry 66%; }
+  @supports not (animation-timeline: view()){ .reveal{ animation:none; opacity:1; transform:none; } .tf-line{ animation:none; transform:none; } }
+  @keyframes tf-marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .tf-marquee-track{ display:flex; align-items:center; gap:0; width:max-content; animation:tf-marquee 36s linear infinite; }
+  .tf-marquee-track span{ padding:0 30px; }
+  .tf-logo{ display:block; width:auto; opacity:.72; transition:opacity .3s ease; }
+  .tf-logo:hover{ opacity:1; }
+  .tf-progress{ position:fixed; top:0; left:0; height:3px; width:0; background:linear-gradient(90deg,#0E7C75,#0E7C75); z-index:100; }
+  .tf-portrait img{ transition:transform 1.2s cubic-bezier(.2,.7,.2,1); }
+  .tf-portrait:hover img{ transform:scale(1.045); }
+  input[type=range].tf-slider{ -webkit-appearance:none; appearance:none; width:100%; height:5px; border-radius:10px; background:rgba(240,244,243,.16); outline:none; cursor:pointer; }
+  input[type=range].tf-slider::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:24px; height:24px; border-radius:50%; background:#0E7C75; border:4px solid #0A1111; box-shadow:0 0 0 1.5px #0E7C75; cursor:grab; }
+  input[type=range].tf-slider:active::-webkit-slider-thumb{ cursor:grabbing; }
+  input[type=range].tf-slider::-moz-range-thumb{ width:22px; height:22px; border-radius:50%; background:#0E7C75; border:4px solid #0A1111; cursor:grab; }
+  a{ text-decoration:none; color:inherit; }
+  @media (max-width:920px){
+    .tf-hero-grid{ grid-template-columns:1fr !important; }
+    .tf-hero-portrait{ max-width:420px; order:-1; }
+    .tf-two{ grid-template-columns:1fr !important; }
+    .tf-eq{ grid-template-columns:1fr !important; }
+    .tf-eq-op{ display:none !important; }
+    .tf-gens{ grid-template-columns:1fr !important; }
+    .tf-3{ grid-template-columns:1fr !important; }
+    .tf-foot{ grid-template-columns:1fr 1fr !important; }
+    .tf-nav-links{ display:none !important; }
+    .tf-suite-row{ grid-template-columns:30px 1fr 18px !important; }
+    .tf-suite-meta{ display:none !important; }
+  }
+  @media (prefers-reduced-motion: reduce){ .reveal,.tf-line,.tf-marquee-track{ animation:none!important; opacity:1!important; transform:none!important; } }
+</style>
+
+<!--tf-meta-->
+<meta name="description" content="Third Factor turns pressure into performance. Thirty-five years teaching the skills that decide careers, proven on Olympic podiums and in the boardroom.">
+<meta name="theme-color" content="#0E7C75">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Third Factor">
+<meta property="og:title" content="Third Factor · Convert pressure into excellence">
+<meta property="og:description" content="Third Factor turns pressure into performance. Thirty-five years teaching the skills that decide careers, proven on Olympic podiums and in the boardroom.">
+<meta property="og:image" content="https://thirdfactor.com/third-factor-share-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Third Factor · Convert pressure into excellence">
+<meta name="twitter:description" content="Third Factor turns pressure into performance. Thirty-five years teaching the skills that decide careers, proven on Olympic podiums and in the boardroom.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23121F1E'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23F0F4F3'/%3E%3C/svg%3E">
+<style id="tf-enhance">
+.mono{font-family:'Hanken Grotesk',sans-serif !important;}
+/* --- accessibility --- */
+:focus-visible{outline:2px solid #0E7C75 !important; outline-offset:2px; border-radius:2px;}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}}
+/* --- nav dropdowns (desktop) --- */
+.tf-nav-item{position:relative; display:inline-flex; align-items:center;}
+.tf-nav-item::after{content:""; position:absolute; left:-8px; right:-20px; top:100%; height:18px; display:none;}
+.tf-nav-item:hover::after{display:block;}
+.tf-dd{position:absolute; top:calc(100% + 12px); left:-14px; min-width:226px; background:#F0F4F3; border:1px solid #D3DDDB; border-radius:13px; padding:8px; box-shadow:0 20px 48px rgba(14,15,18,.16); opacity:0; visibility:hidden; transform:translateY(7px); transition:opacity .18s ease, transform .18s ease, visibility .18s; z-index:60;}
+.tf-nav-item:hover .tf-dd, .tf-nav-item:focus-within .tf-dd{opacity:1; visibility:visible; transform:translateY(0);}
+.tf-dd a{display:block; padding:9px 12px; border-radius:8px; font-family:'Hanken Grotesk',sans-serif; font-size:13px; font-weight:500; color:#414B49 !important; text-decoration:none; white-space:nowrap; transition:background .15s ease, color .15s ease;}
+.tf-dd a:hover{background:#E3EAE8; color:#0E7C75 !important;}
+.tf-dd a.dd-all{color:#0E7C75 !important; font-weight:600; border-top:1px solid #D3DDDB; margin-top:5px; padding-top:11px; border-radius:0 0 8px 8px;}
+/* --- hamburger --- */
+.tf-burger{display:none; width:42px; height:42px; border:1px solid #C7D2CF; border-radius:10px; background:rgba(240,244,243,.7); cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:4px; padding:0;}
+.tf-burger span{display:block; width:18px; height:1.7px; background:#121F1E; transition:transform .22s ease, opacity .22s ease;}
+body.tf-nav-open .tf-burger span:nth-child(1){transform:translateY(5.7px) rotate(45deg);}
+body.tf-nav-open .tf-burger span:nth-child(2){opacity:0;}
+body.tf-nav-open .tf-burger span:nth-child(3){transform:translateY(-5.7px) rotate(-45deg);}
+/* --- nav: tablet + mobile (matches legacy 920px hide, no dead zone) --- */
+@media (max-width:920px){
+  .tf-burger{display:inline-flex !important;}
+  .nav-links{position:fixed !important; top:63px; left:0; right:0; flex-direction:column !important; align-items:stretch !important; gap:0 !important; background:#F0F4F3; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB; padding:8px 22px 20px !important; display:none !important; box-shadow:0 22px 52px rgba(14,15,18,.18); max-height:calc(100vh - 63px); overflow:auto; z-index:55;}
+  body.tf-nav-open .nav-links{display:flex !important;}
+  .nav-links > *{padding:13px 2px !important; width:100%; font-size:16px !important; border-bottom:1px solid #E3EAE8;}
+  .tf-nav-item{display:block !important;}
+  .tf-dd{display:none !important;}
+  .nav-links .btn-dark{margin-top:14px; text-align:center; border-bottom:none !important;}
+}
+/* --- layout: phones --- */
+@media (max-width:760px){
+  [style*="grid-template-columns"]{grid-template-columns:1fr !important;}
+}
+/* --- tf-refine: premium micro-interactions + texture --- */
+.tf-photo{filter:grayscale(1) contrast(1.04) brightness(1.01);}
+.btn-dark,.btn-light{transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease, background .22s ease !important;}
+.btn-dark:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -12px rgba(14,124,117,.5) !important;}
+.btn-light:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -14px rgba(14,15,18,.30) !important;}
+.tf-dd a,.peq-chip,.hp-chip,.aud a,.pill,.tf-link-u{transition:all .2s ease;}
+a:focus-visible,button:focus-visible{outline-offset:3px;}
+html::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.42;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;}
+@media (prefers-reduced-motion: reduce){html::after{display:none;}.btn-dark:hover,.btn-light:hover{transform:none !important;}}
+</style>
+
+<style id="tf-mobile">
+/* tf-mobile : mobile refinement pass (desktop untouched; all rules inside media queries) */
+@media (max-width:760px){
+  html{overflow-x:clip;}
+  img,video,iframe{max-width:100%;}
+  /* scale heavy desktop vertical rhythm */
+  [style*="padding:64px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:70px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:74px clamp(22px,5vw,56px)"]{padding-top:41px!important;padding-bottom:41px!important;}
+  [style*="padding:78px clamp(22px,5vw,56px)"]{padding-top:43px!important;padding-bottom:43px!important;}
+  [style*="padding:80px clamp(22px,5vw,56px)"]{padding-top:44px!important;padding-bottom:44px!important;}
+  [style*="padding:84px clamp(22px,5vw,56px)"]{padding-top:46px!important;padding-bottom:46px!important;}
+  [style*="padding:88px clamp(22px,5vw,56px)"]{padding-top:48px!important;padding-bottom:48px!important;}
+  [style*="padding:90px clamp(22px,5vw,56px)"]{padding-top:50px!important;padding-bottom:50px!important;}
+  [style*="padding:92px clamp(22px,5vw,56px)"]{padding-top:51px!important;padding-bottom:51px!important;}
+  [style*="padding:96px clamp(22px,5vw,56px)"]{padding-top:53px!important;padding-bottom:53px!important;}
+  [style*="padding:100px clamp(22px,5vw,56px)"]{padding-top:55px!important;padding-bottom:55px!important;}
+  [style*="padding:104px clamp(22px,5vw,56px)"]{padding-top:57px!important;padding-bottom:57px!important;}
+  [style*="padding:110px clamp(22px,5vw,56px)"]{padding-top:61px!important;padding-bottom:61px!important;}
+  [style*="padding:120px clamp(22px,5vw,56px)"]{padding-top:66px!important;padding-bottom:66px!important;}
+  [style*="padding:130px clamp(22px,5vw,56px)"]{padding-top:72px!important;padding-bottom:72px!important;}
+  /* keep stat rows as tidy 2-ups instead of a single tall column */
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+  [style*="grid-template-columns:1fr 1fr"][style*="gap:1px"]{grid-template-columns:1fr 1fr!important;}
+}
+@media (max-width:600px){
+  /* tame oversized fixed display type */
+  [style*="font-size:120px"]{font-size:58px!important;}
+  [style*="font-size:66px"]{font-size:40px!important;}
+  [style*="font-size:64px"]{font-size:40px!important;}
+  [style*="font-size:62px"]{font-size:38px!important;}
+  [style*="font-size:58px"]{font-size:36px!important;}
+  [style*="font-size:52px"]{font-size:34px!important;}
+  [style*="font-size:49px"]{font-size:32px!important;}
+  [style*="font-size:48px"]{font-size:32px!important;}
+  [style*="font-size:46px"]{font-size:30px!important;}
+  [style*="font-size:44px"]{font-size:30px!important;}
+  /* component padding: feature cards, quote blocks, tiles */
+  [style*="padding:56px 60px"]{padding:30px 24px!important;}
+  [style*="padding:44px 48px"]{padding:28px 22px!important;}
+  [style*="padding:36px 32px"]{padding:26px 22px!important;}
+  [style*="padding:32px 30px"]{padding:24px 20px!important;}
+  [style*="padding:30px 28px"]{padding:22px 18px!important;}
+  [style*="padding:28px 26px"]{padding:20px 18px!important;}
+  /* pressure gauge: roomier touch targets, calmer chips */
+  input[type=range].tf-slider{height:6px;}
+  .peq-chip,.hp-chip{font-size:12px; padding:8px 12px;}
+  /* logo marquee: a touch tighter */
+  .tf-marquee-track span{padding:0 20px;}
+}
+/* tables: horizontal scroll rather than overflow the page */
+@media (max-width:640px){
+  table{display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap;}
+  table td, table th{font-size:12.5px!important; padding:9px 11px!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="tf-progress" id="tf-progress"></div>
+
+<!-- ===================== TOP BAR ===================== -->
+<div style="position:sticky; top:0; z-index:50; background:rgba(240,244,243,.86); backdrop-filter:blur(10px); border-bottom:1px solid #D3DDDB;">
+  <div style="max-width:1240px; margin:0 auto; padding:17px clamp(22px,5vw,56px); display:flex; align-items:center; justify-content:space-between;">
+    <div style="display:flex; align-items:center; gap:11px;">
+      <img src="third-factor-logo.png" alt="Third Factor" style="height:37px; width:auto; display:block;">
+    </div>
+    <div class="nav-links tf-nav-links" role="navigation" aria-label="Primary" style="display:flex; align-items:center; gap:28px; white-space:nowrap;"><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-What-We-Do.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">What we do</a><div class="tf-dd"><a href="Third-Factor-Power-of-Pressure.html">The Power of Pressure</a><a href="Third-Factor-Building-Resilience.html">Building Resilience</a><a href="Third-Factor-3x4-Coaching.html">3&times;4 Coaching</a><a href="Third-Factor-Self-Aware-Team.html">The Self-Aware Team</a><a class="dd-all" href="Third-Factor-What-We-Do.html">All programs &rarr;</a></div></span><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-For-Organizations.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Who we help</a><div class="tf-dd"><a href="Third-Factor-For-Organizations.html">Organizations</a><a href="Third-Factor-For-Leaders.html">Leaders</a><a href="Third-Factor-For-Practitioners.html">Practitioners</a><a href="Third-Factor-For-Sport.html">Sport</a></div></span><a class="tf-link-u" href="Third-Factor-Proof.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Proof</a><a class="tf-link-u" href="Third-Factor-Insights.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Insights</a><a class="tf-link-u" href="Third-Factor-About.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">About</a><a href="Third-Factor-Contact.html" class="btn-dark" style="padding:9px 17px; font-size:13.5px;">Start a conversation</a></div><button class="tf-burger" aria-label="Open menu" aria-expanded="false" aria-controls="tf-primary-nav"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section style="max-width:1240px; margin:0 auto; padding:78px clamp(22px,5vw,56px) 56px;">
+  <div class="tf-hero-grid" style="display:grid; grid-template-columns:1.42fr 1fr; gap:56px; align-items:end;">
+    <div>
+      <div style="display:flex; align-items:center; gap:14px; font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#0E7C75; margin-bottom:30px;">
+        <span>The last human advantage</span>
+        <span style="flex:1; height:1px; background:#BFCECA; max-width:120px;"></span>
+        <span style="color:#8A9492;">Est. 1991</span>
+      </div>
+      <h1 style="font-family:'Newsreader',serif; font-weight:400; font-size:clamp(46px,6.6vw,66px); line-height:1.04; letter-spacing:-.018em; margin:0; color:#121F1E;">Convert pressure<br>into excellence.</h1>
+      <div style="width:84px; height:3px; background:#0E7C75; margin:30px 0 28px;"></div>
+      <p style="font-family:'Newsreader',serif; font-weight:300; font-size:21px; line-height:1.55; color:#414B49; max-width:48ch; margin:0 0 34px;">Some people crack under pressure. Some convert it. For thirty-five years we have studied the difference, first at the Olympics, then inside the world's biggest companies. What we found is a set of skills, not a personality trait. In the age of AI, those skills are the advantage that's left.</p>
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <a href="#cta" style="font-size:15px; font-weight:600; color:#F0F4F3; background:#121F1E; padding:14px 26px; border-radius:10px; cursor:pointer; white-space:nowrap;">Start a conversation</a>
+        <a href="Third-Factor-Power-of-Pressure.html" class="tf-link-u" style="font-size:15px; font-weight:500; color:#121F1E; cursor:pointer;">Read The Power of Pressure&nbsp;&rarr;</a>
+      </div>
+    </div>
+    <div class="tf-hero-portrait">
+      <div class="tf-portrait" style="width:100%; aspect-ratio:4/5; border-radius:6px; overflow:hidden; position:relative; background:#1B302D;">
+        <img class="tf-photo" src="lineage-peter.png" alt="Dr. Peter Jensen" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 28%;">
+        <div style="position:absolute; left:0; right:0; bottom:0; padding:18px 20px; background:linear-gradient(0deg, rgba(16,16,18,.85), transparent 90%); color:#F0F4F3;">
+          <div style="font-weight:600; font-size:14.5px;">Dr. Peter Jensen</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:10.5px; letter-spacing:.1em; color:#C2CCCA; margin-top:2px;">FOUNDER · MENTORED BY DĄBROWSKI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:30px; border-top:1px solid #D3DDDB; margin-top:52px; padding-top:28px;">
+    <div><div style="font-family:'Newsreader',serif; font-weight:400; font-size:30px; color:#121F1E; line-height:1;"><span data-count="35">35</span>&nbsp;years</div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.06em; color:#6E7A78; margin-top:7px;">DECODING PRESSURE</div></div>
+    <div><div style="font-family:'Newsreader',serif; font-weight:400; font-size:30px; color:#121F1E; line-height:1;"><span data-count="100" data-suffix="+">100+</span>&nbsp;medals</div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.06em; color:#6E7A78; margin-top:7px;">OLYMPIC &amp; PARALYMPIC</div></div>
+    <div><div style="font-family:'Newsreader',serif; font-weight:400; font-size:30px; color:#121F1E; line-height:1;"><span data-count="30000" data-comma="1" data-suffix="+">30,000+</span></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.06em; color:#6E7A78; margin-top:7px;">LEADERS TRAINED</div></div>
+    <div><div style="font-family:'Newsreader',serif; font-weight:400; font-size:30px; color:#121F1E; line-height:1;">Fortune&nbsp;500</div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.06em; color:#6E7A78; margin-top:7px;">RBC · MICROSOFT · DELOITTE</div></div>
+  </div>
+</section>
+
+<!-- ===================== THE REFRAME ===================== -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB;">
+  <div style="max-width:1000px; margin:0 auto; padding:104px clamp(22px,5vw,56px); text-align:center;">
+    <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:#0E7C75; margin-bottom:34px;">The reframe</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:300; font-size:clamp(32px,5vw,54px); line-height:1.16; letter-spacing:-.01em; margin:0; color:#121F1E;">When machines do the easy part, the hard part is all that is left. Pressure isn't the problem.</h2>
+    <h2 style="font-family:'Newsreader',serif; font-weight:500; font-size:clamp(32px,5vw,54px); line-height:1.16; letter-spacing:-.01em; margin:6px 0 0; color:#121F1E;">It's the solution.</h2>
+    <p style="font-size:16.5px; line-height:1.7; color:#414B49; max-width:60ch; margin:36px auto 0;">AI made raw intelligence and effort cheap. It cannot do judgment under ambiguity, composure when the volume spikes, or the quiet work of bringing people with you. Those are tested in exactly one place: under pressure. That is the part we train.</p>
+  </div>
+</section>
+
+<!-- ===================== THE PROOF (dark chapter) ===================== -->
+<section style="background:#0A1111; color:#F0F4F3; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:radial-gradient(70% 90% at 80% 8%, rgba(63,191,174,.14), transparent 55%), radial-gradient(60% 80% at 5% 100%, rgba(63,191,174,.08), transparent 55%); pointer-events:none;"></div>
+  <div style="position:absolute; inset:0; opacity:.4; pointer-events:none; background-image:radial-gradient(circle at 1px 1px, rgba(240,244,243,.05) 1px, transparent 0); background-size:4px 4px;"></div>
+  <div style="max-width:1240px; margin:0 auto; padding:104px clamp(22px,5vw,56px); position:relative;">
+    <div style="display:flex; align-items:center; gap:14px; font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:#3FBFAE; margin-bottom:36px;">
+      <span style="width:7px; height:7px; border-radius:50%; background:#3FBFAE; animation:tf-pulse 2.6s ease-in-out infinite;"></span>
+      <span>The proof is on the podium</span>
+    </div>
+    <div class="tf-two" style="display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:center;">
+      <div>
+        <h2 style="font-family:'Newsreader',serif; font-weight:300; font-size:clamp(32px,4.2vw,46px); line-height:1.14; letter-spacing:-.01em; margin:0 0 24px; color:#F0F4F3;">In a category drowning in opinion, we brought receipts.</h2>
+        <p style="font-size:16px; line-height:1.7; color:#A8B3B1; max-width:46ch; margin:0;">From the podium to the boardroom is not a metaphor for us. It is a résumé. We have taken the methods proven where pressure is absolute and installed them inside the biggest companies on Earth.</p>
+      </div>
+      <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(240,244,243,.1); border:1px solid rgba(240,244,243,.1); border-radius:10px; overflow:hidden;">
+        <div style="background:#0A1111; padding:28px 26px;"><div style="font-family:'Newsreader',serif; font-weight:400; font-size:52px; line-height:.92; color:#3FBFAE;"><span data-count="100" data-suffix="+">100+</span></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.08em; color:#7E8987; margin-top:10px;">MEDAL-WINNING ATHLETES &amp; COACHES</div></div>
+        <div style="background:#0A1111; padding:28px 26px;"><div style="font-family:'Newsreader',serif; font-weight:400; font-size:52px; line-height:.92; color:#F0F4F3;"><span data-count="2">2</span></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.08em; color:#7E8987; margin-top:10px;">LEADING BUSINESS SCHOOLS &middot; UNC &amp; QUEEN'S</div></div>
+        <div style="background:#0A1111; padding:28px 26px;"><div style="font-family:'Newsreader',serif; font-weight:400; font-size:52px; line-height:.92; color:#F0F4F3;"><span data-count="35">35</span></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.08em; color:#7E8987; margin-top:10px;">YEARS · 10 GAMES</div></div>
+        <div style="background:#0A1111; padding:28px 26px;"><div style="font-family:'Newsreader',serif; font-weight:400; font-size:52px; line-height:.92; color:#3FBFAE;"><span data-count="30" data-suffix="k">30k</span></div><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.08em; color:#7E8987; margin-top:10px;">LEADERS TRAINED</div></div>
+      </div>
+    </div>
+    <div style="margin-top:60px; border-top:1px solid rgba(240,244,243,.12); padding-top:30px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#646F6D; margin-bottom:22px;">Trusted in the highest-stakes rooms</div>
+      <div style="overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, #121F1E 7%, #121F1E 93%, transparent); mask-image:linear-gradient(90deg, transparent, #121F1E 7%, #121F1E 93%, transparent);">
+        <div class="tf-marquee-track">
+          <span><img class="tf-logo" src="logo-microsoft.png" alt="Microsoft" style="height:28px;"></span><span><img class="tf-logo" src="logo-deloitte.png" alt="Deloitte" style="height:24px;"></span><span><img class="tf-logo" src="logo-sap.png" alt="SAP" style="height:30px;"></span><span><img class="tf-logo" src="logo-starbucks.png" alt="Starbucks" style="height:42px;"></span><span><img class="tf-logo" src="logo-pfizer.png" alt="Pfizer" style="height:28px;"></span><span><img class="tf-logo" src="logo-bayer.png" alt="Bayer" style="height:40px;"></span><span><img class="tf-logo" src="logo-homedepot.png" alt="The Home Depot" style="height:38px;"></span><span><img class="tf-logo" src="logo-td.png" alt="TD" style="height:38px;"></span><span><img class="tf-logo" src="logo-uber.png" alt="Uber" style="height:26px;"></span>
+          <span><img class="tf-logo" src="logo-microsoft.png" alt="Microsoft" style="height:28px;"></span><span><img class="tf-logo" src="logo-deloitte.png" alt="Deloitte" style="height:24px;"></span><span><img class="tf-logo" src="logo-sap.png" alt="SAP" style="height:30px;"></span><span><img class="tf-logo" src="logo-starbucks.png" alt="Starbucks" style="height:42px;"></span><span><img class="tf-logo" src="logo-pfizer.png" alt="Pfizer" style="height:28px;"></span><span><img class="tf-logo" src="logo-bayer.png" alt="Bayer" style="height:40px;"></span><span><img class="tf-logo" src="logo-homedepot.png" alt="The Home Depot" style="height:38px;"></span><span><img class="tf-logo" src="logo-td.png" alt="TD" style="height:38px;"></span><span><img class="tf-logo" src="logo-uber.png" alt="Uber" style="height:26px;"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE PRESSURE EQUATION ===================== -->
+<section style="max-width:1240px; margin:0 auto; padding:104px clamp(22px,5vw,56px);">
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; margin-bottom:54px;">
+    <div style="max-width:60ch;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:#0E7C75; margin-bottom:24px;">The operating system</div>
+      <h2 style="font-family:'Newsreader',serif; font-weight:400; font-size:clamp(34px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0;">A simple equation for an invisible force.</h2>
+    </div>
+    <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:34ch; margin:0;">Pressure feels chaotic and personal. Name its three forces and it becomes legible. What you can read, you can manage. What you can manage, you can teach.</p>
+  </div>
+
+  <div class="tf-eq" style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:stretch; border:1px solid #D3DDDB; border-radius:12px; overflow:hidden; background:#fff;">
+    <div style="padding:36px 32px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.12em; color:#0E7C75; margin-bottom:18px;">01 / IMPORTANCE</div>
+      <div style="font-family:'Newsreader',serif; font-size:27px; line-height:1.2; margin-bottom:12px;">How much the outcome matters.</div>
+      <p style="font-size:13.5px; line-height:1.6; color:#646F6D; margin:0;">If it does not matter, there is no pressure. Stakes are the source.</p>
+    </div>
+    <div class="tf-eq-op" style="display:flex; align-items:center; justify-content:center; padding:0 6px; font-family:'Newsreader',serif; font-size:34px; color:#AEBDB9; background:#F6F9F8;">×</div>
+    <div style="padding:36px 32px; background:#F6F9F8;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.12em; color:#0E7C75; margin-bottom:18px;">02 / UNCERTAINTY</div>
+      <div style="font-family:'Newsreader',serif; font-size:27px; line-height:1.2; margin-bottom:12px;">How unknown the outcome is.</div>
+      <p style="font-size:13.5px; line-height:1.6; color:#646F6D; margin:0;">The brain processes uncertainty like physical pain. Certainty kills pressure.</p>
+    </div>
+    <div class="tf-eq-op" style="display:flex; align-items:center; justify-content:center; padding:0 6px; font-family:'Newsreader',serif; font-size:34px; color:#AEBDB9;">×</div>
+    <div style="padding:36px 32px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.12em; color:#0E7C75; margin-bottom:18px;">03 / VOLUME</div>
+      <div style="font-family:'Newsreader',serif; font-size:27px; line-height:1.2; margin-bottom:12px;">How much of it, all at once.</div>
+      <p style="font-size:13.5px; line-height:1.6; color:#646F6D; margin:0;">Not one big moment. Eleven medium ones, all due today. The grind.</p>
+    </div>
+  </div>
+  <div style="display:flex; align-items:center; justify-content:center; gap:14px; margin-top:26px; font-family:'Hanken Grotesk',sans-serif; font-size:13px; letter-spacing:.1em; color:#414B49; flex-wrap:wrap;">
+    <span style="color:#8A9492;">PRESSURE</span><span style="color:#AEBDB9;">=</span><span>IMPORTANCE</span><span style="color:#0E7C75;">·</span><span>UNCERTAINTY</span><span style="color:#0E7C75;">·</span><span>VOLUME</span>
+  </div>
+
+  <!-- interactive demo -->
+  <div class="reveal" style="margin-top:32px; background:#0A1111; border-radius:16px; padding:44px 48px; color:#F0F4F3; position:relative; overflow:hidden;">
+    <canvas id="eq-field" style="position:absolute; inset:0; width:100%; height:100%; display:block; opacity:.9;"></canvas>
+    <div style="position:absolute; inset:0; background:radial-gradient(60% 120% at 88% 0%, rgba(232,178,58,.13), transparent 60%); pointer-events:none;"></div>
+    <div class="tf-two" style="position:relative; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+      <div>
+        <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#3FBFAE; margin-bottom:20px;">Name your moment, read it back</div>
+        <style>
+        .hp-chip{font-family:'Hanken Grotesk',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.02em;color:#BEC9C6;background:rgba(240,244,243,.06);border:1px solid rgba(240,244,243,.16);padding:7px 13px;border-radius:10px;cursor:pointer;transition:border-color .2s,color .2s,background .2s;}
+        .hp-chip:hover{border-color:#3FBFAE;color:#F0F4F3;}
+        .hp-chip.on{background:#3FBFAE;border-color:#3FBFAE;color:#080E0D;}
+        </style>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+          <button class="hp-chip" data-i="8" data-u="5" data-v="4" data-name="A board presentation">Board presentation</button>
+          <button class="hp-chip" data-i="7" data-u="9" data-v="5" data-name="A make-or-break pitch">Make-or-break pitch</button>
+          <button class="hp-chip" data-i="8" data-u="9" data-v="7" data-name="A reorg or layoffs">Reorg or layoffs</button>
+          <button class="hp-chip" data-i="10" data-u="7" data-v="8" data-name="A personal crisis">Personal crisis</button>
+          <button class="hp-chip" data-i="6" data-u="5" data-v="10" data-name="Too much, all at once">Too much at once</button>
+        </div>
+        <div id="hp-moment" style="font-size:12px; color:#7E8987; min-height:16px; margin-bottom:22px;"></div>
+        <div style="margin-bottom:26px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:11px;"><span style="font-size:14.5px; font-weight:600;">Importance</span><span id="v-imp" style="font-family:'Hanken Grotesk',sans-serif; font-size:14px; color:#3FBFAE;">7</span></div>
+          <input class="tf-slider" type="range" min="1" max="10" value="7" id="sl-imp" aria-label="Importance">
+          <div style="font-size:12.5px; color:#7E8987; margin-top:9px;">How much the outcome matters.</div>
+        </div>
+        <div style="margin-bottom:26px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:11px;"><span style="font-size:14.5px; font-weight:600;">Uncertainty</span><span id="v-unc" style="font-family:'Hanken Grotesk',sans-serif; font-size:14px; color:#3FBFAE;">6</span></div>
+          <input class="tf-slider" type="range" min="1" max="10" value="6" id="sl-unc" aria-label="Uncertainty">
+          <div style="font-size:12.5px; color:#7E8987; margin-top:9px;">How unknown the outcome is.</div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:11px;"><span style="font-size:14.5px; font-weight:600;">Volume</span><span id="v-vol" style="font-family:'Hanken Grotesk',sans-serif; font-size:14px; color:#3FBFAE;">8</span></div>
+          <input class="tf-slider" type="range" min="1" max="10" value="8" id="sl-vol" aria-label="Volume">
+          <div style="font-size:12.5px; color:#7E8987; margin-top:9px;">How much of it, all at once.</div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div id="gauge-spacing" style="letter-spacing:0px; transition:letter-spacing .25s ease;">
+          <div id="gauge-word" style="font-family:'Newsreader',serif; font-weight:300; font-size:58px; line-height:1; color:#0E7C75; transition:color .3s ease;">PRESSURE</div>
+        </div>
+        <div style="height:11px; border-radius:10px; background:rgba(240,244,243,.12); margin:30px 0 18px; overflow:hidden;">
+          <div id="gauge-bar" style="height:100%; width:34%; background:linear-gradient(90deg,#0FB99A,#E8B23A,#FF5A1F); border-radius:10px; transition:width .3s cubic-bezier(.2,.7,.2,1);"></div>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:center; gap:14px;">
+          <span id="gauge-val" style="font-family:'Hanken Grotesk',sans-serif; font-size:44px; font-weight:700; color:#F0F4F3;">34</span>
+          <span id="gauge-label" style="font-family:'Hanken Grotesk',sans-serif; font-size:13px; letter-spacing:.22em; color:#0E7C75;">HIGH</span>
+        </div>
+      </div>
+    </div>
+    <div id="hp-dx" style="position:relative; margin-top:34px; padding-top:28px; border-top:1px solid rgba(240,244,243,.12);">
+      <div id="hp-band" style="font-family:'Hanken Grotesk',sans-serif; font-size:13.5px; line-height:1.5; font-weight:500; color:#3FBFAE; margin-bottom:14px;"></div>
+      <div id="hp-dx-title" style="font-family:'Newsreader',serif; font-weight:400; font-size:clamp(22px,2.4vw,28px); line-height:1.2; color:#F0F4F3; margin-bottom:10px;"></div>
+      <div id="hp-dx-body" style="font-size:14.5px; line-height:1.62; color:#A8B3B8; max-width:64ch; margin-bottom:18px;"></div>
+      <a id="hp-dx-link" href="#" style="display:inline-flex; align-items:center; font-family:'Hanken Grotesk',sans-serif; font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#3FBFAE; text-decoration:none; border-bottom:1px solid rgba(63,191,174,.4); padding-bottom:3px;"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE LINEAGE ===================== -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB;">
+  <div style="max-width:1240px; margin:0 auto; padding:104px clamp(22px,5vw,56px);">
+    <div style="text-align:center; margin-bottom:62px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:#0E7C75; margin-bottom:24px;">The lineage</div>
+      <h2 style="font-family:'Newsreader',serif; font-weight:400; font-size:clamp(32px,4.4vw,48px); line-height:1.1; letter-spacing:-.015em; margin:0 auto; max-width:24ch;">Three generations. One question: how do humans perform under pressure?</h2>
+    </div>
+    <div class="tf-gens" style="display:grid; grid-template-columns:repeat(3,1fr); gap:34px; position:relative;">
+      <div class="tf-line" style="position:absolute; top:140px; left:16%; right:16%; height:1.5px; background:linear-gradient(90deg, transparent, #8fc2ba 20%, #8fc2ba 80%, transparent); z-index:0;"></div>
+      <div style="position:relative; z-index:1;">
+        <div class="tf-portrait reveal" style="width:100%; max-width:240px; aspect-ratio:1/1; margin:0 auto; border-radius:50%; overflow:hidden; position:relative; border:5px solid #E3EAE8; box-shadow:0 0 0 1px #8fc2ba;">
+          <img class="tf-photo" src="lineage-kazimierz.png" alt="Kazimierz Dąbrowski" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="text-align:center; margin-top:22px;">
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.14em; color:#0E7C75; margin-bottom:8px;">THE MENTOR</div>
+          <div style="font-family:'Newsreader',serif; font-size:25px; line-height:1.1;">Kazimierz Dąbrowski</div>
+          <p style="font-size:14px; line-height:1.6; color:#4F5A58; max-width:32ch; margin:10px auto 0;">The Polish psychiatrist who named the third factor, the role you play in your own becoming, and changed the course of a young psychologist's life.</p>
+        </div>
+      </div>
+      <div style="position:relative; z-index:1;">
+        <div class="tf-portrait reveal" style="width:100%; max-width:240px; aspect-ratio:1/1; margin:0 auto; border-radius:50%; overflow:hidden; position:relative; border:5px solid #E3EAE8; box-shadow:0 0 0 1px #8fc2ba;">
+          <img class="tf-photo" src="lineage-peter.png" alt="Dr. Peter Jensen" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="text-align:center; margin-top:22px;">
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.14em; color:#0E7C75; margin-bottom:8px;">THE FOUNDER</div>
+          <div style="font-family:'Newsreader',serif; font-size:25px; line-height:1.1;">Dr. Peter Jensen</div>
+          <p style="font-size:14px; line-height:1.6; color:#4F5A58; max-width:32ch; margin:10px auto 0;">Carried the idea into the highest-pressure lab on Earth across ten Olympic Games, and built the firm that brought it from the podium to the boardroom.</p>
+        </div>
+      </div>
+      <div style="position:relative; z-index:1;">
+        <div class="tf-portrait reveal" style="width:100%; max-width:240px; aspect-ratio:1/1; margin:0 auto; border-radius:50%; overflow:hidden; position:relative; border:5px solid #E3EAE8; box-shadow:0 0 0 1px #8fc2ba;">
+          <img class="tf-photo" src="lineage-dane.png" alt="Dane Jensen" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="text-align:center; margin-top:22px;">
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.14em; color:#0E7C75; margin-bottom:8px;">THE AUTHOR</div>
+          <div style="font-family:'Newsreader',serif; font-size:25px; line-height:1.1;">Dane Jensen</div>
+          <p style="font-size:14px; line-height:1.6; color:#4F5A58; max-width:32ch; margin:10px auto 0;">Peter's son, now CEO. He put one question to thousands of people, from Olympians to overworked parents, and turned the answers into The Power of Pressure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE SUITE ===================== -->
+<section style="max-width:1240px; margin:0 auto; padding:104px clamp(22px,5vw,56px);">
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; margin-bottom:46px;">
+    <div style="max-width:58ch;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:#0E7C75; margin-bottom:24px;">What we install</div>
+      <h2 style="font-family:'Newsreader',serif; font-weight:400; font-size:clamp(34px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0;">Four ways to convert pressure.</h2>
+    </div>
+    <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:34ch; margin:0;">One continuous arc: read the force, perform under it, then draw it out of a whole team. Then we stay until it sticks, with sustainment gyms, 1:1 coaching calls, and impact reports that prove it worked.</p>
+  </div>
+
+  <div style="border-top:1px solid #121F1E;">
+    <a href="Third-Factor-Power-of-Pressure.html" class="tf-row tf-suite-row" style="display:grid; grid-template-columns:42px 40px 1.25fr 1fr 22px; gap:26px; align-items:center; padding:30px 16px; border-bottom:1px solid #D3DDDB; cursor:pointer; text-decoration:none; color:inherit;">
+      <span style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; color:#0E7C75;">01</span>
+      <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="9" fill="none" stroke="#121F1E" stroke-width="1.6"/><path d="M17 1.5 L17 5.5 M17 28.5 L17 32.5 M1.5 17 L5.5 17 M28.5 17 L32.5 17" stroke="#0E7C75" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <div><div style="font-family:'Newsreader',serif; font-size:26px; line-height:1;">Pressure</div><div style="font-size:14px; color:#646F6D; margin-top:6px;">Read the force that breaks or fuels you.</div></div>
+      <div class="tf-suite-meta" style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.04em; color:#8A9492; line-height:1.7;">THE PRESSURE EQUATION · THE&nbsp;POWER&nbsp;OF&nbsp;PRESSURE</div>
+      <span style="font-family:'Newsreader',serif; font-size:20px; color:#121F1E;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Building-Resilience.html" class="tf-row tf-suite-row" style="display:grid; grid-template-columns:42px 40px 1.25fr 1fr 22px; gap:26px; align-items:center; padding:30px 16px; border-bottom:1px solid #D3DDDB; cursor:pointer; text-decoration:none; color:inherit;">
+      <span style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; color:#0E7C75;">02</span>
+      <svg width="34" height="34" viewBox="0 0 34 34"><path d="M2 17 C8 17 9 27 14 27 S24 6 28 8 32 17 32 17" stroke="#121F1E" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="14" cy="27" r="2.4" fill="#0E7C75"/></svg>
+      <div><div style="font-family:'Newsreader',serif; font-size:26px; line-height:1;">Resilience</div><div style="font-size:14px; color:#646F6D; margin-top:6px;">Perform under load. Recover fast.</div></div>
+      <div class="tf-suite-meta" style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.04em; color:#8A9492; line-height:1.7;">BUILDING RESILIENCE · RESILIENCY&nbsp;MAP</div>
+      <span style="font-family:'Newsreader',serif; font-size:20px; color:#121F1E;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-3x4-Coaching.html" class="tf-row tf-suite-row" style="display:grid; grid-template-columns:42px 40px 1.25fr 1fr 22px; gap:26px; align-items:center; padding:30px 16px; border-bottom:1px solid #D3DDDB; cursor:pointer; text-decoration:none; color:inherit;">
+      <span style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; color:#0E7C75;">03</span>
+      <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="8" cy="17" r="3" fill="#121F1E"/><circle cx="26" cy="17" r="3" fill="#121F1E"/><path d="M11 17 L23 17" stroke="#0E7C75" stroke-width="1.6"/><path d="M17 11 L17 8 M17 23 L17 26" stroke="#0E7C75" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <div><div style="font-family:'Newsreader',serif; font-size:26px; line-height:1;">Coaching</div><div style="font-size:14px; color:#646F6D; margin-top:6px;">Build people who build people. Three plays, four skills.</div></div>
+      <div class="tf-suite-meta" style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.04em; color:#8A9492; line-height:1.7;">3×4 COACHING (ICF) · PJ&nbsp;THE&nbsp;AI&nbsp;COACH</div>
+      <span style="font-family:'Newsreader',serif; font-size:20px; color:#121F1E;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Self-Aware-Team.html" class="tf-row tf-suite-row" style="display:grid; grid-template-columns:42px 40px 1.25fr 1fr 22px; gap:26px; align-items:center; padding:30px 16px; border-bottom:1px solid #D3DDDB; cursor:pointer; text-decoration:none; color:inherit;">
+      <span style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; color:#0E7C75;">04</span>
+      <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="7" cy="9" r="2.6" fill="#121F1E"/><circle cx="27" cy="11" r="2.6" fill="#121F1E"/><circle cx="17" cy="26" r="2.6" fill="#121F1E"/><path d="M7 9 L17 26 L27 11" stroke="#0E7C75" stroke-width="1.4" fill="none"/></svg>
+      <div><div style="font-family:'Newsreader',serif; font-size:26px; line-height:1;">Collaboration</div><div style="font-size:14px; color:#646F6D; margin-top:6px;">Sync across difference.</div></div>
+      <div class="tf-suite-meta" style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.04em; color:#8A9492; line-height:1.7;">THE SELF-AWARE TEAM · TAIS</div>
+      <span style="font-family:'Newsreader',serif; font-size:20px; color:#121F1E;">&rarr;</span>
+    </a>
+  </div>
+
+  <div class="tf-two" style="display:grid; grid-template-columns:auto 1fr auto; gap:26px; align-items:center; margin-top:34px; background:#E3EAE8; border:1px solid #D3DDDB; border-radius:12px; padding:26px 30px;">
+    <div style="width:54px; height:54px; border-radius:50%; background:#121F1E; display:flex; align-items:center; justify-content:center; font-family:'Newsreader',serif; font-size:22px; color:#3FBFAE;">PJ</div>
+    <div>
+      <div style="font-family:'Newsreader',serif; font-size:22px; line-height:1.1;">Meet PJ, the Coach's Coach.</div>
+      <div style="font-size:14.5px; color:#4F5A58; margin-top:5px; max-width:72ch;">An AI coach named for our founder, built to make human coaches better, never to replace them. Human and machine, not human versus machine.</div>
+    </div>
+    <span style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.14em; color:#0E7C75; white-space:nowrap;">IN DEVELOPMENT</span>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB;">
+  <div style="max-width:1240px; margin:0 auto; padding:104px clamp(22px,5vw,56px);">
+    <div class="reveal" style="display:flex; align-items:flex-end; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:56px;">
+      <div style="max-width:56ch;">
+        <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:#0E7C75; margin-bottom:24px;">Proof, in their words</div>
+        <h2 style="font-family:'Newsreader',serif; font-weight:400; font-size:clamp(34px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0;">The people who stake their teams on us.</h2>
+      </div>
+      <div style="text-align:right; flex-shrink:0;">
+        <div style="font-family:'Newsreader',serif; font-weight:400; font-size:64px; line-height:.9; color:#0E7C75;">97.7<span style="font-size:34px;">%</span></div>
+        <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.08em; color:#646F6D; margin-top:10px; max-width:26ch;">OF 12,566 PARTICIPANTS WOULD RECOMMEND THIRD FACTOR</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="background:#0A1111; color:#F0F4F3; border-radius:16px; padding:56px 60px; position:relative; overflow:hidden; margin-bottom:24px;">
+      <div style="position:absolute; inset:0; background:radial-gradient(60% 120% at 90% 0%, rgba(63,191,174,.12), transparent 60%); pointer-events:none;"></div>
+      <div style="position:relative;">
+        <div style="font-family:'Newsreader',serif; font-size:120px; line-height:.6; color:#3FBFAE; height:46px;">&ldquo;</div>
+        <blockquote style="font-family:'Newsreader',serif; font-weight:300; font-size:clamp(26px,3.4vw,38px); line-height:1.28; letter-spacing:-.01em; margin:0 0 32px; max-width:24ch;">3×4 Coaching is one of the best leadership development experiences I have seen. The results are transformational.</blockquote>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:42px; height:1px; background:#3FBFAE;"></div>
+          <div>
+            <div style="font-weight:600; font-size:15px; color:#F0F4F3;">David Hofmann</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.06em; color:#7E8987; margin-top:3px;">SENIOR ASSOCIATE DEAN · UNC EXECUTIVE DEVELOPMENT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal tf-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;">
+      <div style="background:#fff; border:1px solid #D3DDDB; border-radius:16px; padding:32px 30px; display:flex; flex-direction:column; justify-content:space-between; min-height:280px;">
+        <p style="font-family:'Newsreader',serif; font-weight:400; font-size:21px; line-height:1.4; margin:0; color:#121F1E;">Third Factor has consistently exceeded our high expectations, delivering significant value.</p>
+        <div style="margin-top:26px; border-top:1px solid #D8E7EE; padding-top:18px;">
+          <div style="font-weight:600; font-size:14px;">Lesley Marks</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:10.5px; letter-spacing:.05em; color:#8A9492; margin-top:4px; line-height:1.6;">CHIEF INVESTMENT OFFICER, EQUITIES<br>MACKENZIE INVESTMENTS</div>
+        </div>
+      </div>
+      <div style="background:#fff; border:1px solid #D3DDDB; border-radius:16px; padding:32px 30px; display:flex; flex-direction:column; justify-content:space-between; min-height:280px;">
+        <p style="font-family:'Newsreader',serif; font-weight:400; font-size:21px; line-height:1.4; margin:0; color:#121F1E;">Third Factor is the best at what they do. We wouldn't have the strength of leadership we do without Dane, Peggy and the entire team.</p>
+        <div style="margin-top:26px; border-top:1px solid #D8E7EE; padding-top:18px;">
+          <div style="font-weight:600; font-size:14px;">Ben Cowan-Dewar</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:10.5px; letter-spacing:.05em; color:#8A9492; margin-top:4px; line-height:1.6;">CEO<br>CABOT</div>
+        </div>
+      </div>
+      <div style="background:#fff; border:1px solid #D3DDDB; border-radius:16px; padding:32px 30px; display:flex; flex-direction:column; justify-content:space-between; min-height:280px;">
+        <p style="font-family:'Newsreader',serif; font-weight:400; font-size:21px; line-height:1.4; margin:0; color:#121F1E;">We have had exceptional feedback, both internally and from clients, about the practical, research-based toolkit at the heart of the program.</p>
+        <div style="margin-top:26px; border-top:1px solid #D8E7EE; padding-top:18px;">
+          <div style="font-weight:600; font-size:14px;">Jodi Baker Calamai</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif; font-size:10.5px; letter-spacing:.05em; color:#8A9492; margin-top:4px; line-height:1.6;">NATIONAL MANAGING PARTNER<br>DELOITTE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IN MOTION ===================== -->
+<section style="background:#0A1111; color:#F0F4F3;">
+  <div style="max-width:1240px; margin:0 auto; padding:96px clamp(22px,5vw,56px);">
+    <div style="max-width:60ch; margin-bottom:34px;">
+      <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:#3FBFAE; margin-bottom:22px;">See it live</div>
+      <h2 style="font-family:'Newsreader',serif; font-weight:300; font-size:clamp(30px,4.2vw,48px); line-height:1.1; letter-spacing:-.015em; margin:0;">Dane Jensen, on stage.</h2>
+    </div>
+    <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden; background:#121F1E; box-shadow:0 36px 70px -38px rgba(0,0,0,.7);">
+      <iframe src="https://player.vimeo.com/video/566629667?dnt=1" title="Dane Jensen keynote" style="position:absolute; inset:0; width:100%; height:100%; border:0;" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CLOSING QUESTION ===================== -->
+<section id="cta" style="background:#0A1111; color:#F0F4F3; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:radial-gradient(60% 100% at 50% 120%, rgba(63,191,174,.12), transparent 60%); pointer-events:none;"></div>
+  <div style="max-width:980px; margin:0 auto; padding:120px clamp(22px,5vw,56px); text-align:center; position:relative;">
+    <div style="font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:#3FBFAE; margin-bottom:34px;">A question to begin</div>
+    <h2 style="font-family:'Newsreader',serif; font-weight:300; font-size:clamp(36px,6vw,64px); line-height:1.1; letter-spacing:-.02em; margin:0;">What's the most pressure<br>you've ever been under?</h2>
+    <p style="font-size:16.5px; line-height:1.7; color:#A8B3B1; max-width:54ch; margin:30px auto 40px;">Everyone has an answer. A start line, a boardroom, a 2 a.m. inbox. Whatever yours is, the energy in it can be converted. Teaching that conversion is all we do.</p>
+    <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;">
+      <a href="Third-Factor-Contact.html" style="font-size:15px; font-weight:600; color:#0A1111; background:#F0F4F3; padding:14px 28px; border-radius:10px; cursor:pointer; white-space:nowrap;">Start a conversation</a>
+      <a href="Third-Factor-What-We-Do.html" class="tf-link-u" style="font-size:15px; font-weight:500; color:#F0F4F3; cursor:pointer;">Explore the programs&nbsp;&rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="background:#0F1919; color:#C2CCCA;">
+  <div style="max-width:1240px; margin:0 auto; padding:64px clamp(22px,5vw,56px) 40px;">
+    <div class="tf-foot" style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:46px; border-bottom:1px solid rgba(240,244,243,.1);">
+      <div>
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:18px;">
+          <img src="third-factor-logo.png" alt="Third Factor" style="height:25px; width:auto; display:block; filter:invert(1);">
+        </div>
+        <div style="font-family:'Newsreader',serif; font-weight:300; font-size:22px; line-height:1.35; color:#F0F4F3; max-width:26ch;">Convert pressure into excellence.</div>
+        <div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.06em; color:#6E7A78; margin-top:20px;">TORONTO · FULLY REMOTE · EST.&nbsp;1991</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.14em; color:#6E7A78; margin-bottom:4px;">EXPLORE</div><a href="Third-Factor-For-Leaders.html" style="cursor:pointer;">For Leaders</a><a href="Third-Factor-For-Organizations.html" style="cursor:pointer;">For Organizations</a><a href="Third-Factor-For-Practitioners.html" style="cursor:pointer;">Practitioners</a><a href="Third-Factor-For-Sport.html" style="cursor:pointer;">Sport</a></div>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.14em; color:#6E7A78; margin-bottom:4px;">PROGRAMS</div><a href="Third-Factor-Power-of-Pressure.html" style="cursor:pointer;">Pressure</a><a href="Third-Factor-Building-Resilience.html" style="cursor:pointer;">Resilience</a><a href="Third-Factor-3x4-Coaching.html" style="cursor:pointer;">Coaching</a><a href="Third-Factor-Self-Aware-Team.html" style="cursor:pointer;">Collaboration</a></div>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;"><div style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.14em; color:#6E7A78; margin-bottom:4px;">MORE</div><a href="Third-Factor-Power-of-Pressure.html" style="cursor:pointer;">The Power of Pressure</a><a href="Third-Factor-Insights.html" style="cursor:pointer;">IGNITE Newsletter</a><a href="Third-Factor-Film.html" style="cursor:pointer;">Story Behind the Story</a><a href="Third-Factor-Contact.html" style="cursor:pointer;">Contact</a></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-top:26px; font-family:'Hanken Grotesk',sans-serif; font-size:11px; letter-spacing:.04em; color:#646F6D;">
+      <span>© 2026 Third Factor. The proof is on the podium.</span>
+      <span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ----- scroll progress ----- */
+  var prog = document.getElementById('tf-progress');
+  function onScroll(){
+    var el = document.scrollingElement || document.documentElement;
+    var max = (el.scrollHeight - el.clientHeight) || 1;
+    prog.style.width = Math.max(0, Math.min(100, (el.scrollTop / max) * 100)) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+
+  /* ----- count up ----- */
+  function countUp(el){
+    var target = parseFloat(el.getAttribute('data-count')) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+    var comma = el.getAttribute('data-comma') === '1';
+    var dur = 1500, start = performance.now();
+    function fmt(n){ return comma ? Math.round(n).toLocaleString('en-US') : String(Math.round(n)); }
+    function tick(now){
+      var t = Math.min(1, (now - start) / dur);
+      var e = 1 - Math.pow(1 - t, 3);
+      el.textContent = fmt(target * e) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ countUp(e.target); io.unobserve(e.target); } });
+    }, { threshold:0.6 });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), function(el){ io.observe(el); });
+  }
+
+  /* ----- pressure equation interaction ----- */
+  var state = { imp:7, unc:6, vol:8 };
+  var word = document.getElementById('gauge-word');
+  var spacing = document.getElementById('gauge-spacing');
+  var bar = document.getElementById('gauge-bar');
+  var valEl = document.getElementById('gauge-val');
+  var labEl = document.getElementById('gauge-label');
+  var hpBand=document.getElementById('hp-band'),hpT=document.getElementById('hp-dx-title'),hpB=document.getElementById('hp-dx-body'),hpL=document.getElementById('hp-dx-link'),hpMoment=document.getElementById('hp-moment'),hpChips=document.querySelectorAll('.hp-chip');
+  var moves={
+    imp:{t:"It matters too much to ignore.",b:"Importance is the one force you can't, and shouldn't, lower. The work isn't to care less. It's to aim the energy: narrow to what you actually control, and protect the recovery that lets you keep showing up.",l:"Where we train this: Building Resilience",h:"Third-Factor-Building-Resilience.html"},
+    unc:{t:"You're carrying too many unknowns.",b:"Uncertainty is what fear feeds on, and the most reducible of the three. The move is information: get the data you're missing, rehearse the moment until it feels familiar, and shrink the dark.",l:"Where we train this: The Power of Pressure",h:"Third-Factor-Power-of-Pressure.html"},
+    vol:{t:"It's the sheer amount, all at once.",b:"Volume is the force that breaks people quietly. The answer isn't to push harder, it's to carry less at any one time: sequence the load, defend your energy, and build in real recovery.",l:"Where we train this: Thriving in a 24/7 World",h:"Third-Factor-Thriving-24-7.html"}
+  };
+  var pressure01 = 0.336;
+
+  function paint(){
+    var pct = (state.imp * state.unc * state.vol) / 1000; // 0..1
+    pressure01 = pct;
+    var val = Math.round(pct * 100);
+    var label, color, read;
+    if (val < 12){ label='LATENT'; color='#0FB99A'; read='Simmering. Not much heat yet, but worth naming before it builds.'; }
+    else if (val < 34){ label='BUILDING'; color='#86B25A'; read='Building. This is when good habits are cheap. Later they are not.'; }
+    else if (val < 62){ label='HIGH'; color='#E8B23A'; read='High. This is a real moment, the kind careers turn on.'; }
+    else { label='EXTREME'; color='#FF5A1F'; read='Extreme. Almost nobody performs here by accident. This is what we train.'; }
+    var lsPx = ((0.16 - pct * 0.22) * 58).toFixed(2) + 'px';
+    if (word) word.style.color = color;
+    if (spacing) spacing.style.letterSpacing = lsPx;
+    if (bar) bar.style.width = val + '%';
+    if (valEl) valEl.textContent = val;
+    if (labEl){ labEl.textContent = label; labEl.style.color = color; }
+    if (hpBand){ hpBand.textContent = read; hpBand.style.color = color; }
+    var m = Math.max(state.imp, state.unc, state.vol), key;
+    if (state.unc === m){ key='unc'; } else if (state.vol === m){ key='vol'; } else { key='imp'; }
+    var mv = moves[key];
+    if (hpT) hpT.textContent = mv.t;
+    if (hpB) hpB.textContent = mv.b;
+    if (hpL){ hpL.innerHTML = mv.l + ' &nbsp;&rarr;'; hpL.setAttribute('href', mv.h); }
+  }
+  function clearHpChips(){ hpChips.forEach(function(c){ c.classList.remove('on'); }); }
+  function bind(sl, vId, key){
+    var el = document.getElementById(sl), out = document.getElementById(vId);
+    if(!el) return;
+    el.addEventListener('input', function(){ state[key] = parseInt(el.value,10); if(out) out.textContent = el.value; clearHpChips(); if(hpMoment) hpMoment.textContent=''; paint(); });
+  }
+  bind('sl-imp','v-imp','imp'); bind('sl-unc','v-unc','unc'); bind('sl-vol','v-vol','vol');
+  hpChips.forEach(function(c){
+    c.addEventListener('click', function(){
+      clearHpChips(); c.classList.add('on');
+      state.imp=+c.getAttribute('data-i'); state.unc=+c.getAttribute('data-u'); state.vol=+c.getAttribute('data-v');
+      var si=document.getElementById('sl-imp'),su=document.getElementById('sl-unc'),sv=document.getElementById('sl-vol');
+      if(si)si.value=state.imp; if(su)su.value=state.unc; if(sv)sv.value=state.vol;
+      var oi=document.getElementById('v-imp'),ou=document.getElementById('v-unc'),ov=document.getElementById('v-vol');
+      if(oi)oi.textContent=state.imp; if(ou)ou.textContent=state.unc; if(ov)ov.textContent=state.vol;
+      if(hpMoment) hpMoment.textContent='Reading: '+c.getAttribute('data-name');
+      paint();
+    });
+  });
+  paint();
+
+  /* ----- pressure field canvas (the blend's kinetic touch) ----- */
+  var canvas = document.getElementById('eq-field');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var ctx = canvas.getContext('2d');
+    var w=0,h=0,dpr=1,pts=[],N=90;
+    function resize(){ var r=canvas.getBoundingClientRect(); dpr=Math.min(window.devicePixelRatio||1,2); w=canvas.width=Math.max(1,Math.round(r.width*dpr)); h=canvas.height=Math.max(1,Math.round(r.height*dpr)); }
+    function seed(){ pts=[]; for(var i=0;i<N;i++){ pts.push({a:Math.random()*Math.PI*2, br:Math.pow(Math.random(),0.7), r:Math.random()*1.6+0.5, ph:Math.random()*Math.PI*2, sp:Math.random()*0.5+0.4}); } }
+    function lerp(a,b,t){ return a+(b-a)*t; }
+    resize(); seed(); window.addEventListener('resize', resize);
+    var t0=performance.now();
+    function draw(now){
+      var t=(now-t0)/1000;
+      ctx.clearRect(0,0,w,h);
+      var cx=w*0.78, cy=h*0.5, maxR=Math.min(w,h)*0.6;
+      var p=pressure01;
+      var jit=(0.4+p*1.5)*dpr;
+      // color from pulse (low) to ember (high)
+      var cr=Math.round(lerp(15,255,p)), cg=Math.round(lerp(185,90,p)), cb=Math.round(lerp(154,31,p));
+      for(var i=0;i<pts.length;i++){
+        var q=pts[i];
+        var ang=q.a + t*0.05*q.sp;
+        var spread = 1 - p*0.45;
+        var rr=q.br*maxR*spread + Math.sin(t*q.sp*1.6+q.ph)*jit*3;
+        var px=cx+Math.cos(ang)*rr, py=cy+Math.sin(ang)*rr*0.85;
+        var alpha=0.10+p*0.4;
+        ctx.beginPath();
+        ctx.arc(px,py,q.r*dpr*(1+p*0.7),0,Math.PI*2);
+        ctx.fillStyle='rgba('+cr+','+cg+','+cb+','+alpha+')';
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  }
+})();
+</script>
+<!--tf-navjs--><script>(function(){var b=document.querySelector('.tf-burger');if(!b)return;b.addEventListener('click',function(){var open=document.body.classList.toggle('tf-nav-open');b.setAttribute('aria-expanded',open?'true':'false');});document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');});});document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');}});})();</script>
+</body>
+</html>

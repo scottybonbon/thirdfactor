@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What we do · Third Factor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#F0F4F3;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Hanken Grotesk',sans-serif;color:#121F1E;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  ::selection{background:#0E7C75;color:#fff;}
+  a{text-decoration:none;color:inherit;}
+  .serif{font-family:'Newsreader',serif;}
+  .kick{font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0E7C75;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,56px);}
+  .btn-dark{font-size:15px;font-weight:600;color:#F0F4F3;background:#121F1E;padding:14px 26px;border-radius:10px;display:inline-block;cursor:pointer;white-space:nowrap;}
+  .btn-light{font-size:15px;font-weight:600;color:#0A1111;background:#F0F4F3;padding:14px 28px;border-radius:10px;display:inline-block;cursor:pointer;white-space:nowrap;}
+  .tf-link-u{position:relative;}
+  .tf-link-u::after{content:"";position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);}
+  .tf-link-u:hover::after{transform:scaleX(1);}
+  .tf-progress{position:fixed;top:0;left:0;height:3px;width:0;background:#0E7C75;z-index:100;}
+  .prog-row{display:grid;grid-template-columns:1.2fr 1fr 22px;gap:26px;align-items:center;padding:24px 8px;border-bottom:1px solid #D3DDDB;transition:background .3s ease;cursor:pointer;}
+  .prog-row:hover{background:rgba(14,124,117,.06);}
+  .fmt-card{background:#F0F4F3;border:1px solid #D3DDDB;border-radius:14px;padding:24px 22px;}
+  @media (max-width:920px){
+    .nav-links{display:none !important;}
+    .pillar-head{grid-template-columns:1fr !important;}
+    .prog-row{grid-template-columns:1fr 18px !important;}
+    .prog-meta{display:none;}
+    .fmt-g{grid-template-columns:1fr 1fr !important;}
+    .tf-foot{grid-template-columns:1fr 1fr !important;}
+    .journey{flex-direction:column !important; align-items:flex-start !important; gap:18px !important;}
+    .journey .seg{width:100% !important;}
+  }
+</style>
+
+<!--tf-meta-->
+<meta name="description" content="Four capabilities, a full library of programs, and the sustainment that makes them stick. The full Third Factor system, from reading pressure to performing under it.">
+<meta name="theme-color" content="#0E7C75">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Third Factor">
+<meta property="og:title" content="What we do · Third Factor">
+<meta property="og:description" content="Four capabilities, a full library of programs, and the sustainment that makes them stick. The full Third Factor system, from reading pressure to performing under it.">
+<meta property="og:image" content="https://thirdfactor.com/third-factor-share-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What we do · Third Factor">
+<meta name="twitter:description" content="Four capabilities, a full library of programs, and the sustainment that makes them stick. The full Third Factor system, from reading pressure to performing under it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23121F1E'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23F0F4F3'/%3E%3C/svg%3E">
+<style id="tf-enhance">
+.mono{font-family:'Hanken Grotesk',sans-serif !important;}
+/* --- accessibility --- */
+:focus-visible{outline:2px solid #0E7C75 !important; outline-offset:2px; border-radius:2px;}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}}
+/* --- nav dropdowns (desktop) --- */
+.tf-nav-item{position:relative; display:inline-flex; align-items:center;}
+.tf-nav-item::after{content:""; position:absolute; left:-8px; right:-20px; top:100%; height:18px; display:none;}
+.tf-nav-item:hover::after{display:block;}
+.tf-dd{position:absolute; top:calc(100% + 12px); left:-14px; min-width:226px; background:#F0F4F3; border:1px solid #D3DDDB; border-radius:13px; padding:8px; box-shadow:0 20px 48px rgba(14,15,18,.16); opacity:0; visibility:hidden; transform:translateY(7px); transition:opacity .18s ease, transform .18s ease, visibility .18s; z-index:60;}
+.tf-nav-item:hover .tf-dd, .tf-nav-item:focus-within .tf-dd{opacity:1; visibility:visible; transform:translateY(0);}
+.tf-dd a{display:block; padding:9px 12px; border-radius:8px; font-family:'Hanken Grotesk',sans-serif; font-size:13px; font-weight:500; color:#414B49 !important; text-decoration:none; white-space:nowrap; transition:background .15s ease, color .15s ease;}
+.tf-dd a:hover{background:#E3EAE8; color:#0E7C75 !important;}
+.tf-dd a.dd-all{color:#0E7C75 !important; font-weight:600; border-top:1px solid #D3DDDB; margin-top:5px; padding-top:11px; border-radius:0 0 8px 8px;}
+/* --- hamburger --- */
+.tf-burger{display:none; width:42px; height:42px; border:1px solid #C7D2CF; border-radius:10px; background:rgba(240,244,243,.7); cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:4px; padding:0;}
+.tf-burger span{display:block; width:18px; height:1.7px; background:#121F1E; transition:transform .22s ease, opacity .22s ease;}
+body.tf-nav-open .tf-burger span:nth-child(1){transform:translateY(5.7px) rotate(45deg);}
+body.tf-nav-open .tf-burger span:nth-child(2){opacity:0;}
+body.tf-nav-open .tf-burger span:nth-child(3){transform:translateY(-5.7px) rotate(-45deg);}
+/* --- nav: tablet + mobile (matches legacy 920px hide, no dead zone) --- */
+@media (max-width:920px){
+  .tf-burger{display:inline-flex !important;}
+  .nav-links{position:fixed !important; top:63px; left:0; right:0; flex-direction:column !important; align-items:stretch !important; gap:0 !important; background:#F0F4F3; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB; padding:8px 22px 20px !important; display:none !important; box-shadow:0 22px 52px rgba(14,15,18,.18); max-height:calc(100vh - 63px); overflow:auto; z-index:55;}
+  body.tf-nav-open .nav-links{display:flex !important;}
+  .nav-links > *{padding:13px 2px !important; width:100%; font-size:16px !important; border-bottom:1px solid #E3EAE8;}
+  .tf-nav-item{display:block !important;}
+  .tf-dd{display:none !important;}
+  .nav-links .btn-dark{margin-top:14px; text-align:center; border-bottom:none !important;}
+}
+/* --- layout: phones --- */
+@media (max-width:760px){
+  [style*="grid-template-columns"]{grid-template-columns:1fr !important;}
+}
+/* --- tf-refine: premium micro-interactions + texture --- */
+.tf-photo{filter:grayscale(1) contrast(1.04) brightness(1.01);}
+.btn-dark,.btn-light{transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease, background .22s ease !important;}
+.btn-dark:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -12px rgba(14,124,117,.5) !important;}
+.btn-light:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -14px rgba(14,15,18,.30) !important;}
+.tf-dd a,.peq-chip,.hp-chip,.aud a,.pill,.tf-link-u{transition:all .2s ease;}
+a:focus-visible,button:focus-visible{outline-offset:3px;}
+html::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.42;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;}
+@media (prefers-reduced-motion: reduce){html::after{display:none;}.btn-dark:hover,.btn-light:hover{transform:none !important;}}
+</style>
+
+<style id="tf-mobile">
+/* tf-mobile : mobile refinement pass (desktop untouched; all rules inside media queries) */
+@media (max-width:760px){
+  html{overflow-x:clip;}
+  img,video,iframe{max-width:100%;}
+  /* scale heavy desktop vertical rhythm */
+  [style*="padding:64px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:70px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:74px clamp(22px,5vw,56px)"]{padding-top:41px!important;padding-bottom:41px!important;}
+  [style*="padding:78px clamp(22px,5vw,56px)"]{padding-top:43px!important;padding-bottom:43px!important;}
+  [style*="padding:80px clamp(22px,5vw,56px)"]{padding-top:44px!important;padding-bottom:44px!important;}
+  [style*="padding:84px clamp(22px,5vw,56px)"]{padding-top:46px!important;padding-bottom:46px!important;}
+  [style*="padding:88px clamp(22px,5vw,56px)"]{padding-top:48px!important;padding-bottom:48px!important;}
+  [style*="padding:90px clamp(22px,5vw,56px)"]{padding-top:50px!important;padding-bottom:50px!important;}
+  [style*="padding:92px clamp(22px,5vw,56px)"]{padding-top:51px!important;padding-bottom:51px!important;}
+  [style*="padding:96px clamp(22px,5vw,56px)"]{padding-top:53px!important;padding-bottom:53px!important;}
+  [style*="padding:100px clamp(22px,5vw,56px)"]{padding-top:55px!important;padding-bottom:55px!important;}
+  [style*="padding:104px clamp(22px,5vw,56px)"]{padding-top:57px!important;padding-bottom:57px!important;}
+  [style*="padding:110px clamp(22px,5vw,56px)"]{padding-top:61px!important;padding-bottom:61px!important;}
+  [style*="padding:120px clamp(22px,5vw,56px)"]{padding-top:66px!important;padding-bottom:66px!important;}
+  [style*="padding:130px clamp(22px,5vw,56px)"]{padding-top:72px!important;padding-bottom:72px!important;}
+  /* keep stat rows as tidy 2-ups instead of a single tall column */
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+  [style*="grid-template-columns:1fr 1fr"][style*="gap:1px"]{grid-template-columns:1fr 1fr!important;}
+}
+@media (max-width:600px){
+  /* tame oversized fixed display type */
+  [style*="font-size:120px"]{font-size:58px!important;}
+  [style*="font-size:66px"]{font-size:40px!important;}
+  [style*="font-size:64px"]{font-size:40px!important;}
+  [style*="font-size:62px"]{font-size:38px!important;}
+  [style*="font-size:58px"]{font-size:36px!important;}
+  [style*="font-size:52px"]{font-size:34px!important;}
+  [style*="font-size:49px"]{font-size:32px!important;}
+  [style*="font-size:48px"]{font-size:32px!important;}
+  [style*="font-size:46px"]{font-size:30px!important;}
+  [style*="font-size:44px"]{font-size:30px!important;}
+  /* component padding: feature cards, quote blocks, tiles */
+  [style*="padding:56px 60px"]{padding:30px 24px!important;}
+  [style*="padding:44px 48px"]{padding:28px 22px!important;}
+  [style*="padding:36px 32px"]{padding:26px 22px!important;}
+  [style*="padding:32px 30px"]{padding:24px 20px!important;}
+  [style*="padding:30px 28px"]{padding:22px 18px!important;}
+  [style*="padding:28px 26px"]{padding:20px 18px!important;}
+  /* pressure gauge: roomier touch targets, calmer chips */
+  input[type=range].tf-slider{height:6px;}
+  .peq-chip,.hp-chip{font-size:12px; padding:8px 12px;}
+  /* logo marquee: a touch tighter */
+  .tf-marquee-track span{padding:0 20px;}
+}
+/* tables: horizontal scroll rather than overflow the page */
+@media (max-width:640px){
+  table{display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap;}
+  table td, table th{font-size:12.5px!important; padding:9px 11px!important;}
+}
+</style>
+</head>
+<body>
+<div class="tf-progress" id="tf-progress"></div>
+
+<!-- NAV -->
+<div style="position:sticky; top:0; z-index:50; background:rgba(240,244,243,.86); backdrop-filter:blur(10px); border-bottom:1px solid #D3DDDB;">
+  <div class="wrap" style="padding:17px clamp(22px,5vw,56px); display:flex; align-items:center; justify-content:space-between;">
+    <a href="./" style="display:flex; align-items:center; gap:11px;">
+      <img src="third-factor-logo.png" alt="Third Factor" style="height:37px; width:auto; display:block;">
+    </a>
+    <div class="nav-links tf-nav-links" role="navigation" aria-label="Primary" style="display:flex; align-items:center; gap:28px; white-space:nowrap;"><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-What-We-Do.html" style="font-size:13.5px; color:#121F1E; font-weight:600; cursor:pointer;">What we do</a><div class="tf-dd"><a href="Third-Factor-Power-of-Pressure.html">The Power of Pressure</a><a href="Third-Factor-Building-Resilience.html">Building Resilience</a><a href="Third-Factor-3x4-Coaching.html">3&times;4 Coaching</a><a href="Third-Factor-Self-Aware-Team.html">The Self-Aware Team</a><a class="dd-all" href="Third-Factor-What-We-Do.html">All programs &rarr;</a></div></span><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-For-Organizations.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Who we help</a><div class="tf-dd"><a href="Third-Factor-For-Organizations.html">Organizations</a><a href="Third-Factor-For-Leaders.html">Leaders</a><a href="Third-Factor-For-Practitioners.html">Practitioners</a><a href="Third-Factor-For-Sport.html">Sport</a></div></span><a class="tf-link-u" href="Third-Factor-Proof.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Proof</a><a class="tf-link-u" href="Third-Factor-Insights.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Insights</a><a class="tf-link-u" href="Third-Factor-About.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">About</a><a href="Third-Factor-Contact.html" class="btn-dark" style="padding:9px 17px; font-size:13.5px;">Start a conversation</a></div><button class="tf-burger" aria-label="Open menu" aria-expanded="false" aria-controls="tf-primary-nav"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="wrap" style="padding:64px clamp(22px,5vw,56px) 44px;">
+  <div class="kick" style="margin-bottom:26px;">What we do</div>
+  <h1 class="serif" style="font-weight:400; font-size:clamp(42px,6.2vw,74px); line-height:1.02; letter-spacing:-.02em; margin:0; max-width:20ch;">Everything we install, in one continuous system.</h1>
+  <p class="serif" style="font-weight:300; font-size:clamp(18px,1.8vw,22px); line-height:1.55; color:#414B49; max-width:62ch; margin:26px 0 0;">Four capabilities, a full library of programs, and the sustainment that makes them stick. It begins with understanding pressure and ends with a whole team that performs under it. Every program is grounded in elite sport and built as trainable, repeatable skill.</p>
+  <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-top:34px;">
+    <a href="#cta" class="btn-dark">Start a conversation</a>
+    <a href="Third-Factor-Catalog.pdf" download class="tf-link-u" style="font-size:15px; font-weight:500; color:#121F1E; cursor:pointer;">Download the catalog (PDF)&nbsp;&rarr;</a>
+  </div>
+</section>
+
+<!-- THE JOURNEY -->
+<section style="background:#0A1111; color:#F0F4F3;">
+  <div class="wrap" style="padding:80px clamp(22px,5vw,56px);">
+    <div class="kick" style="color:#3FBFAE; margin-bottom:40px;">The arc, from pressure to performance</div>
+    <div class="journey" style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px; position:relative;">
+      <div style="position:absolute; top:7px; left:8px; right:calc(25% - 30px); height:2px; background:linear-gradient(90deg,#0E7C75,#3FBFAE); opacity:.7;"></div>
+      <div class="seg" style="flex:1; position:relative;">
+        <div style="width:16px; height:16px; border-radius:50%; background:#3FBFAE; box-shadow:0 0 14px rgba(63,191,174,.6); margin-bottom:20px;"></div>
+        <div class="serif" style="font-size:23px; margin-bottom:6px;">Pressure</div>
+        <p style="font-size:13.5px; line-height:1.6; color:#A8B3B1; margin:0; max-width:24ch;">Read the force that breaks or fuels you.</p>
+      </div>
+      <div class="seg" style="flex:1; position:relative;">
+        <div style="width:16px; height:16px; border-radius:50%; background:#3FBFAE; box-shadow:0 0 14px rgba(63,191,174,.6); margin-bottom:20px;"></div>
+        <div class="serif" style="font-size:23px; margin-bottom:6px;">Resilience</div>
+        <p style="font-size:13.5px; line-height:1.6; color:#A8B3B1; margin:0; max-width:24ch;">Perform under load and recover fast.</p>
+      </div>
+      <div class="seg" style="flex:1; position:relative;">
+        <div style="width:16px; height:16px; border-radius:50%; background:#3FBFAE; box-shadow:0 0 14px rgba(63,191,174,.6); margin-bottom:20px;"></div>
+        <div class="serif" style="font-size:23px; margin-bottom:6px;">Coaching</div>
+        <p style="font-size:13.5px; line-height:1.6; color:#A8B3B1; margin:0; max-width:24ch;">Build people who build people.</p>
+      </div>
+      <div class="seg" style="flex:1; position:relative;">
+        <div style="width:16px; height:16px; border-radius:50%; background:#3FBFAE; box-shadow:0 0 14px rgba(63,191,174,.6); margin-bottom:20px;"></div>
+        <div class="serif" style="font-size:23px; margin-bottom:6px;">Collaboration</div>
+        <p style="font-size:13.5px; line-height:1.6; color:#A8B3B1; margin:0; max-width:24ch;">Draw the best out of a whole team.</p>
+      </div>
+    </div>
+    <div style="margin-top:40px; border-top:1px solid rgba(240,244,243,.12); padding-top:24px; font-size:14.5px; color:#A8B3B1;">And <strong style="color:#F0F4F3;">Sustainment</strong> keeps all of it alive long after the room empties.</div>
+  </div>
+</section>
+
+<!-- PILLAR: PRESSURE -->
+<section class="wrap" style="padding:84px clamp(22px,5vw,56px) 20px;">
+  <div class="pillar-head" style="display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; margin-bottom:14px;">
+    <div>
+      <div class="kick" style="margin-bottom:14px;">01 · The lens</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(28px,3.6vw,40px); line-height:1.05; letter-spacing:-.015em; margin:0;">Pressure</h2>
+      <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:54ch; margin:14px 0 0;">Before you can manage pressure, you have to be able to read it. This is the idea the whole system is built on.</p>
+    </div>
+  </div>
+  <div style="border-top:1px solid #121F1E;">
+    <a href="Third-Factor-Power-of-Pressure.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">The Power of Pressure</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Nail the moments that matter, with the Pressure Equation.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Keynote · Webinar · The book</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+  </div>
+</section>
+
+<!-- PILLAR: RESILIENCE -->
+<section class="wrap" style="padding:60px clamp(22px,5vw,56px) 20px;">
+  <div class="pillar-head" style="display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; margin-bottom:14px;">
+    <div>
+      <div class="kick" style="margin-bottom:14px;">02 · Perform under load</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(28px,3.6vw,40px); line-height:1.05; letter-spacing:-.015em; margin:0;">Resilience</h2>
+      <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:54ch; margin:14px 0 0;">Perform under load and recover from setbacks, built as a practical toolkit with the Resiliency Map.</p>
+    </div>
+    <a href="Third-Factor-Building-Resilience.html" class="tf-link-u" style="font-size:14px; font-weight:600; color:#0E7C75; cursor:pointer; white-space:nowrap;">Explore Resilience&nbsp;&rarr;</a>
+  </div>
+  <div style="border-top:1px solid #121F1E;">
+    <a href="Third-Factor-Building-Resilience.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">Building Resilience</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Perform, recover, grow, with the FOCUS toolkit and a self-assessment.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Journey · Workshop · Keynote · Resiliency Map</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Team-Motivation.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">Maintaining Team Motivation</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Four allies to fight disillusionment when the team is worn down.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Workshop · Keynote · Webinar</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Meta-Skilled.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">The Meta-Skilled Organization</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">The skills that let people and companies evolve, not just execute.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Workshop · Keynote · Webinar</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Thriving-24-7.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">Thriving in a 24/7 World</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Energy management, not time management. Peter Jensen's program.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Keynote · Webinar</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+  </div>
+</section>
+
+<!-- PILLAR: COACHING -->
+<section class="wrap" style="padding:60px clamp(22px,5vw,56px) 20px;">
+  <div class="pillar-head" style="display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; margin-bottom:14px;">
+    <div>
+      <div class="kick" style="margin-bottom:14px;">03 · Grow your people</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(28px,3.6vw,40px); line-height:1.05; letter-spacing:-.015em; margin:0;">Coaching</h2>
+      <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:54ch; margin:14px 0 0;">Help leaders get the best from their people. ICF-accredited, and now augmented by PJ, our AI coach.</p>
+    </div>
+    <a href="Third-Factor-3x4-Coaching.html" class="tf-link-u" style="font-size:14px; font-weight:600; color:#0E7C75; cursor:pointer; white-space:nowrap;">Explore Coaching&nbsp;&rarr;</a>
+  </div>
+  <div style="border-top:1px solid #121F1E;">
+    <a href="Third-Factor-3x4-Coaching.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">3×4 Coaching</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Three plays, four skills, one mindset. The flagship coaching program.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Journey · Workshop · Keynote · ICF · PJ</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Challenging-Conversations.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">Managing Challenging Conversations</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Master the toughest coaching moment, the one you have been avoiding.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Workshop · Virtual · Video</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Career-Conversations.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">Career Conversations</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Keep your best people by helping them see a future worth staying for.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Keynote · Webinar</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Ignite.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">Ignite</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Peter Jensen's five practices for lighting the fire in other people.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Keynote · Webinar</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+  </div>
+</section>
+
+<!-- PILLAR: COLLABORATION -->
+<section class="wrap" style="padding:60px clamp(22px,5vw,56px) 40px;">
+  <div class="pillar-head" style="display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; margin-bottom:14px;">
+    <div>
+      <div class="kick" style="margin-bottom:14px;">04 · Sync across difference</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(28px,3.6vw,40px); line-height:1.05; letter-spacing:-.015em; margin:0;">Collaboration</h2>
+      <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:54ch; margin:14px 0 0;">The self-awareness and communication skills that masterful collaborators use, built on the TAIS assessment.</p>
+    </div>
+    <a href="Third-Factor-Self-Aware-Team.html" class="tf-link-u" style="font-size:14px; font-weight:600; color:#0E7C75; cursor:pointer; white-space:nowrap;">Explore Collaboration&nbsp;&rarr;</a>
+  </div>
+  <div style="border-top:1px solid #121F1E;">
+    <a href="Third-Factor-Self-Aware-Leader.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">The Self-Aware Leader</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Self-awareness is one of the strongest predictors of executive success.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Workshop · 1:1 · TAIS</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Self-Aware-Team.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">The Self-Aware Team</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Gold-medal collaboration. The program we use with our Olympic teams.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Workshop · Virtual · TAIS</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+    <a href="Third-Factor-Working-With-People.html" class="prog-row" style="color:#121F1E;">
+      <div><div class="serif" style="font-size:22px;">Working With People You Don't Understand</div><div style="font-size:13.5px; color:#646F6D; margin-top:4px;">Better results through the mindsets of curiosity and generosity.</div></div>
+      <div class="prog-meta" style="font-size:12.5px; letter-spacing:.03em; color:#8A9492;">Workshop · Webinar</div>
+      <span class="serif" style="font-size:18px; color:#0E7C75;">&rarr;</span>
+    </a>
+  </div>
+</section>
+
+<!-- SUSTAINMENT -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB;">
+  <div class="wrap" style="padding:84px clamp(22px,5vw,56px);">
+    <div style="max-width:56ch; margin-bottom:40px;">
+      <div class="kick" style="margin-bottom:22px;">How it sticks</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(30px,4vw,44px); line-height:1.08; letter-spacing:-.015em; margin:0 0 16px;">Sustainment</h2>
+      <p style="font-size:16px; line-height:1.7; color:#414B49; margin:0;">Most leadership development ends when the workshop does. Ours keeps going, and we measure whether it held.</p>
+    </div>
+    <div class="fmt-g" style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:8px;">Sustainment Gyms</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">A microsite of drills, job aids and a podcast that keep the skills alive.</div></div>
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:8px;">1:1 Coaching Calls</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">Trainer-as-Partner calls reconnect each participant with their coach.</div></div>
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:8px;">Group Refreshers &amp; Panels</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">Reconnect the room, and let leaders who are succeeding inspire the rest.</div></div>
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:8px;">The Impact Report</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">The data on participation, behavior change and outcomes, to take upstairs.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PJ -->
+<section class="wrap" style="padding:84px clamp(22px,5vw,56px);">
+  <div style="display:grid; grid-template-columns:auto 1fr auto; gap:26px; align-items:center; background:#0A1111; color:#F0F4F3; border-radius:16px; padding:34px 38px;">
+    <div style="width:60px; height:60px; border-radius:50%; background:#101A1A; border:1px solid rgba(240,244,243,.14); display:flex; align-items:center; justify-content:center;"><span class="serif" style="font-size:24px; color:#3FBFAE;">PJ</span></div>
+    <div>
+      <div class="serif" style="font-size:24px; line-height:1.1;">PJ, the Coach's Coach</div>
+      <div style="font-size:14.5px; color:#A8B3B1; margin-top:6px; max-width:80ch;">An AI coach named after our founder, trained on the 3×4 model and included in our coaching programs. Built to make your coaches better, never to replace them. Human and machine, not human versus machine.</div>
+    </div>
+    <span class="tf-link-u" style="font-size:14px; font-weight:600; color:#3FBFAE; white-space:nowrap; cursor:pointer;">Meet PJ&nbsp;&rarr;</span>
+  </div>
+</section>
+
+<!-- HOW WE DELIVER -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB;">
+  <div class="wrap" style="padding:84px clamp(22px,5vw,56px);">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; margin-bottom:40px;">
+      <div style="max-width:48ch;">
+        <div class="kick" style="margin-bottom:22px;">How we deliver</div>
+        <h2 class="serif" style="font-weight:400; font-size:clamp(28px,3.6vw,40px); line-height:1.08; letter-spacing:-.015em; margin:0;">Same model, configured to how you actually learn.</h2>
+      </div>
+      <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:30ch; margin:0;">From a one-hour keynote to a four-week virtual journey.</p>
+    </div>
+    <div class="fmt-g" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:6px;">Keynotes &amp; webinars</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">One hour, for a hundred or more. Educate, inspire, and entertain.</div></div>
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:6px;">Workshops</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">Half-day to two-day, in person or virtual, with real practice.</div></div>
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:6px;">Virtual learning journeys</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">Multi-week, in the flow of work, so the skills stick.</div></div>
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:6px;">Self-paced video</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">On demand, for scale, with the same tools and frameworks.</div></div>
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:6px;">1:1 coaching</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">Individualized support, assessment-led, for senior leaders.</div></div>
+      <div class="fmt-card"><div class="serif" style="font-size:19px; margin-bottom:6px;">Blended programs</div><div style="font-size:13.5px; color:#4F5A58; line-height:1.6;">A mix built around your goals, with sustainment baked in.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" style="background:#0A1111; color:#F0F4F3; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:radial-gradient(60% 100% at 50% 120%, rgba(63,191,174,.13), transparent 60%); pointer-events:none;"></div>
+  <div class="wrap" style="padding:110px clamp(22px,5vw,56px); text-align:center; position:relative; max-width:900px;">
+    <div class="kick" style="color:#3FBFAE; margin-bottom:30px;">Build your program</div>
+    <h2 class="serif" style="font-weight:300; font-size:clamp(32px,5vw,56px); line-height:1.1; letter-spacing:-.02em; margin:0 0 26px;">Not sure where to start? That is what the first call is for.</h2>
+    <p style="font-size:16.5px; line-height:1.7; color:#A8B3B1; max-width:50ch; margin:0 auto 40px;">Tell us what your people are facing and we will configure the right mix from across the system.</p>
+    <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;">
+      <a href="Third-Factor-Contact.html" class="btn-light">Start a conversation</a>
+      <a href="Third-Factor-Catalog.pdf" download class="tf-link-u" style="font-size:15px; font-weight:500; color:#F0F4F3; cursor:pointer;">Download the catalog (PDF)&nbsp;&rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0F1919; color:#C2CCCA;">
+  <div class="wrap" style="padding:60px clamp(22px,5vw,56px) 38px;">
+    <div class="tf-foot" style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:46px; border-bottom:1px solid rgba(240,244,243,.1);">
+      <div>
+        <a href="./" style="display:flex; align-items:center; gap:11px; margin-bottom:18px;">
+          <img src="third-factor-logo.png" alt="Third Factor" style="height:25px; width:auto; display:block; filter:invert(1);">
+        </a>
+        <div class="serif" style="font-weight:300; font-size:22px; line-height:1.35; color:#F0F4F3; max-width:26ch;">Convert pressure into excellence.</div>
+        <div style="font-size:11px; font-weight:600; letter-spacing:.06em; color:#6E7A78; margin-top:20px;">TORONTO · FULLY REMOTE · EST. 1991</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;"><div style="font-size:11px; font-weight:600; letter-spacing:.14em; color:#6E7A78; margin-bottom:4px;">WHO WE HELP</div><a href="Third-Factor-For-Organizations.html" style="cursor:pointer;">Organizations</a><a href="Third-Factor-For-Leaders.html" style="cursor:pointer;">Leaders</a><a href="Third-Factor-For-Practitioners.html" style="cursor:pointer;">Practitioners</a><a href="Third-Factor-For-Sport.html" style="cursor:pointer;">Sport</a></div>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;"><div style="font-size:11px; font-weight:600; letter-spacing:.14em; color:#6E7A78; margin-bottom:4px;">PROGRAMS</div><a href="Third-Factor-Power-of-Pressure.html" style="cursor:pointer;">Pressure</a><a href="Third-Factor-Building-Resilience.html" style="cursor:pointer;">Resilience</a><a href="Third-Factor-3x4-Coaching.html" style="cursor:pointer;">Coaching</a><a href="Third-Factor-Self-Aware-Team.html" style="cursor:pointer;">Collaboration</a></div>
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;"><div style="font-size:11px; font-weight:600; letter-spacing:.14em; color:#6E7A78; margin-bottom:4px;">MORE</div><a href="Third-Factor-Proof.html" style="cursor:pointer;">Proof</a><a href="Third-Factor-Insights.html" style="cursor:pointer;">Insights</a><a href="Third-Factor-About.html" style="cursor:pointer;">About</a><a href="Third-Factor-Contact.html" style="cursor:pointer;">Contact</a></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-top:26px; font-size:11px; font-weight:600; letter-spacing:.04em; color:#646F6D;">
+      <span>© 2026 Third Factor. The proof is on the podium.</span>
+      <span>What we do · type stand-ins: Newsreader · Hanken Grotesk</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var prog=document.getElementById('tf-progress');
+  function onScroll(){var el=document.scrollingElement||document.documentElement;var max=(el.scrollHeight-el.clientHeight)||1;prog.style.width=Math.max(0,Math.min(100,(el.scrollTop/max)*100))+'%';}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+<!--tf-navjs--><script>(function(){var b=document.querySelector('.tf-burger');if(!b)return;b.addEventListener('click',function(){var open=document.body.classList.toggle('tf-nav-open');b.setAttribute('aria-expanded',open?'true':'false');});document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');});});document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');}});})();</script>
+</body>
+</html>

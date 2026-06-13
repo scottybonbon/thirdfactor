@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3×4 Coaching · Third Factor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#F0F4F3;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Hanken Grotesk',sans-serif;color:#121F1E;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  ::selection{background:#0E7C75;color:#fff;}
+  a{text-decoration:none;color:inherit;}
+  .serif{font-family:'Newsreader',serif;}
+  .kick{font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0E7C75;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,56px);}
+  .btn-dark{font-size:15px;font-weight:600;color:#F0F4F3;background:#121F1E;padding:14px 26px;border-radius:10px;display:inline-block;cursor:pointer;white-space:nowrap;}
+  .btn-light{font-size:15px;font-weight:600;color:#0A1111;background:#F0F4F3;padding:14px 28px;border-radius:10px;display:inline-block;cursor:pointer;white-space:nowrap;}
+  .tf-link-u{position:relative;}
+  .tf-link-u::after{content:"";position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1);}
+  .tf-link-u:hover::after{transform:scaleX(1);}
+  .tf-progress{position:fixed;top:0;left:0;height:3px;width:0;background:#0E7C75;z-index:100;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes corepulse{0%,100%{opacity:.5;transform:scale(.9);}50%{opacity:1;transform:scale(1.08);}}
+  @keyframes tf-rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+  .reveal{animation:tf-rise both;animation-timeline:view();animation-range:entry 6% entry 50%;}
+  @supports not (animation-timeline: view()){.reveal{animation:none;opacity:1;transform:none;}}
+  .tf-node{cursor:pointer;}
+  .tf-node circle{transition:all .3s ease;}
+  .tf-node text{font-family:'Hanken Grotesk',sans-serif;font-weight:600;fill:#121F1E;}
+  .tf-node:hover circle.bg, .tf-node.on circle.bg{fill:#0E7C75;}
+  .tf-node:hover text.lbl, .tf-node.on text.lbl{fill:#F0F4F3;}
+  .skill .bg{fill:#F0F4F3;stroke:#0E7C75;stroke-width:1.6;}
+  .skill:hover .bg,.skill.on .bg{fill:#0E7C75;}
+  .formats tr{border-bottom:1px solid #D3DDDB;}
+  .formats td,.formats th{padding:16px 10px;text-align:left;}
+  .formats th{font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6E7A78;}
+  @media (max-width:920px){
+    .hero-g{grid-template-columns:1fr !important;}
+    .model-g{grid-template-columns:1fr !important;}
+    .two{grid-template-columns:1fr !important;}
+    .three{grid-template-columns:1fr !important;}
+    .nav-links{display:none !important;}
+    .out-g{grid-template-columns:1fr !important;}
+    .formats .hideS{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){.reveal{animation:none!important;opacity:1!important;transform:none!important;} .spin{animation:none!important;} .core{animation:none!important;}}
+</style>
+
+<!--tf-meta-->
+<meta name="description" content="3x4 Coaching: three plays and four skills that make everyday coaching conversations a leader's biggest lever.">
+<meta name="theme-color" content="#0E7C75">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Third Factor">
+<meta property="og:title" content="3×4 Coaching · Third Factor">
+<meta property="og:description" content="3x4 Coaching: three plays and four skills that make everyday coaching conversations a leader's biggest lever.">
+<meta property="og:image" content="https://thirdfactor.com/third-factor-share-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3×4 Coaching · Third Factor">
+<meta name="twitter:description" content="3x4 Coaching: three plays and four skills that make everyday coaching conversations a leader's biggest lever.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23121F1E'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23F0F4F3'/%3E%3C/svg%3E">
+<style id="tf-enhance">
+.mono{font-family:'Hanken Grotesk',sans-serif !important;}
+/* --- accessibility --- */
+:focus-visible{outline:2px solid #0E7C75 !important; outline-offset:2px; border-radius:2px;}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}}
+/* --- nav dropdowns (desktop) --- */
+.tf-nav-item{position:relative; display:inline-flex; align-items:center;}
+.tf-nav-item::after{content:""; position:absolute; left:-8px; right:-20px; top:100%; height:18px; display:none;}
+.tf-nav-item:hover::after{display:block;}
+.tf-dd{position:absolute; top:calc(100% + 12px); left:-14px; min-width:226px; background:#F0F4F3; border:1px solid #D3DDDB; border-radius:13px; padding:8px; box-shadow:0 20px 48px rgba(14,15,18,.16); opacity:0; visibility:hidden; transform:translateY(7px); transition:opacity .18s ease, transform .18s ease, visibility .18s; z-index:60;}
+.tf-nav-item:hover .tf-dd, .tf-nav-item:focus-within .tf-dd{opacity:1; visibility:visible; transform:translateY(0);}
+.tf-dd a{display:block; padding:9px 12px; border-radius:8px; font-family:'Hanken Grotesk',sans-serif; font-size:13px; font-weight:500; color:#414B49 !important; text-decoration:none; white-space:nowrap; transition:background .15s ease, color .15s ease;}
+.tf-dd a:hover{background:#E3EAE8; color:#0E7C75 !important;}
+.tf-dd a.dd-all{color:#0E7C75 !important; font-weight:600; border-top:1px solid #D3DDDB; margin-top:5px; padding-top:11px; border-radius:0 0 8px 8px;}
+/* --- hamburger --- */
+.tf-burger{display:none; width:42px; height:42px; border:1px solid #C7D2CF; border-radius:10px; background:rgba(240,244,243,.7); cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:4px; padding:0;}
+.tf-burger span{display:block; width:18px; height:1.7px; background:#121F1E; transition:transform .22s ease, opacity .22s ease;}
+body.tf-nav-open .tf-burger span:nth-child(1){transform:translateY(5.7px) rotate(45deg);}
+body.tf-nav-open .tf-burger span:nth-child(2){opacity:0;}
+body.tf-nav-open .tf-burger span:nth-child(3){transform:translateY(-5.7px) rotate(-45deg);}
+/* --- nav: tablet + mobile (matches legacy 920px hide, no dead zone) --- */
+@media (max-width:920px){
+  .tf-burger{display:inline-flex !important;}
+  .nav-links{position:fixed !important; top:63px; left:0; right:0; flex-direction:column !important; align-items:stretch !important; gap:0 !important; background:#F0F4F3; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB; padding:8px 22px 20px !important; display:none !important; box-shadow:0 22px 52px rgba(14,15,18,.18); max-height:calc(100vh - 63px); overflow:auto; z-index:55;}
+  body.tf-nav-open .nav-links{display:flex !important;}
+  .nav-links > *{padding:13px 2px !important; width:100%; font-size:16px !important; border-bottom:1px solid #E3EAE8;}
+  .tf-nav-item{display:block !important;}
+  .tf-dd{display:none !important;}
+  .nav-links .btn-dark{margin-top:14px; text-align:center; border-bottom:none !important;}
+}
+/* --- layout: phones --- */
+@media (max-width:760px){
+  [style*="grid-template-columns"]{grid-template-columns:1fr !important;}
+}
+/* --- tf-refine: premium micro-interactions + texture --- */
+.tf-photo{filter:grayscale(1) contrast(1.04) brightness(1.01);}
+.btn-dark,.btn-light{transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease, background .22s ease !important;}
+.btn-dark:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -12px rgba(14,124,117,.5) !important;}
+.btn-light:hover{transform:translateY(-2px) !important; box-shadow:0 14px 30px -14px rgba(14,15,18,.30) !important;}
+.tf-dd a,.peq-chip,.hp-chip,.aud a,.pill,.tf-link-u{transition:all .2s ease;}
+a:focus-visible,button:focus-visible{outline-offset:3px;}
+html::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.42;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;}
+@media (prefers-reduced-motion: reduce){html::after{display:none;}.btn-dark:hover,.btn-light:hover{transform:none !important;}}
+</style>
+
+<style id="tf-mobile">
+/* tf-mobile : mobile refinement pass (desktop untouched; all rules inside media queries) */
+@media (max-width:760px){
+  html{overflow-x:clip;}
+  img,video,iframe{max-width:100%;}
+  /* scale heavy desktop vertical rhythm */
+  [style*="padding:64px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:70px clamp(22px,5vw,56px)"]{padding-top:40px!important;padding-bottom:40px!important;}
+  [style*="padding:74px clamp(22px,5vw,56px)"]{padding-top:41px!important;padding-bottom:41px!important;}
+  [style*="padding:78px clamp(22px,5vw,56px)"]{padding-top:43px!important;padding-bottom:43px!important;}
+  [style*="padding:80px clamp(22px,5vw,56px)"]{padding-top:44px!important;padding-bottom:44px!important;}
+  [style*="padding:84px clamp(22px,5vw,56px)"]{padding-top:46px!important;padding-bottom:46px!important;}
+  [style*="padding:88px clamp(22px,5vw,56px)"]{padding-top:48px!important;padding-bottom:48px!important;}
+  [style*="padding:90px clamp(22px,5vw,56px)"]{padding-top:50px!important;padding-bottom:50px!important;}
+  [style*="padding:92px clamp(22px,5vw,56px)"]{padding-top:51px!important;padding-bottom:51px!important;}
+  [style*="padding:96px clamp(22px,5vw,56px)"]{padding-top:53px!important;padding-bottom:53px!important;}
+  [style*="padding:100px clamp(22px,5vw,56px)"]{padding-top:55px!important;padding-bottom:55px!important;}
+  [style*="padding:104px clamp(22px,5vw,56px)"]{padding-top:57px!important;padding-bottom:57px!important;}
+  [style*="padding:110px clamp(22px,5vw,56px)"]{padding-top:61px!important;padding-bottom:61px!important;}
+  [style*="padding:120px clamp(22px,5vw,56px)"]{padding-top:66px!important;padding-bottom:66px!important;}
+  [style*="padding:130px clamp(22px,5vw,56px)"]{padding-top:72px!important;padding-bottom:72px!important;}
+  /* keep stat rows as tidy 2-ups instead of a single tall column */
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+  [style*="grid-template-columns:1fr 1fr"][style*="gap:1px"]{grid-template-columns:1fr 1fr!important;}
+}
+@media (max-width:600px){
+  /* tame oversized fixed display type */
+  [style*="font-size:120px"]{font-size:58px!important;}
+  [style*="font-size:66px"]{font-size:40px!important;}
+  [style*="font-size:64px"]{font-size:40px!important;}
+  [style*="font-size:62px"]{font-size:38px!important;}
+  [style*="font-size:58px"]{font-size:36px!important;}
+  [style*="font-size:52px"]{font-size:34px!important;}
+  [style*="font-size:49px"]{font-size:32px!important;}
+  [style*="font-size:48px"]{font-size:32px!important;}
+  [style*="font-size:46px"]{font-size:30px!important;}
+  [style*="font-size:44px"]{font-size:30px!important;}
+  /* component padding: feature cards, quote blocks, tiles */
+  [style*="padding:56px 60px"]{padding:30px 24px!important;}
+  [style*="padding:44px 48px"]{padding:28px 22px!important;}
+  [style*="padding:36px 32px"]{padding:26px 22px!important;}
+  [style*="padding:32px 30px"]{padding:24px 20px!important;}
+  [style*="padding:30px 28px"]{padding:22px 18px!important;}
+  [style*="padding:28px 26px"]{padding:20px 18px!important;}
+  /* pressure gauge: roomier touch targets, calmer chips */
+  input[type=range].tf-slider{height:6px;}
+  .peq-chip,.hp-chip{font-size:12px; padding:8px 12px;}
+  /* logo marquee: a touch tighter */
+  .tf-marquee-track span{padding:0 20px;}
+}
+/* tables: horizontal scroll rather than overflow the page */
+@media (max-width:640px){
+  table{display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap;}
+  table td, table th{font-size:12.5px!important; padding:9px 11px!important;}
+}
+</style>
+</head>
+<body>
+<div class="tf-progress" id="tf-progress"></div>
+
+<!-- NAV -->
+<div style="position:sticky; top:0; z-index:50; background:rgba(240,244,243,.86); backdrop-filter:blur(10px); border-bottom:1px solid #D3DDDB;">
+  <div class="wrap" style="padding:17px clamp(22px,5vw,56px); display:flex; align-items:center; justify-content:space-between;">
+    <a href="./" style="display:flex; align-items:center; gap:11px;">
+      <img src="third-factor-logo.png" alt="Third Factor" style="height:37px; width:auto; display:block;">
+    </a>
+    <div class="nav-links tf-nav-links" role="navigation" aria-label="Primary" style="display:flex; align-items:center; gap:28px; white-space:nowrap;"><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-What-We-Do.html" style="font-size:13.5px; color:#121F1E; font-weight:600; cursor:pointer;">What we do</a><div class="tf-dd"><a href="Third-Factor-Power-of-Pressure.html">The Power of Pressure</a><a href="Third-Factor-Building-Resilience.html">Building Resilience</a><a href="Third-Factor-3x4-Coaching.html">3&times;4 Coaching</a><a href="Third-Factor-Self-Aware-Team.html">The Self-Aware Team</a><a class="dd-all" href="Third-Factor-What-We-Do.html">All programs &rarr;</a></div></span><span class="tf-nav-item"><a class="tf-link-u" href="Third-Factor-For-Organizations.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Who we help</a><div class="tf-dd"><a href="Third-Factor-For-Organizations.html">Organizations</a><a href="Third-Factor-For-Leaders.html">Leaders</a><a href="Third-Factor-For-Practitioners.html">Practitioners</a><a href="Third-Factor-For-Sport.html">Sport</a></div></span><a class="tf-link-u" href="Third-Factor-Proof.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Proof</a><a class="tf-link-u" href="Third-Factor-Insights.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">Insights</a><a class="tf-link-u" href="Third-Factor-About.html" style="font-size:13.5px; color:#414B49; cursor:pointer;">About</a><a href="Third-Factor-Contact.html" class="btn-dark" style="padding:9px 17px; font-size:13.5px;">Start a conversation</a></div><button class="tf-burger" aria-label="Open menu" aria-expanded="false" aria-controls="tf-primary-nav"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="wrap" style="padding:40px clamp(22px,5vw,56px) 64px;">
+  <div style="font-size:12.5px; color:#7E8987; margin-bottom:30px;">
+    <a href="Third-Factor-What-We-Do.html" style="color:#7E8987;">What we do</a> &nbsp;/&nbsp; <span style="color:#0E7C75;">Coaching</span> &nbsp;/&nbsp; <span style="color:#121F1E;">3×4 Coaching</span>
+  </div>
+  <div class="hero-g" style="display:grid; grid-template-columns:1.15fr .85fr; gap:54px; align-items:center;">
+    <div>
+      <div class="kick" style="margin-bottom:22px;">Coaching · Flagship program</div>
+      <h1 class="serif" style="font-weight:400; font-size:clamp(46px,7vw,82px); line-height:.98; letter-spacing:-.02em; margin:0;">3×4 Coaching</h1>
+      <p class="serif" style="font-weight:300; font-size:clamp(20px,2vw,24px); line-height:1.4; color:#414B49; margin:18px 0 24px; max-width:30ch;">Coaching, reimagined for the next decade of leaders.</p>
+      <p style="font-size:16.5px; line-height:1.7; color:#414B49; max-width:50ch; margin:0 0 30px;">The best coaches are remarkably consistent. We studied them for thirty-five years and found the pattern: three plays, four skills, one mindset. 3×4 Coaching teaches your leaders to run it, so they get results and build commitment in the same conversation.</p>
+      <div style="display:flex; gap:10px 22px; flex-wrap:wrap; margin-bottom:30px;">
+        <span style="font-size:12.5px; font-weight:600; color:#0E7C75; border:1px solid #cfe0dd; background:#eaf3f1; padding:7px 14px; border-radius:10px;">ICF accredited</span>
+        <span style="font-size:12.5px; font-weight:600; color:#0E7C75; border:1px solid #cfe0dd; background:#eaf3f1; padding:7px 14px; border-radius:10px;">Six formats</span>
+        <span style="font-size:12.5px; font-weight:600; color:#0E7C75; border:1px solid #cfe0dd; background:#eaf3f1; padding:7px 14px; border-radius:10px;">1 hour to a 4-week journey</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <a href="#cta" class="btn-dark">Start a conversation</a>
+        <a href="Third-Factor-Catalog.pdf" download class="tf-link-u" style="font-size:15px; font-weight:500; color:#121F1E;">Download the catalog (PDF)&nbsp;&rarr;</a>
+      </div>
+    </div>
+    <div style="position:relative; border-radius:14px; overflow:hidden; aspect-ratio:4/4.6; background:#0A1111;">
+      <img class="tf-photo" src="1764620311858.jpeg" alt="A Third Factor coaching workshop in session" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+    </div>
+  </div>
+</section>
+
+<!-- THE MODEL (interactive showpiece) -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB; border-bottom:1px solid #D3DDDB;">
+  <div class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+    <div style="max-width:60ch; margin-bottom:46px;">
+      <div class="kick" style="margin-bottom:22px;">The model</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(32px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0 0 16px;">Three plays. Four skills. One mindset.</h2>
+      <p style="font-size:16.5px; line-height:1.7; color:#414B49; margin:0;">Tap any part of the system to see what it means. Underneath all of it sits one mindset, the thing every great coach shares.</p>
+    </div>
+
+    <div class="model-g" style="display:grid; grid-template-columns:1fr .9fr; gap:50px; align-items:center;">
+      <!-- diagram -->
+      <div style="position:relative;">
+        <svg viewBox="0 0 480 500" style="width:100%; height:auto; display:block;" id="model-svg">
+          <!-- rotating dashed ring -->
+          <g class="spin" style="transform-origin:240px 235px; animation:spin 60s linear infinite;">
+            <circle cx="240" cy="235" r="158" fill="none" stroke="#A9BFC9" stroke-width="1.4" stroke-dasharray="2 10" stroke-linecap="round"/>
+          </g>
+          <!-- cycle arrows between plays -->
+          <g fill="none" stroke="#0E7C75" stroke-width="2" opacity=".5">
+            <path d="M268 120 A130 130 0 0 1 332 250" marker-end="url(#arw)"/>
+            <path d="M316 300 A130 130 0 0 1 164 300" marker-end="url(#arw)"/>
+            <path d="M148 250 A130 130 0 0 1 212 120" marker-end="url(#arw)"/>
+          </g>
+          <defs>
+            <marker id="arw" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#0E7C75"/></marker>
+          </defs>
+
+          <!-- skills (outer) -->
+          <g class="tf-node skill" data-k="questioning"><circle class="bg" cx="92" cy="96" r="30"/><text class="lbl" x="92" y="100" text-anchor="middle" font-size="10.5">Question</text></g>
+          <g class="tf-node skill" data-k="listening"><circle class="bg" cx="388" cy="96" r="30"/><text class="lbl" x="388" y="100" text-anchor="middle" font-size="10.5">Listen</text></g>
+          <g class="tf-node skill" data-k="feedback"><circle class="bg" cx="388" cy="378" r="30"/><text class="lbl" x="388" y="382" text-anchor="middle" font-size="10.5">Feedback</text></g>
+          <g class="tf-node skill" data-k="confronting"><circle class="bg" cx="92" cy="378" r="30"/><text class="lbl" x="92" y="382" text-anchor="middle" font-size="10.5">Confront</text></g>
+
+          <!-- plays (inner triangle) -->
+          <g class="tf-node play" data-k="clarity"><circle class="bg" cx="240" cy="110" r="46" fill="#F0F4F3" stroke="#0E7C75" stroke-width="2"/><text class="lbl" x="240" y="114" text-anchor="middle" font-size="13">Clarity</text></g>
+          <g class="tf-node play" data-k="competence"><circle class="bg" cx="344" cy="300" r="46" fill="#F0F4F3" stroke="#0E7C75" stroke-width="2"/><text class="lbl" x="344" y="297" text-anchor="middle" font-size="12">Compe-</text><text class="lbl" x="344" y="311" text-anchor="middle" font-size="12">tence</text></g>
+          <g class="tf-node play" data-k="recognition"><circle class="bg" cx="136" cy="300" r="46" fill="#F0F4F3" stroke="#0E7C75" stroke-width="2"/><text class="lbl" x="136" y="297" text-anchor="middle" font-size="12">Recogni-</text><text class="lbl" x="136" y="311" text-anchor="middle" font-size="12">tion</text></g>
+
+          <!-- core -->
+          <g class="tf-node" data-k="bias">
+            <circle class="core" cx="240" cy="235" r="58" fill="#0A1111" style="transform-origin:240px 235px;"/>
+            <circle cx="240" cy="235" r="58" fill="none" stroke="#0E7C75" stroke-width="2" style="transform-origin:240px 235px; animation:corepulse 4s ease-in-out infinite;"/>
+            <text x="240" y="230" text-anchor="middle" font-size="11" font-weight="700" fill="#F0F4F3">DEVELOPMENTAL</text>
+            <text x="240" y="246" text-anchor="middle" font-size="11" font-weight="700" fill="#3FBFAE">BIAS</text>
+          </g>
+        </svg>
+      </div>
+      <!-- detail panel -->
+      <div style="background:#F0F4F3; border:1px solid #D3DDDB; border-radius:16px; padding:36px 36px 40px; min-height:300px;">
+        <div id="m-tag" class="kick" style="margin-bottom:16px;">The mindset underneath</div>
+        <h3 id="m-title" class="serif" style="font-weight:400; font-size:30px; line-height:1.1; margin:0 0 14px;">Developmental Bias</h3>
+        <p id="m-desc" style="font-size:16px; line-height:1.7; color:#414B49; margin:0;">The one mindset every exceptional coach shares: an instinct to align with the part of a person that wants to get better. The three plays and four skills are how it shows up in the room. Tap any of them to explore.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; margin-bottom:44px;">
+    <div style="max-width:48ch;">
+      <div class="kick" style="margin-bottom:22px;">Outcomes</div>
+      <h2 class="serif" style="font-weight:400; font-size:clamp(32px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0;">What your leaders walk out able to do.</h2>
+    </div>
+    <p style="font-size:15.5px; line-height:1.65; color:#414B49; max-width:32ch; margin:0;">Practical, not theoretical. They use it the next morning.</p>
+  </div>
+  <div class="out-g" style="display:grid; grid-template-columns:1fr 1fr; gap:14px 44px;">
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Run the 3×4 model to drive high performance in others.</span></div>
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Build the competence and confidence of their people.</span></div>
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Create self-awareness and ownership through questioning and listening.</span></div>
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Deliver feedback that is competent, relevant and meaningful.</span></div>
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Recognize people in a way that reinforces what drives performance.</span></div>
+    <div style="display:flex; gap:14px; align-items:flex-start; border-top:1px solid #D3DDDB; padding:20px 0;"><span style="color:#0E7C75; font-weight:700;">&rarr;</span><span style="font-size:16px; line-height:1.6;">Build an action plan that transfers the skill back to the job.</span></div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section style="background:#0A1111; color:#F0F4F3;">
+  <div class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; margin-bottom:40px;">
+      <div style="max-width:52ch;">
+        <div class="kick" style="color:#3FBFAE; margin-bottom:22px;">Formats</div>
+        <h2 class="serif" style="font-weight:300; font-size:clamp(32px,4.4vw,46px); line-height:1.1; letter-spacing:-.015em; margin:0; color:#F0F4F3;">Built for how your organization actually learns.</h2>
+      </div>
+      <p style="font-size:15.5px; line-height:1.65; color:#A8B3B1; max-width:30ch; margin:0;">In person, virtual, or self-paced. Same model, configured to you.</p>
+    </div>
+    <table class="formats" style="width:100%; border-collapse:collapse; color:#F0F4F3;">
+      <thead><tr style="border-bottom:1px solid rgba(240,244,243,.22);"><th>Format</th><th>Length</th><th class="hideS">Group size</th><th style="text-align:right;">Learning hours</th></tr></thead>
+      <tbody style="font-family:'Newsreader',serif;">
+        <tr style="border-bottom:1px solid rgba(240,244,243,.12);"><td style="font-size:21px;">Virtual learning journey</td><td>4 weeks</td><td class="hideS">18 to 24</td><td style="text-align:right; color:#3FBFAE; font-size:21px;">12</td></tr>
+        <tr style="border-bottom:1px solid rgba(240,244,243,.12);"><td style="font-size:21px;">Classroom workshop</td><td>2 days</td><td class="hideS">24</td><td style="text-align:right; color:#3FBFAE; font-size:21px;">14</td></tr>
+        <tr style="border-bottom:1px solid rgba(240,244,243,.12);"><td style="font-size:21px;">Classroom workshop</td><td>1 day</td><td class="hideS">24</td><td style="text-align:right; color:#3FBFAE; font-size:21px;">7.5</td></tr>
+        <tr style="border-bottom:1px solid rgba(240,244,243,.12);"><td style="font-size:21px;">Keynote</td><td>1 hour</td><td class="hideS">100+</td><td style="text-align:right; color:#3FBFAE; font-size:21px;">1</td></tr>
+        <tr style="border-bottom:1px solid rgba(240,244,243,.12);"><td style="font-size:21px;">Webinar</td><td>1 hour</td><td class="hideS">100+</td><td style="text-align:right; color:#3FBFAE; font-size:21px;">1</td></tr>
+        <tr><td style="font-size:21px;">Video program</td><td>Self-paced</td><td class="hideS">Unlimited</td><td style="text-align:right; color:#3FBFAE; font-size:21px;">2.75</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- INSIDE THE PROGRAM -->
+<section class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+  <div style="max-width:52ch; margin-bottom:44px;">
+    <div class="kick" style="margin-bottom:22px;">Inside the program</div>
+    <h2 class="serif" style="font-weight:400; font-size:clamp(32px,4.4vw,48px); line-height:1.08; letter-spacing:-.015em; margin:0;">It does not end when the workshop does.</h2>
+  </div>
+  <div class="three" style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;">
+    <div style="border-radius:16px; overflow:hidden; border:1px solid #D3DDDB;">
+      <div style="aspect-ratio:4/3; background:linear-gradient(150deg,#0E7C75,#0A1111 75%); position:relative;"><div style="position:absolute; inset:0; background-image:radial-gradient(circle at 1px 1px, rgba(240,244,243,.16) 1px, transparent 0); background-size:14px 14px; opacity:.5;"></div></div>
+      <div style="padding:22px 24px;"><div class="serif" style="font-size:21px; margin-bottom:6px;">Skill and drill cards</div><div style="font-size:14px; color:#4F5A58; line-height:1.6;">Pocket tools your leaders pull out before a real conversation.</div></div>
+    </div>
+    <div style="border-radius:16px; overflow:hidden; border:1px solid #D3DDDB;">
+      <div style="aspect-ratio:4/3; background:linear-gradient(150deg,#3FBFAE,#0E7C75 80%); position:relative;"><div style="position:absolute; inset:0; background-image:radial-gradient(circle at 1px 1px, rgba(14,15,18,.12) 1px, transparent 0); background-size:14px 14px; opacity:.5;"></div></div>
+      <div style="padding:22px 24px;"><div class="serif" style="font-size:21px; margin-bottom:6px;">Live practice</div><div style="font-size:14px; color:#4F5A58; line-height:1.6;">Real reps with a facilitator, because coaching is a skill, not a slide.</div></div>
+    </div>
+    <div style="border-radius:16px; overflow:hidden; border:1px solid #D3DDDB;">
+      <div style="aspect-ratio:4/3; background:linear-gradient(150deg,#0A1111,#0E7C75 90%); position:relative;"><div style="position:absolute; inset:0; background-image:radial-gradient(circle at 1px 1px, rgba(240,244,243,.14) 1px, transparent 0); background-size:14px 14px; opacity:.5;"></div></div>
+      <div style="padding:22px 24px;"><div class="serif" style="font-size:21px; margin-bottom:6px;">The Sustainment Gym</div><div style="font-size:14px; color:#4F5A58; line-height:1.6;">A private microsite of drills, refreshers and a podcast that keeps the skill alive.</div></div>
+    </div>
+  </div>
+
+  <!-- PJ callout -->
+  <div class="two" style="display:grid; grid-template-columns:auto 1fr auto; gap:26px; align-items:center; margin-top:34px; background:#E3EAE8; border:1px solid #D3DDDB; border-radius:14px; padding:26px 30px;">
+    <div style="width:54px; height:54px; border-radius:50%; background:#0A1111; display:flex; align-items:center; justify-content:center;"><span class="serif" style="font-size:22px; color:#3FBFAE;">PJ</span></div>
+    <div>
+      <div class="serif" style="font-size:22px; line-height:1.1;">And PJ is always on.</div>
+      <div style="font-size:14.5px; color:#4F5A58; margin-top:5px; max-width:74ch;">PJ, the Coach's Coach, is trained on this exact model. When a leader has a tough conversation coming and is not sure where to start, PJ walks them through the 3×4 play. Built to augment your coaches, never to replace them.</div>
+    </div>
+    <span style="font-size:11px; font-weight:600; letter-spacing:.14em; color:#0E7C75; white-space:nowrap;">INCLUDED</span>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section style="background:#E3EAE8; border-top:1px solid #D3DDDB;">
+  <div class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+    <div class="reveal" style="background:#0A1111; color:#F0F4F3; border-radius:16px; padding:56px 60px; position:relative; overflow:hidden;">
+      <div style="position:absolute; inset:0; background:radial-gradient(60% 120% at 88% 0%, rgba(63,191,174,.12), transparent 60%); pointer-events:none;"></div>
+      <div style="position:relative;">
+        <div class="serif" style="font-size:120px; line-height:.6; color:#3FBFAE; height:46px;">&ldquo;</div>
+        <blockquote class="serif" style="font-weight:300; font-size:clamp(26px,3.4vw,38px); line-height:1.28; letter-spacing:-.01em; margin:0 0 32px; max-width:26ch;">3×4 Coaching is one of the best leadership development experiences I have seen. The results are transformational.</blockquote>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:42px; height:1px; background:#3FBFAE;"></div>
+          <div><div style="font-weight:600; font-size:15px;">David Hofmann</div><div style="font-size:12px; color:#7E8987; margin-top:3px;">Senior Associate Dean · UNC Executive Development</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:30px; background:#0A1111; border-radius:16px; padding:38px 40px;">
+      <div class="three" style="display:grid; grid-template-columns:repeat(3,1fr); gap:30px;">
+        <div><div class="serif" style="font-size:46px; line-height:1; color:#3FBFAE;">30,000+</div><div style="font-size:13px; color:#7E8987; margin-top:8px;">leaders trained in coaching skills</div></div>
+        <div><div class="serif" style="font-size:46px; line-height:1; color:#3FBFAE;">97.7%</div><div style="font-size:13px; color:#7E8987; margin-top:8px;">would recommend Third Factor (of 12,566)</div></div>
+        <div><div class="serif" style="font-size:46px; line-height:1; color:#3FBFAE;">ICF</div><div style="font-size:13px; color:#7E8987; margin-top:8px;">accredited coaching program</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="wrap" style="padding:96px clamp(22px,5vw,56px);">
+  <div class="kick" style="margin-bottom:22px;">More in Coaching</div>
+  <h2 class="serif" style="font-weight:400; font-size:clamp(28px,3.6vw,40px); line-height:1.1; margin:0 0 36px;">Keep building the coaching habit.</h2>
+  <div style="border-top:1px solid #121F1E;">
+    <div style="display:grid; grid-template-columns:1.3fr 1fr 22px; gap:26px; align-items:center; padding:26px 8px; border-bottom:1px solid #D3DDDB;">
+      <div class="serif" style="font-size:24px;">Managing Challenging Conversations</div>
+      <div style="font-size:14px; color:#646F6D;">Master the toughest coaching moment, the one you have been avoiding.</div>
+      <span class="serif" style="font-size:20px;">&rarr;</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1.3fr 1fr 22px; gap:26px; align-items:center; padding:26px 8px; border-bottom:1px solid #D3DDDB;">
+      <div class="serif" style="font-size:24px;">Career Conversations</div>
+      <div style="font-size:14px; color:#646F6D;">Keep your best people by helping them see a future worth staying for.</div>
+      <span class="serif" style="font-size:20px;">&rarr;</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1.3fr 1fr 22px; gap:26px; align-items:center; padding:26px 8px; border-bottom:1px solid #D3DDDB;">
+      <div class="serif" style="font-size:24px;">Ignite</div>
+      <div style="font-size:14px; color:#646F6D;">Peter Jensen's five practices for lighting the fire in other people.</div>
+      <span class="serif" style="font-size:20px;">&rarr;</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" style="background:#0A1111; color:#F0F4F3; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:radial-gradient(60% 100% at 50% 120%, rgba(63,191,174,.14), transparent 60%); pointer-events:none;"></div>
+  <div class="wrap" style="padding:110px clamp(22px,5vw,56px); text-align:center; position:relative; max-width:900px;">
+    <div class="kick" style="color:#3FBFAE; margin-bottom:30px;">Bring it to your team</div>
+    <h2 class="serif" style="font-weight:300; font-size:clamp(32px,5vw,58px); line-height:1.1; letter-spacing:-.02em; margin:0 0 26px;">Turn your leaders into the coaches your people deserve.</h2>
+    <p style="font-size:16.5px; line-height:1.7; color:#A8B3B1; max-width:50ch; margin:0 auto 40px;">Tell us about your team and we will show you exactly how we would run 3×4 Coaching inside your organization.</p>
+    <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;">
+      <a href="Third-Factor-Contact.html" class="btn-light">Start a conversation</a>
+      <a href="Third-Factor-Catalog.pdf" download class="tf-link-u" style="font-size:15px; font-weight:500; color:#F0F4F3;">Download the catalog (PDF)&nbsp;&rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0F1919; color:#C2CCCA;">
+  <div class="wrap" style="padding:60px clamp(22px,5vw,56px) 38px;">
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:36px; border-bottom:1px solid rgba(240,244,243,.1);">
+      <a href="./" style="display:flex; align-items:center; gap:11px;">
+        <img src="third-factor-logo.png" alt="Third Factor" style="height:25px; width:auto; display:block; filter:invert(1);">
+      </a>
+      <div style="font-family:'Newsreader',serif; font-weight:300; font-size:20px; color:#F0F4F3;">Convert pressure into excellence.</div>
+    </div>
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; margin-top:24px; font-size:11px; font-weight:600; letter-spacing:.04em; color:#646F6D;">
+      <span>© 2026 Third Factor. The proof is on the podium.</span>
+      <span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var prog=document.getElementById('tf-progress');
+  function onScroll(){var el=document.scrollingElement||document.documentElement;var max=(el.scrollHeight-el.clientHeight)||1;prog.style.width=Math.max(0,Math.min(100,(el.scrollTop/max)*100))+'%';}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var DATA={
+    bias:{tag:'The mindset underneath',title:'Developmental Bias',desc:'The one mindset every exceptional coach shares: an instinct to align with the part of a person that wants to get better. The three plays and four skills are how it shows up in the room. Tap any of them to explore.'},
+    clarity:{tag:'Play 01',title:'Clarity',desc:'Help people see clearly what great looks like and where they stand right now. Coaching starts with a shared, honest picture, not a pep talk.'},
+    competence:{tag:'Play 02',title:'Competence',desc:'Build real skill through practice and feedback, so confidence is earned rather than handed out. Competence is what makes the confidence stick.'},
+    recognition:{tag:'Play 03',title:'Recognition',desc:'Reinforce the behavior that drives performance, in a way that is specific and true. Done well, recognition is a coaching tool, not a participation trophy.'},
+    questioning:{tag:'Skill',title:'Questioning',desc:'Ask the questions that create self-awareness and ownership, instead of handing over the answer. The right question does more than the best advice.'},
+    listening:{tag:'Skill',title:'Listening',desc:'Listen to understand, not to reply. It is unglamorous, it is hard, and it is where trust is actually built.'},
+    feedback:{tag:'Skill',title:'Feedback',desc:'Deliver feedback that is competent, relevant and meaningful, with a clear bias toward developing the person in front of you.'},
+    confronting:{tag:'Skill',title:'Confronting',desc:'Address problem behavior in a way that gets commitment to change and strengthens the relationship at the same time. The hardest skill, and the rarest.'}
+  };
+  var tag=document.getElementById('m-tag'), title=document.getElementById('m-title'), desc=document.getElementById('m-desc');
+  var svg=document.getElementById('model-svg');
+  function select(k){
+    var d=DATA[k]; if(!d) return;
+    tag.textContent=d.tag; title.textContent=d.title; desc.textContent=d.desc;
+    svg.querySelectorAll('.tf-node').forEach(function(n){ n.classList.toggle('on', n.getAttribute('data-k')===k); });
+  }
+  svg.querySelectorAll('.tf-node').forEach(function(n){
+    n.addEventListener('click',function(){ select(n.getAttribute('data-k')); });
+  });
+})();
+</script>
+<!--tf-navjs--><script>(function(){var b=document.querySelector('.tf-burger');if(!b)return;b.addEventListener('click',function(){var open=document.body.classList.toggle('tf-nav-open');b.setAttribute('aria-expanded',open?'true':'false');});document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');});});document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.body.classList.remove('tf-nav-open');b.setAttribute('aria-expanded','false');}});})();</script>
+</body>
+</html>
