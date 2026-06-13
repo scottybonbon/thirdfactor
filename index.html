@@ -194,7 +194,7 @@ html::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;o
       <div style="width:84px; height:3px; background:#0E7C75; margin:30px 0 28px;"></div>
       <p style="font-family:'Newsreader',serif; font-weight:300; font-size:21px; line-height:1.55; color:#414B49; max-width:48ch; margin:0 0 34px;">Some people crack under pressure. Some convert it. For thirty-five years we have studied the difference, first at the Olympics, then inside the world's biggest companies. What we found is a set of skills, not a personality trait. In the age of AI, those skills are the advantage that's left.</p>
       <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
-        <a href="#cta" style="font-size:15px; font-weight:600; color:#F0F4F3; background:#121F1E; padding:14px 26px; border-radius:10px; cursor:pointer; white-space:nowrap;">Start a conversation</a>
+        <a href="Third-Factor-Contact.html" style="font-size:15px; font-weight:600; color:#F0F4F3; background:#121F1E; padding:14px 26px; border-radius:10px; cursor:pointer; white-space:nowrap;">Start a conversation</a>
         <a href="Third-Factor-Power-of-Pressure.html" class="tf-link-u" style="font-size:15px; font-weight:500; color:#121F1E; cursor:pointer;">Read The Power of Pressure&nbsp;&rarr;</a>
       </div>
     </div>
@@ -644,10 +644,11 @@ html::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;o
   var canvas = document.getElementById('eq-field');
   if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     var ctx = canvas.getContext('2d');
-    var w=0,h=0,dpr=1,pts=[],N=90;
+    var w=0,h=0,dpr=1,pts=[],N=140;
     function resize(){ var r=canvas.getBoundingClientRect(); dpr=Math.min(window.devicePixelRatio||1,2); w=canvas.width=Math.max(1,Math.round(r.width*dpr)); h=canvas.height=Math.max(1,Math.round(r.height*dpr)); }
-    function seed(){ pts=[]; for(var i=0;i<N;i++){ pts.push({a:Math.random()*Math.PI*2, br:Math.pow(Math.random(),0.7), r:Math.random()*1.6+0.5, ph:Math.random()*Math.PI*2, sp:Math.random()*0.5+0.4}); } }
+    function seed(){ pts=[]; for(var i=0;i<N;i++){ pts.push({a:Math.random()*Math.PI*2, br:Math.pow(Math.random(),0.7), r:Math.random()*1.6+0.5, ph:Math.random()*Math.PI*2, sp:Math.random()*0.5+0.4, vph:Math.random()*Math.PI*2, vsp:0.8+Math.random()*0.6}); } }
     function lerp(a,b,t){ return a+(b-a)*t; }
+    function clamp(x,a,b){ return x<a?a:(x>b?b:x); }
     resize(); seed(); window.addEventListener('resize', resize);
     var t0=performance.now();
     function draw(now){
@@ -655,16 +656,21 @@ html::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;o
       ctx.clearRect(0,0,w,h);
       var cx=w*0.78, cy=h*0.5, maxR=Math.min(w,h)*0.6;
       var p=pressure01;
-      var jit=(0.4+p*1.5)*dpr;
-      // color from pulse (low) to ember (high)
+      var visible=lerp(7,N,Math.pow(p,0.8));          // few when latent, many at extreme
+      var drift=0.035+p*0.11;                          // serene orbit -> quicker
+      var sway=(0.4+p*1.1)*dpr;                         // gentle radial breathing
+      var vibAmp=Math.pow(p,1.8)*3.4*dpr;              // anxiety vibration grows fast near max
+      var vibFreq=13+p*27;                             // and gets more frantic
       var cr=Math.round(lerp(15,255,p)), cg=Math.round(lerp(185,90,p)), cb=Math.round(lerp(154,31,p));
       for(var i=0;i<pts.length;i++){
+        var vis=clamp(visible-i,0,1); if(vis<=0) continue;
         var q=pts[i];
-        var ang=q.a + t*0.05*q.sp;
-        var spread = 1 - p*0.45;
-        var rr=q.br*maxR*spread + Math.sin(t*q.sp*1.6+q.ph)*jit*3;
+        var ang=q.a + t*drift*q.sp;
+        var spread=1 - p*0.42;
+        var rr=q.br*maxR*spread + Math.sin(t*q.sp*1.4+q.ph)*sway*3;
         var px=cx+Math.cos(ang)*rr, py=cy+Math.sin(ang)*rr*0.85;
-        var alpha=0.10+p*0.4;
+        if(vibAmp>0.01){ px+=Math.sin(t*vibFreq*q.vsp+q.vph)*vibAmp; py+=Math.cos(t*vibFreq*q.vsp*1.07+q.vph*1.3)*vibAmp; }
+        var alpha=(0.12+p*0.45)*vis;
         ctx.beginPath();
         ctx.arc(px,py,q.r*dpr*(1+p*0.7),0,Math.PI*2);
         ctx.fillStyle='rgba('+cr+','+cg+','+cb+','+alpha+')';
