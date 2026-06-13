@@ -32,7 +32,7 @@
   .step .num{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#F0F4F3;background:#121F1E;margin-bottom:20px;}
   .step{position:relative;padding:0 26px;}
   .step:first-child{padding-left:0;}.step:last-child{padding-right:0;}
-  .step:not(:last-child)::after{content:"";position:absolute;top:23px;right:-13px;width:26px;height:1px;background:#8fc2ba;}
+  .step:not(:last-child)::after{content:"";position:absolute;top:23px;left:72px;right:-26px;height:1px;background:#8fc2ba;}.step:first-child:not(:last-child)::after{left:46px;}
   .prog-row{display:grid;grid-template-columns:1.2fr 1fr 22px;gap:26px;align-items:center;padding:24px 8px;border-bottom:1px solid #D3DDDB;transition:background .3s ease;cursor:pointer;}
   .prog-row:hover{background:rgba(14,124,117,.06);}
   @media (max-width:920px){
